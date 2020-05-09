@@ -1,4 +1,6 @@
 // Using this to handle basic application for the game
+#ifndef APPLICATION_H
+#define APPLICATION_H
 
 #include <iostream>
 #include <conio.h>
@@ -9,13 +11,15 @@
 
 using namespace std;
 
-int main();
+class Application
+{
+public:
+	// use to initialise objects
+	void Init();
+	// update loops
+	void Run();
+	// clear any memory
+	void Exit();
+};
 
-// use to initialise objects
-void Init();
-// update loops
-void Update();
-// render loop
-void Render();
-// clear any memory
-void Shutdown();
+#endif

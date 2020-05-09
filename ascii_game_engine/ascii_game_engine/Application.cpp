@@ -1,34 +1,22 @@
 #include "Application.h"
 
-void Init()
+void Application::Init()
 {
 	Game::GetInstance()->Init();
 }
 
-void Update()
+void Application::Run()
 {
-	Game::GetInstance()->Update();
-}
-
-void Render()
-{
-	Game::GetInstance()->Render();
-}
-
-void Shutdown()
-{
-	Game::GetInstance()->Shutdown();
-}
-
-int main()
-{
-	Init();
 	while (!GetKeyState(VK_ESCAPE))
 	{
-		Update();
-		Render();
+		Game::GetInstance()->Update();
+		Game::GetInstance()->Render();
 		// refreshes the console
 		system("cls");
 	}
-	Shutdown();
+}
+
+void Application::Exit()
+{
+	Game::GetInstance()->Exit();
 }

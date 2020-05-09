@@ -1,23 +1,23 @@
 // This is where the gameplay will occur
+#ifndef GAME_H
+#define GAME_H
 
-class Game
+#include "Singleton.h"
+
+class Game : public Singleton<Game>
 {
 public:
-	Game();
-	~Game();
-
-	static Game* GetInstance()
-	{
-		if (!instance)
-			instance = new Game;
-		return instance;
-	};
 
 	void Init();
 	void Render();
 	void Update();
-	void Shutdown();
+	void Exit();
 
 private:
-	static Game *instance;
+	// Singleton definition
+	friend class Singleton<Game>;
+	Game();
+	~Game();
 };
+
+#endif
