@@ -3,6 +3,7 @@
 #define GAME_H
 
 #include "Singleton.h"
+#include "Console.h"
 
 class Game : public Singleton<Game>
 {
@@ -18,6 +19,8 @@ private:
 	friend class Singleton<Game>;
 	Game();
 	~Game();
+
+	Console console;
 };
 
 #endif

@@ -1,3 +1,6 @@
+#ifndef SINGLETON_H
+#define SINGLETON_H
+
 // template class for any singleton design pattern
 template <typename T>
 class Singleton
@@ -6,7 +9,7 @@ public:
 	static T *GetInstance()
 	{
 		static T *instance;
-		if (instance)
+		if (!instance)
 			instance = new T;
 		return instance;
 	}
@@ -18,3 +21,5 @@ protected:
 	Singleton() {}
 	~Singleton() {}
 };
+
+#endif

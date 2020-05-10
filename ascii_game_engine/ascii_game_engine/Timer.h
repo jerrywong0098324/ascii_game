@@ -6,7 +6,7 @@
 #include <Windows.h>
 #include "Singleton.h"
 
-class StopWatch
+class StopWatch /*: public Singleton<StopWatch>*/
 {
 public:
 	StopWatch();
@@ -17,6 +17,10 @@ public:
 	void WaitUntil(long long time);
 
 private:
+	// Singleton definition
+	//friend class Singleton<StopWatch>;
+	//StopWatch();
+	//~StopWatch();
 
 	LARGE_INTEGER freq;
 	LARGE_INTEGER prevTime, currTime;

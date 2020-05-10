@@ -2,7 +2,7 @@
 
 Game::Game()
 {
-
+	console = Console(360, 360);
 }
 
 Game::~Game()

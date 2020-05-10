@@ -8,18 +8,23 @@
 #include <string>
 
 #include "Game.h"
-
-using namespace std;
+#include "Timer.h"
 
 class Application
 {
 public:
+	Application() {};
+	~Application() {};
+
 	// use to initialise objects
 	void Init();
 	// update loops
 	void Run();
 	// clear any memory
 	void Exit();
+
+private:
+	StopWatch timer;
 };
 
 #endif
