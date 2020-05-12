@@ -28,16 +28,21 @@ double StopWatch::LiToSec(LARGE_INTEGER& time)
 
 double StopWatch::GetDeltaTime()
 {
+	return deltaTime;
+}
+
+void StopWatch::UpdateTimer()
+{
 	LARGE_INTEGER time;
-	QueryPerformanceFrequency(&currTime);
+	QueryPerformanceCounter(&currTime);
 	time.QuadPart = currTime.QuadPart - prevTime.QuadPart;
 	prevTime = currTime;
-	return LiToSec(time);
+	deltaTime = LiToSec(time);
 }
 
 void StopWatch::StartTimer()
 {
-	QueryPerformanceFrequency(&prevTime);
+	QueryPerformanceCounter(&prevTime);
 }
 
 void StopWatch::WaitUntil(long long time)

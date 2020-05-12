@@ -27,13 +27,16 @@
     <ClInclude Include="Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="KeyboardInput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ConLib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyCode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -51,6 +54,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

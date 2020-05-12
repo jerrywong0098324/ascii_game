@@ -145,9 +145,10 @@
     <ClInclude Include="ConLib.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="KeyboardInput.h" />
+    <ClInclude Include="KeyCode.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="UserInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="UserInput.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

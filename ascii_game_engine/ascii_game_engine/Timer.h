@@ -6,27 +6,30 @@
 #include <Windows.h>
 #include "Singleton.h"
 
-class StopWatch /*: public Singleton<StopWatch>*/
-{
-public:
-	StopWatch();
-	~StopWatch();
+class Application;
 
+class StopWatch : public Singleton<StopWatch>
+{
+	friend class Application;
+public:
 	double GetDeltaTime();
 	void StartTimer();
 	void WaitUntil(long long time);
 
 private:
 	// Singleton definition
-	//friend class Singleton<StopWatch>;
-	//StopWatch();
-	//~StopWatch();
+	friend class Singleton<StopWatch>;
+	StopWatch();
+	~StopWatch();
 
 	LARGE_INTEGER freq;
 	LARGE_INTEGER prevTime, currTime;
 	UINT wTimerRes;
 
+	double deltaTime;
+
 	double LiToSec(LARGE_INTEGER& time);
+	void UpdateTimer();
 };
 
 #endif

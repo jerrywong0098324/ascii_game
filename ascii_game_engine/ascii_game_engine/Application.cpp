@@ -7,28 +7,27 @@ const unsigned int frameTime = 1000 / FPS; // time for each frame
 void Application::Init()
 {
 	Game::GetInstance()->Init();
-	//StopWatch::GetInstance()->StartTimer();
-	timer.StartTimer();
+	StopWatch::GetInstance()->StartTimer();
 }
 
 void Application::Run()
 {
-	while (!GetKeyState(VK_ESCAPE))
+	while (!UserInput::GetInstance()->GetKeyDown(KeyCode::Escape))
 	{
 		// Updating the delta time
-		//StopWatch::GetInstance()->GetDeltaTime();
+		StopWatch::GetInstance()->UpdateTimer();
 
 		Game::GetInstance()->Update();
 		Game::GetInstance()->Render();
-		// refreshes the console
-		system("cls");
 
 		// Frame rate limiter
-		timer.WaitUntil(frameTime);
-		//StopWatch::GetInstance()->WaitUntil(frameTime);
+		StopWatch::GetInstance()->WaitUntil(frameTime);
 
-		// Make the program wait for 0.5s before continuing
-		Sleep(500);
+		// Make the program wait for 0.1s before continuing
+		//Sleep(100);
+
+		// refreshes the console
+		system("cls");
 	}
 }
 

@@ -4,9 +4,10 @@
 
 #include <iostream>
 #include <conio.h>
-#include <Windows.h>
+//#include <Windows.h>
 #include <string>
 
+#include "UserInput.h"
 #include "Game.h"
 #include "Timer.h"
 
@@ -22,9 +23,6 @@ public:
 	void Run();
 	// clear any memory
 	void Exit();
-
-private:
-	StopWatch timer;
 };
 
 #endif
