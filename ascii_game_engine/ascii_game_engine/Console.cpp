@@ -1,6 +1,6 @@
 #include "Console.h"
 
-Console::Console(int width, int height) : width(width), height(height)
+Console::Console(int width, int height)
 {
 	// Changes the size of console window
 	HWND console = GetConsoleWindow();
