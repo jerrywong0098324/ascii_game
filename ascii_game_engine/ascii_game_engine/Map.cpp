@@ -10,10 +10,10 @@ Map::~Map()
 {
 	for (int i = 0; i < y; ++i)
 	{
-		delete *(map + i);
+		delete[] * (map + i);
 		*(map + i) = nullptr;
 	}
-	delete map;
+	delete[] map;
 	map = nullptr;
 }
 
@@ -36,7 +36,7 @@ void Map::LoadMap()
 }
 
 // Open files
-void Map::OpenFile(std::vector<std::string> &res)
+void Map::OpenFile(std::vector<std::string>& res)
 {
 	std::string items; // use to store string per line from .txt file
 	std::ifstream inFile(mapLevel); // Input file
@@ -89,18 +89,25 @@ void Map::InitBorders(std::string res)
 }
 
 // Creates dynamic 2D array map
-void Map::CreateMap(const std::vector<std::string> res)
+void Map::CreateMap(std::vector<std::string> res)
 {
-	map = new char*[y]; // creates row
+	map = new char* [y]; // creates row
 	for (int i = 0; i < y; ++i)
-		*(map + i) = new char[x]; // create column
+		map[i] = new char[x + 1]; // create column	
 
 	for (int i = 0; i < y; ++i)
-		strcpy(*(map + i), res[i + 1].c_str());
+	{
+		for (int j = 0; j < x; ++j)
+		{
+			map[i][j] = res[i + 1][j];
+			if (j + 1 >= x)
+				map[i][j + 1] = '\0';
+		}
+	}
 }
 
 // check if string contains specified characters
-bool Map::is_digit(const std::string &c)
+bool Map::is_digit(const std::string& c)
 {
 	return c.find_first_not_of("0123456789") == c.npos;
 }

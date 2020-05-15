@@ -24,7 +24,7 @@ private:
 	// Init x and y values
 	void InitBorders(std::string res);
 	// Creates dynamic 2D array
-	void CreateMap(const std::vector<std::string> res);
+	void CreateMap(std::vector<std::string> res);
 	// check if string contains specified characters
 	bool is_digit(const std::string &c);
 

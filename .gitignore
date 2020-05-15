@@ -31,4 +31,6 @@
 *.out
 *.app
 
-# Testing
+# Other useless stuff
+*.VC
+*.ipch
