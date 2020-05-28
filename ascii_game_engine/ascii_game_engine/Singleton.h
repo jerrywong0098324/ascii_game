@@ -8,18 +8,34 @@ class Singleton
 public:
 	static T *GetInstance()
 	{
-		static T *instance;
-		if (!instance)
-			instance = new T;
-		return instance;
+		if (!Singleton<T>::instance)
+			Singleton<T>::instance = new T;
+		return Singleton<T>::instance;
 	}
 
 	Singleton(Singleton const&) = delete;
 	Singleton& operator=(Singleton const&) = delete;
 
 protected:
-	Singleton() {}
-	~Singleton() {}
+	Singleton() {};
+	~Singleton() {};
+
+	virtual void free_memory();
+
+	static T *instance;
 };
+
+template<typename T>
+T* Singleton<T>::instance = nullptr;
+
+template <typename T>
+void Singleton<T>::free_memory()
+{
+	if (Singleton<T>::instance)
+	{
+		delete Singleton<T>::instance;
+		Singleton<T>::instance = nullptr;
+	}
+}
 
 #endif

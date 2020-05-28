@@ -10,11 +10,13 @@
 class Map
 {
 public:
-	Map(std::string mapLevel);
+	Map();
 	~Map();
 
 	// Returns the map for the camera to "render"
 	char **GetMap();
+	// Init map from .txt file
+	void Init(std::string mapLevel = "");
 
 private:
 	// Load map from .txt file and store them into 2D Array
@@ -25,6 +27,7 @@ private:
 	void InitBorders(std::string res);
 	// Creates dynamic 2D array
 	void CreateMap(std::vector<std::string> res);
+	// Delete Map (using in LevelManager when changing to next scene)
 	// check if string contains specified characters
 	bool is_digit(const std::string &c);
 

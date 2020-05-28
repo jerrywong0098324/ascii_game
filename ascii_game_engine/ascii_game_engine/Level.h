@@ -14,13 +14,17 @@ public:
 	};
 	virtual ~Level() = 0;
 
-	// Render function to render map
-	void Render() {};
+	virtual char **GetMap()
+	{
+		return currMap.GetMap();
+	}
+	// When Exiting the level
+	void Exit() {};
 
 protected:
 	// Map to handle the current map level
-	// Sound to handle playing music?
 	Map currMap;
+	// Sound to handle playing music?
 };
 
 #endif

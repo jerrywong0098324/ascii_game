@@ -4,6 +4,8 @@
 
 #include "Singleton.h"
 #include "Console.h"
+#include "Camera.h"
+#include "Player.h"
 
 class Game : public Singleton<Game>
 {
@@ -20,7 +22,12 @@ private:
 	Game();
 	~Game();
 
+	// currState
+	GameState currState;
+
 	Console console;
+	Camera camera;
+	Player player;
 };
 
 #endif

@@ -59,3 +59,13 @@ void StopWatch::WaitUntil(long long time)
 			Sleep(1);
 	}
 }
+
+void StopWatch::free_memory()
+{
+	timeEndPeriod(wTimerRes);
+	if (instance)
+	{
+		delete instance;
+		instance = nullptr;
+	}
+}

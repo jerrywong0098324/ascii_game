@@ -1,17 +1,19 @@
 #include "Map.h"
 
-Map::Map(std::string mapLevel) : mapLevel(mapLevel)
+Map::Map() : x(0), y(0), map(nullptr)
 {
-	LoadMap();
-
+	//LoadMap();
 }
 
 Map::~Map()
 {
+	if (!map) // memory successfully deallocated already
+		return;
+
 	for (int i = 0; i < y; ++i)
 	{
-		delete[] * (map + i);
-		*(map + i) = nullptr;
+		delete[] map[i];
+		map[i] = nullptr;
 	}
 	delete[] map;
 	map = nullptr;
@@ -20,6 +22,13 @@ Map::~Map()
 char** Map::GetMap()
 {
 	return map;
+}
+
+// Init map from .txt file
+void Map::Init(std::string mapLevel)
+{
+	this->mapLevel = mapLevel;
+	LoadMap();
 }
 
 // Load map from .txt file and store them into 2D Array
@@ -33,6 +42,7 @@ void Map::LoadMap()
 	InitBorders(res[0]);
 	// initialise 2D dynamic array
 	CreateMap(res);
+	// Change all the subsitute char to spaces
 }
 
 // Open files
@@ -93,16 +103,16 @@ void Map::CreateMap(std::vector<std::string> res)
 {
 	map = new char* [y]; // creates row
 	for (int i = 0; i < y; ++i)
+	{
 		map[i] = new char[x + 1]; // create column	
+		map[i][x] = '\0';
+	}
 
+	// storing map from .txt file into 2D dynamic array
 	for (int i = 0; i < y; ++i)
 	{
 		for (int j = 0; j < x; ++j)
-		{
 			map[i][j] = res[i + 1][j];
-			if (j + 1 >= x)
-				map[i][j + 1] = '\0';
-		}
 	}
 }
 

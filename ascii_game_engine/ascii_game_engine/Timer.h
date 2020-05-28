@@ -22,6 +22,8 @@ private:
 	StopWatch();
 	~StopWatch();
 
+	virtual void free_memory();
+
 	LARGE_INTEGER freq;
 	LARGE_INTEGER prevTime, currTime;
 	UINT wTimerRes;

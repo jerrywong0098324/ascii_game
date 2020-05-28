@@ -1,0 +1,11 @@
+******************************************************************************
+PREVENTING MEMORY LEAKS
+
+1) When c++ program ends, any object initiated in another object will not have
+their deconstructor called.
+-> Example: Application object created in main.cpp, Game object created within 
+Application object. Unable to delete any pointer just simply by putting them 
+inside Game object's deconstructor. Have to create another funtion just to 
+deallocate memory from the heap and calling that function at the Exit function
+inside Application object.
+******************************************************************************
