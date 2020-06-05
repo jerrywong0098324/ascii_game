@@ -63,9 +63,5 @@ void StopWatch::WaitUntil(long long time)
 void StopWatch::free_memory()
 {
 	timeEndPeriod(wTimerRes);
-	if (instance)
-	{
-		delete instance;
-		instance = nullptr;
-	}
+	Singleton::free_memory();
 }

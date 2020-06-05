@@ -3,6 +3,7 @@
 #define PLAYER_H
 
 #include "Vector2.h"
+#include "GameStateManager.h"
 
 class Player
 {
@@ -10,10 +11,10 @@ public:
 	Player();
 	~Player();
 
-	// Return Reference to Player's Position
+	// Return Reference to Player's Position (To make camera side scroll)
 	Vector2 &GetRefPosition();
 	// Return Player's Position
-	Vector2 GetPosition();
+	Vector2 GetPosition() const;
 
 	// Update function to get player's input
 	void Update();

@@ -19,16 +19,42 @@ Map::~Map()
 	map = nullptr;
 }
 
-char** Map::GetMap()
+char** Map::GetMap() const
 {
 	return map;
 }
 
+// Get size of x and y
+int Map::GetSizeX() const
+{
+	return x;
+}
+
+int Map::GetSizeY() const
+{
+	return y;
+}
+
 // Init map from .txt file
-void Map::Init(std::string mapLevel)
+void Map::Init(const char *mapLevel)
 {
 	this->mapLevel = mapLevel;
 	LoadMap();
+}
+
+// Delete Map (using in LevelManager when changing to next scene)
+void Map::Exit()
+{
+	if (!map) // memory successfully deallocated already
+		return;
+
+	for (int i = 0; i < y; ++i)
+	{
+		delete[] map[i];
+		map[i] = nullptr;
+	}
+	delete[] map;
+	map = nullptr;
 }
 
 // Load map from .txt file and store them into 2D Array
@@ -42,7 +68,6 @@ void Map::LoadMap()
 	InitBorders(res[0]);
 	// initialise 2D dynamic array
 	CreateMap(res);
-	// Change all the subsitute char to spaces
 }
 
 // Open files
@@ -55,7 +80,8 @@ void Map::OpenFile(std::vector<std::string>& res)
 	if (inFile.fail())
 	{
 		std::cerr << "Unable to open file: " << mapLevel << std::endl;
-		exit(1);
+		//exit(1);
+		return; // just return
 	}
 
 	// Loop through till the end of file
@@ -112,7 +138,12 @@ void Map::CreateMap(std::vector<std::string> res)
 	for (int i = 0; i < y; ++i)
 	{
 		for (int j = 0; j < x; ++j)
-			map[i][j] = res[i + 1][j];
+		{
+			char c = res[i + 1][j];
+			if (c == '+') // replacing '+' to become empty spaces
+				c = ' ';
+			map[i][j] = c;
+		}
 	}
 }
 

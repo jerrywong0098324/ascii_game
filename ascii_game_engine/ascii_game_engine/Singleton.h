@@ -16,11 +16,11 @@ public:
 	Singleton(Singleton const&) = delete;
 	Singleton& operator=(Singleton const&) = delete;
 
+	virtual void free_memory();
+
 protected:
 	Singleton() {};
 	~Singleton() {};
-
-	virtual void free_memory();
 
 	static T *instance;
 };

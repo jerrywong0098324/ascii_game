@@ -3,27 +3,37 @@
 #define LEVEL_H
 
 #include "Map.h"
+#include "UserInput.h"
+#include "GameStateManager.h"
 
 class Level
 {
 public:
 	// mapLevel -> file directory of the map
-	Level(std::string mapLevel) : currMap(mapLevel)
+	Level() : map()
 	{
 
 	};
-	virtual ~Level() = 0;
+	virtual ~Level() = 0 {};
 
-	virtual char **GetMap()
+	// Used in camera
+	char **GetMap()
 	{
-		return currMap.GetMap();
+		return map.GetMap();
 	}
+
+	// Init the level
+	virtual void Init() {};
+	// Update the level
+	virtual void Update() {};
+	// print out the chars
+	virtual void Render() {};
 	// When Exiting the level
-	void Exit() {};
+	virtual void Exit() {};
 
 protected:
 	// Map to handle the current map level
-	Map currMap;
+	Map map;
 	// Sound to handle playing music?
 };
 

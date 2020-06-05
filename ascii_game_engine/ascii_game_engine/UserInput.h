@@ -3,10 +3,9 @@
 #define USERINPUT_H
 
 #include <Windows.h>
-//#include "Singleton.h"
 #include "KeyCode.h"
 
-class UserInput /*: public Singleton<UserInput>*/
+class UserInput
 {
 public:
 	UserInput();
@@ -22,18 +21,6 @@ public:
 	static bool GetKeyPress(const unsigned int keyCode);
 
 private:
-	//// Singleton definition
-	//friend class Singleton<UserInput>;
-	//UserInput() 
-	//{
-	//	//for (int i = 0; i < totalKeys; ++i)
-	//	//	isKeyPress[i] = new bool;
-	//};
-	//~UserInput() 
-	//{
-	//	//delete[] isKeyPress;
-	//};
-
 	// Biggest int number of last user input data
 	static const int totalKeys = 222;
 	// Init all boolean array to be false

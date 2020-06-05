@@ -16,13 +16,13 @@ public:
 	void StartTimer();
 	void WaitUntil(long long time);
 
+	virtual void free_memory();
+
 private:
 	// Singleton definition
 	friend class Singleton<StopWatch>;
 	StopWatch();
-	~StopWatch();
-
-	virtual void free_memory();
+	~StopWatch();	
 
 	LARGE_INTEGER freq;
 	LARGE_INTEGER prevTime, currTime;

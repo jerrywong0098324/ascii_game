@@ -1,7 +1,9 @@
 ﻿  Application.cpp
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Application.cpp(30,50): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  Camera.cpp
   Game.cpp
-  Timer.cpp
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Game.cpp(33,48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  LevelManager.cpp
+  Menu.cpp
   main.cpp
   Generating Code...
   ascii_game_engine.vcxproj -> C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\Debug\ascii_game_engine.exe

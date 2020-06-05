@@ -3,7 +3,7 @@
 #define CAMERA_H
 
 #include <iostream> // for std::cout 
-#include "GameState.h"
+#include "LevelManager.h"
 #include "Vector2.h"
 
 class Camera

@@ -6,6 +6,7 @@
 #include "Console.h"
 #include "Camera.h"
 #include "Player.h"
+#include "Timer.h"
 
 class Game : public Singleton<Game>
 {
@@ -22,11 +23,13 @@ private:
 	Game();
 	~Game();
 
-	// currState
-	GameState currState;
+	//// currState
+	//GameState currState;
+
+	float dt = 0.0f; // testing only
 
 	Console console;
-	Camera camera;
+	//Camera camera;
 	Player player;
 };
 

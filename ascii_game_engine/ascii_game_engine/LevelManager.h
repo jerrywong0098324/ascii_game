@@ -3,15 +3,37 @@
 #define LEVELMANAGER_H
 
 #include "Singleton.h"
-#include "Map.h"
+#include "Menu.h"
 
-class LevelManager
+//class Level;
+class LevelManager : public Singleton<LevelManager>
 {
 public:
+	// Getters
+	Level* GetMapLevel();
+
+	// change to the next level
+	void NextLevel();
+	// change to a specific map
+	void NextLevel(const int mapIndex);
+
+	void Init();
 
 private:
-	// map level stores all the default map (maps created by me)
-	std::vector<std::string> mapLevels;
+	// Singleton definition
+	friend class Singleton<LevelManager>;
+	LevelManager();
+	~LevelManager();
+
+	std::vector<Level*> levels;
+
+	// index used to move between levels
+	int mapIndex;
+
+	// boolean to check if the level is switched
+	bool isLevelChange;
+
+	void AddLevels(Level *level);
 };
 
 #endif 
