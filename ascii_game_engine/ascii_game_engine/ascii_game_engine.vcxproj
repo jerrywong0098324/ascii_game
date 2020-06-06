@@ -148,6 +148,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
+    <ClInclude Include="ISingleton.h" />
     <ClInclude Include="KeyCode.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelManager.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="SingletonManager.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="UserInput.h" />
     <ClInclude Include="Vector2.h" />
@@ -170,6 +172,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SingletonManager.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UserInput.cpp" />
     <ClCompile Include="Vector2.cpp" />

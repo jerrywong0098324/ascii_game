@@ -49,9 +49,5 @@ void Application::Run()
 void Application::Exit()
 {
 	// free-ing all singleton memory here
-	StopWatch::GetInstance()->free_memory();
-	LevelManager::GetInstance()->free_memory();
-	GameStateManager::GetInstance()->free_memory();
-	Game::GetInstance()->free_memory();
-	
+	SingletonManager::FreeAll();	
 }

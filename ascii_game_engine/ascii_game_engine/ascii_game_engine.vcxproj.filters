@@ -66,6 +66,12 @@
     <ClInclude Include="GameStateManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ISingleton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SingletonManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -105,6 +111,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameStateManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SingletonManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

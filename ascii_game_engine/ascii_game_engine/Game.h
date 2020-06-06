@@ -4,7 +4,7 @@
 
 #include "Singleton.h"
 #include "Console.h"
-#include "Camera.h"
+#include "LevelManager.h"
 #include "Player.h"
 #include "Timer.h"
 
@@ -28,7 +28,7 @@ private:
 
 	float dt = 0.0f; // testing only
 
-	Console console;
+	//Console console;
 	//Camera camera;
 	Player player;
 };

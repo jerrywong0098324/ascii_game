@@ -1,4 +1,5 @@
 #include "Menu.h"
+#include "LevelManager.h"
 
 Menu::Menu()
 {
@@ -49,6 +50,7 @@ void Menu::Exit()
 void Menu::UpdateArrow()
 {
 	char **menu = map.GetMap();
+	// replacing current arrow position to an empty space
 	menu[arrow_pos_y][arrow_pos_x] = ' ';
 
 	if (UserInput::GetKeyDown(KeyCode::DownArrow))
@@ -74,6 +76,7 @@ void Menu::UpdateArrow()
 		option = max_op;
 	}
 
+	// new arrow position after player's input
 	menu[arrow_pos_y][arrow_pos_x] = arrow;
 }
 

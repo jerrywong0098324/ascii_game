@@ -61,7 +61,11 @@ bool UserInput::GetKeyPress(const unsigned int keyCode)
 	if (keyCode == 0 || keyCode > UserInput::totalKeys)
 		return false;
 
-	// if(isKeyPress[keyCode - 1] && GetAsyncKeyState(keyCode))
+	// When the key is down
 	UserInput::isKeyPress[keyCode - 1] = true;
+	// When the key is up
+	if (UserInput::isKeyPress[keyCode - 1] && !GetAsyncKeyState(keyCode))
+		UserInput::isKeyPress[keyCode - 1] = false;
+
 	return GetAsyncKeyState(keyCode);
 }

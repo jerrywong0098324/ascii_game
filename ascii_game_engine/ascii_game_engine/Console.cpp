@@ -1,6 +1,18 @@
 #include "Console.h"
 
-Console::Console(int width, int height)
+COORD Console::NewSBSize;
+
+Console::Console()
+{
+
+}
+
+Console::~Console()
+{
+
+}
+
+void Console::CreateConsole(int width, int height)
 {
 	// Changes the size of console window
 	HWND console = GetConsoleWindow();
@@ -11,18 +23,17 @@ Console::Console(int width, int height)
 
 	// Changes console buffer size (how much can be scroll etc)
 	HANDLE hOut;
-	CONSOLE_SCREEN_BUFFER_INFO SBInfo;
-	COORD NewSBSize;
+	CONSOLE_SCREEN_BUFFER_INFO SBInfo;	
 	int Status;
 
 	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	GetConsoleScreenBufferInfo(hOut, &SBInfo);
-	NewSBSize.X = SBInfo.dwSize.X;
-	NewSBSize.Y = SBInfo.dwSize.Y;
+	Console::NewSBSize.X = SBInfo.dwSize.X;
+	Console::NewSBSize.Y = SBInfo.dwSize.Y;
 
 	// Sets the buffer size. If doesn't work, change properties (buffer size) of the console manually by executing the program first
-	Status = SetConsoleScreenBufferSize(hOut, NewSBSize);
+	Status = SetConsoleScreenBufferSize(hOut, Console::NewSBSize);
 	if (Status == 0)
 	{
 		Status = GetLastError();
@@ -41,9 +52,4 @@ Console::Console(int width, int height)
 	//std::cout << "Screen Buffer Size : ";
 	//std::cout << SBInfo.dwSize.X << " x ";
 	//std::cout << SBInfo.dwSize.Y << std::endl;
-}
-
-Console::~Console()
-{
-
 }

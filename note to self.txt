@@ -9,3 +9,10 @@ inside Game object's deconstructor. Have to create another funtion just to
 deallocate memory from the heap and calling that function at the Exit function
 inside Application object.
 ******************************************************************************
+AVOIDING LINKER ISSUE WHEN CREATING ABSTRACT CLASSES
+
+1) Example: When creating pure virtual destructor, do something like this
+-> virtual ~ISingleton() = 0 {};
+
+Important thing to note is to add {} at the end;
+******************************************************************************
