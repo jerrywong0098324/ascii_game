@@ -11,6 +11,7 @@ public:
 	ISingleton(ISingleton const&) = delete;
 	ISingleton& operator=(ISingleton const&) = delete;
 
+	virtual void alloc_memory() = 0;
 	virtual void free_memory() = 0;
 
 protected:

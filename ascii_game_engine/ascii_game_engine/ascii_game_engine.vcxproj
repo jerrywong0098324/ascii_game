@@ -142,6 +142,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Audio.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ConLib.h" />
     <ClInclude Include="Console.h" />
@@ -178,12 +179,14 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SingletonManager.h" />
+    <ClInclude Include="SoundEngine.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="UserInput.h" />
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -194,6 +197,7 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SingletonManager.cpp" />
+    <ClCompile Include="SoundEngine.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UserInput.cpp" />
     <ClCompile Include="Vector2.cpp" />

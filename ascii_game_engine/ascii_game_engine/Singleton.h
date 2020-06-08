@@ -9,8 +9,8 @@ class Singleton : public ISingleton
 {
 public:
 	static T *GetInstance()
-	{
-		if (!Singleton<T>::instance)
+	{		
+		if(!Singleton<T>::instance)
 			Singleton<T>::instance = new T;
 		return Singleton<T>::instance;
 	}
@@ -18,6 +18,7 @@ public:
 	Singleton(Singleton const&) = delete;
 	Singleton& operator=(Singleton const&) = delete;
 
+	virtual void alloc_memory();
 	// function to be overloaded if necessary (to clear any additional pointers in the singleton class)
 	virtual void free_memory();
 
@@ -39,6 +40,12 @@ void Singleton<T>::free_memory() // base function to delete instance from heap
 		delete Singleton<T>::instance;
 		Singleton<T>::instance = nullptr;
 	}
+}
+
+template <typename T>
+void Singleton<T>::alloc_memory()
+{
+	Singleton<T>::instance = new T;
 }
 
 #endif

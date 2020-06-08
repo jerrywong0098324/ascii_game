@@ -13,6 +13,8 @@ public:
 	~SingletonManager();
 
 	static void AddInstance(ISingleton *instance);
+	// allocating all instance's memory
+	static void AllocateAll();
 	// free-ing all singleton instance's memory
 	static void FreeAll();
 
