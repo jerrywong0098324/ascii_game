@@ -21,17 +21,18 @@
 
 class Audio
 {
-public:	
-	Audio(const char *audioFile); // eg. "../Sound/soundFile.mp3"
-	/*
-		@param-> soundFile: file directory of the sound
-		@param-> defaultVolume: default volume of audio
-		@param-> playLooped: looping audio?
-		@param-> startPaused: starting the audio paused
-	*/
-	Audio(const char* audioFile, float defaultVolume = 1.0f, bool playLooped = false, bool startPaused = false);
+public:
+	Audio();
 	~Audio();
 
+	/*
+	@param-> soundFile: file directory of the sound, eg. "../Sound/soundFile.mp3"
+	@param-> defaultVolume: default volume of audio
+	@param-> playLooped: looping audio?
+	@param-> startPaused: starting the audio paused (audio will be tracked if initialized properly)
+	@param-> track: track this audio so you can pause, unpause, stop, set volume, check if file is done playing etc later.
+	*/
+	void Init(const char* audioFile = "", float defaultVolume = 1.0f, bool playLooped = false, bool startPaused = false, bool track = false);
 	// change the current sound to another sound
 	void SetAudio(const char *audioFile, float defaultVolume = 1.0f);
 
@@ -48,18 +49,27 @@ public:
 	void SetVolume(float volume);
 	// Check if the sound is finish
 	bool IsFinished() const;
+	// Set the sound to looping
+	void SetLoop(bool loop);
+
+private:
+	friend class AudioManager;
+
+	Audio(Audio const&) = delete;
+	Audio& operator=(Audio const&) = delete;
+	Audio(Audio&&) = delete;
+	Audio& operator=(Audio&&) = delete;
 
 	// free memory
 	void Exit();
 
-private:
 	// sound to be played
 	ISound *sound;
 	// source to the sound
 	ISoundSource *soundSource; // need not to deallocate the memory
 
 	bool isPause;
-	bool playLooped, startPaused;
+	bool playLooped, startPaused, track;
 };
 
 #endif 

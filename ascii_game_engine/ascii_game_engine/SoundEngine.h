@@ -11,10 +11,6 @@ class SoundEngine : public Singleton<SoundEngine>
 {
 public:
 	ISoundEngine *GetSoundEngine() const;
-	// over-riding this to allocate relevant memory
-	virtual void alloc_memory();
-	// additional step to free engine memory
-	virtual void free_memory();
 
 private:
 	// Singleton definition
@@ -22,9 +18,12 @@ private:
 	SoundEngine();
 	~SoundEngine();
 
-	void CreateSoundEngine();
-
 	ISoundEngine *engine;
+
+	// over-riding this to allocate relevant memory
+	virtual void alloc_memory();
+	// additional step to free engine memory
+	virtual void free_memory();
 };
 
 #endif 

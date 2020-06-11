@@ -9,16 +9,19 @@ class ISingleton;
 class SingletonManager
 {
 public:
-	SingletonManager();
-	~SingletonManager();
-
 	static void AddInstance(ISingleton *instance);
-	// allocating all instance's memory
-	static void AllocateAll();
 	// free-ing all singleton instance's memory
 	static void FreeAll();
 
 private:
+	SingletonManager();
+	~SingletonManager();
+
+	SingletonManager(SingletonManager const&) = delete;
+	SingletonManager& operator=(SingletonManager const&) = delete;
+	SingletonManager(SingletonManager&&) = delete;
+	SingletonManager& operator=(SingletonManager&&) = delete;
+
 	static std::vector<ISingleton*> singletons;
 };
 

@@ -14,8 +14,13 @@ Menu::~Menu()
 // Init the level
 void Menu::Init()
 {
-	const char* mapLevel = "../Map/Default Maps/menu.txt";
+	const char* mapLevel = "../Game/Map/Default Maps/menu.txt";
 	map.Init(mapLevel);
+
+	arrowSFX = new Audio();
+	arrowSFX->Init("../Game/Audio/Menu/arrow1.wav");
+	selectSFX = new Audio();
+	selectSFX->Init("../Game/Audio/Menu/select.ogg");
 
 	// init arrow y position
 	arrow_pos_y = 12;
@@ -42,7 +47,6 @@ void Menu::Render()
 // When Exiting the level
 void Menu::Exit()
 {
-	map.Exit();
 	// Call LevelManager to change to next map
 }
 
@@ -53,16 +57,7 @@ void Menu::UpdateArrow()
 	// replacing current arrow position to an empty space
 	menu[arrow_pos_y][arrow_pos_x] = ' ';
 
-	if (UserInput::GetKeyDown(KeyCode::DownArrow))
-	{
-		++arrow_pos_y;
-		++option;
-	}
-	else if (UserInput::GetKeyDown(KeyCode::UpArrow))
-	{
-		--arrow_pos_y;
-		--option;
-	}
+	MoveArrow();
 
 	if (arrow_pos_y > max_y)
 	{
@@ -78,6 +73,25 @@ void Menu::UpdateArrow()
 
 	// new arrow position after player's input
 	menu[arrow_pos_y][arrow_pos_x] = arrow;
+}
+
+// Move Arrow and play sound
+void Menu::MoveArrow()
+{
+	if (UserInput::GetKeyDown(KeyCode::DownArrow))
+	{
+		++arrow_pos_y;
+		++option;
+
+		arrowSFX->Play();
+	}
+	else if (UserInput::GetKeyDown(KeyCode::UpArrow))
+	{
+		--arrow_pos_y;
+		--option;
+
+		arrowSFX->Play();
+	}	
 }
 
 // Update user's enter input
@@ -98,6 +112,7 @@ void Menu::UpdateInput()
 			GameStateManager::GetInstance()->SetCurrentGameState(GameState::EXIT);
 			break;
 		}
+		selectSFX->Play();
 	}
 }
 

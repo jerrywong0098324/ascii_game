@@ -34,10 +34,15 @@ private:
 
 	// Updates the arrow position
 	void UpdateArrow();
+	// Move Arrow and play sound
+	void MoveArrow();
 	// Update user's enter input
 	void UpdateInput();
 	// prints the map out
 	void PrintMap();
+
+	Audio *arrowSFX;
+	Audio *selectSFX;
 };
 
 #endif

@@ -3,6 +3,7 @@
 #define LEVEL_H
 
 #include "Map.h"
+#include "Audio.h"
 #include "UserInput.h"
 #include "GameStateManager.h"
 
@@ -16,10 +17,9 @@ public:
 	};
 	virtual ~Level() = 0 {};
 
-	// Used in camera
-	char **GetMap()
+	Map GetMap()
 	{
-		return map.GetMap();
+		return map;
 	}
 
 	// Init the level

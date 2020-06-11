@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 
+class LevelManager;
 class Map
 {
 public:
@@ -20,10 +21,12 @@ public:
 	int GetSizeY() const;
 	// Init map from .txt file
 	void Init(const char *map =  "");
+
+private:
+	friend class LevelManager;
 	// Delete Map (using in LevelManager when changing to next scene)
 	void Exit();
 
-private:
 	// Load map from .txt file and store them into 2D Array
 	void LoadMap();
 	// Open files

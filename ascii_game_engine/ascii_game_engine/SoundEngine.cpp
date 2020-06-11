@@ -3,7 +3,7 @@
 
 SoundEngine::SoundEngine() : engine(nullptr)
 {
-	CreateSoundEngine();
+	alloc_memory();
 }
 
 SoundEngine::~SoundEngine()
@@ -16,24 +16,11 @@ ISoundEngine *SoundEngine::GetSoundEngine() const
 	return engine;
 }
 
-void SoundEngine::CreateSoundEngine()
-{
-	engine = createIrrKlangDevice();
-	// don't run the program if sound engine cannot be initialise
-	if (!engine)
-	{
-		std::cerr << "Error starting up sound engine" << std::endl;
-		exit(1);
-	}
-}
-
 // over-riding this to allocate relevant memory
 void SoundEngine::alloc_memory()
 {
-	Singleton::alloc_memory();
 	engine = createIrrKlangDevice();
-
-	// don't run the program if sound engine cannot be initialise
+	// don't run the program if sound engine cannot be initialized
 	if (!engine)
 	{
 		std::cerr << "Error starting up sound engine" << std::endl;

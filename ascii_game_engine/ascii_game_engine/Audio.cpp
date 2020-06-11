@@ -1,18 +1,20 @@
 #include "Audio.h"
+#include "AudioManager.h"
 
-Audio::Audio(const char *audioFile) : sound(nullptr), soundSource(nullptr), isPause(false), playLooped(false), startPaused(false)
+Audio::Audio() : sound(nullptr), soundSource(nullptr), isPause(false), playLooped(false), startPaused(false), track(false)
 {
-	SetAudio(audioFile);
-}
 
-Audio::Audio(const char* audioFile, float defaultVolume, bool playLooped, bool startPaused) : sound(nullptr), soundSource(nullptr), isPause(startPaused), playLooped(playLooped), startPaused(startPaused)
-{
-	SetAudio(audioFile, defaultVolume);
 }
 
 Audio::~Audio()
 {
 
+}
+
+void Audio::Init(const char* audioFile, float defaultVolume, bool playLooped, bool startPaused, bool track)
+{
+	SetAudio(audioFile, defaultVolume);
+	AudioManager::AddInstance(this);
 }
 
 // change the current sound to another sound
@@ -28,13 +30,14 @@ void Audio::SetAudio(const char *audioFile, float defaultVolume)
 // Play the sound
 void Audio::Play()
 {
-	// always track the sound
-	sound = SoundEngine::GetInstance()->GetSoundEngine()->play2D(soundSource, playLooped, startPaused, true);
+	sound = SoundEngine::GetInstance()->GetSoundEngine()->play2D(soundSource, playLooped, startPaused, track);
 }
 
 // Pause and Unpause the sound
 void Audio::Pause()
 {
+	if (!sound) // not tracking the audio
+		return;
 	isPause = !isPause;
 	sound->setIsPaused(isPause);
 }
@@ -42,19 +45,31 @@ void Audio::Pause()
 // Stop the sound from playing
 void Audio::Stop()
 {
+	if (!sound)
+		return;
 	sound->stop();
 }
 
 // Set the volume of the sound
 void Audio::SetVolume(float volume)
 {
+	if (!sound)
+		return;
 	sound->setVolume(volume);
 }
 
 // Check if the sound is finish
 bool Audio::IsFinished() const
 {
+	if (!sound)
+		return false;
 	return sound->isFinished();
+}
+
+// Set the sound to looping
+void Audio::SetLoop(bool loop)
+{
+	playLooped = loop;
 }
 
 // free memory

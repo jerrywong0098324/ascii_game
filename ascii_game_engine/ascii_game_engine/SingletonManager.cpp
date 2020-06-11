@@ -18,13 +18,6 @@ void SingletonManager::AddInstance(ISingleton *instance)
 	SingletonManager::singletons.push_back(instance);
 }
 
-// allocating all instance's memory
-void SingletonManager::AllocateAll()
-{
-	for (int i = 0; i < SingletonManager::singletons.size(); ++i)
-		SingletonManager::singletons[i]->alloc_memory(); // allocates the memory
-}
-
 // free-ing all singleton instance's memory
 void SingletonManager::FreeAll()
 {

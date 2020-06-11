@@ -16,3 +16,10 @@ AVOIDING LINKER ISSUE WHEN CREATING ABSTRACT CLASSES
 
 Important thing to note is to add {} at the end;
 ******************************************************************************
+Audio is designed in a way that it must be created using a pointer.
+Bad design but I guess it's the best one I have as of 11/6/2020 LOL
+
+Program will crash when one of the audio files cannot be open properly
+Facing issue with opening *.mp3 files. Though I only try with one. Just 
+becareful next time! :D
+******************************************************************************

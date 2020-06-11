@@ -18,12 +18,14 @@ Level* LevelManager::GetMapLevel()
 // change to the next level
 void LevelManager::NextLevel()
 {
+	levels[mapIndex]->GetMap().Exit();
 	++mapIndex;
 }
 
 // change to a specific map
 void LevelManager::NextLevel(const int mapIndex)
 {
+	levels[mapIndex]->GetMap().Exit();
 	this->mapIndex = mapIndex;
 }
 
@@ -37,23 +39,12 @@ void LevelManager::AddLevels(Level *level)
 	levels.push_back(level);
 }
 
-//// Load all default map created by me
-//void LevelManager::LoadDefaultMap()
-//{
-//	std::string maps; // file name of the default maps
-//	std::ifstream inFile("../Map/default_maps.txt"); // Input file
-//
-//		// Check for any errors -> corrupted files, wrong file name etc
-//	if (inFile.fail())
-//	{
-//		std::cerr << "Unable to open file: " << "../Map/default_maps.txt" << std::endl;
-//		exit(1);
-//	}
-//
-//	// Loop through till the end of file
-//	while (!inFile.eof())
-//	{
-//		inFile >> maps;
-//		mapLevels.push_back(maps);
-//	}
-//}
+void LevelManager::free_memory()
+{
+	for (int i = 0; i < levels.size(); ++i)
+	{
+		delete levels[i];
+		levels[i] = nullptr;
+	}
+	Singleton::free_memory();
+}

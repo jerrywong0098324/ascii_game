@@ -11,7 +11,6 @@ class LevelManager : public Singleton<LevelManager>
 public:
 	// Getters
 	Level* GetMapLevel();
-
 	// change to the next level
 	void NextLevel();
 	// change to a specific map
@@ -25,6 +24,9 @@ private:
 	LevelManager();
 	~LevelManager();
 
+	void AddLevels(Level *level);
+	virtual void free_memory();
+
 	std::vector<Level*> levels;
 
 	// index used to move between levels
@@ -33,7 +35,6 @@ private:
 	// boolean to check if the level is switched
 	bool isLevelChange;
 
-	void AddLevels(Level *level);
 };
 
 #endif 

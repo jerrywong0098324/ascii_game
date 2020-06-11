@@ -5,9 +5,6 @@ const unsigned int frameTime = 1000 / FPS; // time for each frame
 
 void Application::Init()
 {
-	// Allocating all the singleton instances here
-	//SingletonManager::AllocateAll();
-
 	// Init LevelManager here	
 	StopWatch::GetInstance()->StartTimer();
 	LevelManager::GetInstance()->Init();
@@ -53,4 +50,5 @@ void Application::Exit()
 {
 	// free-ing all singleton memory here
 	SingletonManager::FreeAll();	
+	AudioManager::FreeAll();
 }

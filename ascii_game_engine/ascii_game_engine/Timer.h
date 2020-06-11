@@ -13,16 +13,14 @@ class StopWatch : public Singleton<StopWatch>
 	friend class Application;
 public:
 	double GetDeltaTime();
-	void StartTimer();
-	void WaitUntil(long long time);
-
-	virtual void free_memory();
 
 private:
 	// Singleton definition
 	friend class Singleton<StopWatch>;
 	StopWatch();
 	~StopWatch();	
+
+	virtual void free_memory();
 
 	LARGE_INTEGER freq;
 	LARGE_INTEGER prevTime, currTime;
@@ -32,6 +30,8 @@ private:
 
 	double LiToSec(LARGE_INTEGER& time);
 	void UpdateTimer();
+	void StartTimer();
+	void WaitUntil(long long time);
 };
 
 #endif
