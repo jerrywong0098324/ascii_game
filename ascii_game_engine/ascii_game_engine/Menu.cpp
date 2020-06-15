@@ -30,10 +30,12 @@ void Menu::Init()
 	// ****************************************************************
 
 	// init arrow y position
-	arrow_pos_y = 12;
+	arrow_pos_y = min_y;
 
 	// init for option variables
-	option = 1;
+	option = min_op;
+
+	enterPressed = false;
 
 	GameStateManager::GetInstance()->SetBothStates(GameState::MENU);
 }
@@ -56,8 +58,7 @@ void Menu::Render()
 void Menu::Exit()
 {
 	// Call LevelManager to change to next map
-	LevelManager::GetInstance()->NextLevel(mapIndex);
-	SoundEngine::GetInstance()->StopAllAudio();
+	LevelManager::GetInstance()->NextLevel(mapIndex);	
 }
 
 // Updates the arrow position
@@ -131,8 +132,8 @@ void Menu::UpdateEnterPressed()
 	{
 		// play button
 	case 1:
-		GameStateManager::GetInstance()->SetCurrentGameState(GameState::GAME);
-		mapIndex = 1;
+		GameStateManager::GetInstance()->SetCurrentGameState(GameState::CHANGE_LEVEL);
+		mapIndex = (int)GameState::LEVEL_01;
 		break;
 		// highscore button
 	case 2:

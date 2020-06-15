@@ -20,7 +20,7 @@ public:
 	int GetSizeX() const;
 	int GetSizeY() const;
 	// Init map from .txt file
-	void Init(const char *map =  "");
+	virtual void Init(const char *map =  "");
 
 private:
 	friend class LevelManager;
@@ -39,8 +39,9 @@ private:
 	bool is_digit(const std::string &c);
 
 	// string containing directory to .txt file
-	const char *mapLevel;
+	const char* mapLevel;
 
+protected:
 	// size of map for x and y coords
 	int x, y;
 	// dyanmic 2D array to store map

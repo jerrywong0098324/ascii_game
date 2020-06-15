@@ -177,6 +177,7 @@
     <ClInclude Include="Level_01.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="Pause.h" />
     <ClInclude Include="PlayableLevels.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Singleton.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Pause.cpp" />
     <ClCompile Include="PlayableLevels.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SingletonManager.cpp" />

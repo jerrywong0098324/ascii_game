@@ -14,13 +14,19 @@ PlayableLevels::~PlayableLevels()
 // Init the level
 void PlayableLevels::Init()
 {
-	InitBuffer();
+	//InitBuffer();
+	
+	const char* pauseMap = "../Game/Map/Default Maps/pause.txt";
+	pause.Init(pauseMap);
 }
 
 // Update the level
 void PlayableLevels::Update()
 {
 	// if pause, don't update
+	if (pause.Update())
+		return;
+
 	player.Update();
 	SideScroll();
 }
@@ -29,13 +35,19 @@ void PlayableLevels::Update()
 void PlayableLevels::Render()
 {
 	// if paused, print option menu then return
+	if (pause.GetIsPaused())
+	{
+		pause.Render();
+		return;
+	}
+
 	PrintMap();
 }
 
 // When Exiting the level
 void PlayableLevels::Exit()
 {
-
+	pause.ExitP();
 }
 
 // For sidescrolling

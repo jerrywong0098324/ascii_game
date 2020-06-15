@@ -13,6 +13,10 @@ Audio::~Audio()
 
 void Audio::Init(const char* audioFile, float defaultVolume, bool playLooped, bool startPaused, bool track)
 {
+	this->playLooped = playLooped;
+	this->startPaused = startPaused;
+	this->track = track;
+
 	SetAudio(audioFile, defaultVolume);
 	AudioManager::AddInstance(this);
 }

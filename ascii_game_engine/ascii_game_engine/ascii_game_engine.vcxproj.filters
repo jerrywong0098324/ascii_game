@@ -34,6 +34,9 @@
     <Filter Include="Levels\Level_01">
       <UniqueIdentifier>{a901d8d7-7c36-46ab-be0b-dfd0ca6347f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Levels\Map">
+      <UniqueIdentifier>{e1036042-0d80-4a10-8b25-344f55b57cb3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -138,9 +141,6 @@
     <ClInclude Include="Singleton.h">
       <Filter>Singleton</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Levels</Filter>
-    </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Levels</Filter>
     </ClInclude>
@@ -168,6 +168,12 @@
     <ClInclude Include="Level_01.h">
       <Filter>Levels\Level_01</Filter>
     </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Levels\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Pause.h">
+      <Filter>Levels\Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -193,9 +199,6 @@
     </ClCompile>
     <ClCompile Include="GameStateManager.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Levels</Filter>
     </ClCompile>
     <ClCompile Include="LevelManager.cpp">
       <Filter>Levels</Filter>
@@ -223,6 +226,12 @@
     </ClCompile>
     <ClCompile Include="AudioManager.cpp">
       <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Levels\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Pause.cpp">
+      <Filter>Levels\Map</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

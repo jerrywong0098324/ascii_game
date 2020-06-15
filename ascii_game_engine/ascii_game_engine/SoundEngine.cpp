@@ -21,6 +21,7 @@ ISoundEngine *SoundEngine::GetSoundEngine() const
 void SoundEngine::StopAllAudio()
 {
 	engine->stopAllSounds();
+	engine->removeAllSoundSources();
 	AudioManager::FreeAll();
 }
 

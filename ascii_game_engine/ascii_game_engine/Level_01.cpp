@@ -18,7 +18,7 @@ void Level_01::Init()
 
 	// *******************************************************	
 	player.Init(map, std::move(Vector2(1, 1)));
-
+	player.SetPlayerDir(std::move(Vector2(1, 0)));
 	// *******************************************************
 
 	PlayableLevels::Init();
@@ -30,16 +30,21 @@ void Level_01::Update()
 {
 	PlayableLevels::Update();
 	// if paused, don't update
+	if (pause.GetIsPaused())
+		return;
 }
 
 // print out the chars
 void Level_01::Render()
 {
 	PlayableLevels::Render();
+	if (pause.GetIsPaused())
+		return;
 }
 
 // When Exiting the level
 void Level_01::Exit()
 {
 	// Call LevelManager to change to next map
+	PlayableLevels::Exit();
 }

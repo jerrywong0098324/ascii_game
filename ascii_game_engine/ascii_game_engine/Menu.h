@@ -43,7 +43,7 @@ private:
 	int option = 0;
 	const int min_op = 1, max_op = 3;
 
-	bool enterPressed = false;
+	bool enterPressed;
 	float dt = 0.0f;
 
 	// next map

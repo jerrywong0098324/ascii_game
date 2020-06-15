@@ -19,7 +19,7 @@ Level* LevelManager::GetMapLevel()
 // change to the next level
 void LevelManager::NextLevel()
 {
-	AudioManager::FreeAll();
+	SoundEngine::GetInstance()->StopAllAudio();
 	levels[mapIndex]->GetMap().Exit();
 	++mapIndex;
 }
@@ -27,7 +27,7 @@ void LevelManager::NextLevel()
 // change to a specific map
 void LevelManager::NextLevel(const int mapIndex)
 {
-	AudioManager::FreeAll();
+	SoundEngine::GetInstance()->StopAllAudio();
 	levels[mapIndex]->GetMap().Exit();
 	this->mapIndex = mapIndex;
 }

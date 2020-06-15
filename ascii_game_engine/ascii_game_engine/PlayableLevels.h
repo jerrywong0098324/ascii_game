@@ -4,6 +4,7 @@
 
 #include "Level.h"
 #include "Player.h"
+#include "Pause.h"
 
 class PlayableLevels : public Level
 {
@@ -44,14 +45,15 @@ private:
 	Vector2* pos;
 	// ******************************************************************
 
+protected:
+	Player player;
+
 	/*******************************************************************
 							PAUSED FEATURE
 	*******************************************************************/
 	// "Map" to print out paused screen
-
-
-protected:
-	Player player;
+	Pause pause;
+	// ******************************************************************
 };
 
 #endif 
