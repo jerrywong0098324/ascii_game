@@ -20,6 +20,17 @@ public:
 	virtual void Exit();
 
 private:
+	// Updates the arrow position
+	void UpdateArrow();
+	// Move Arrow and play sound
+	void MoveArrow();
+	// Update user's enter input
+	void UpdateInput();
+	// Update time after enter key is pressed
+	void UpdateEnterPressed();
+	// prints the map out
+	void PrintMap();
+
 	// display the arrow key for player to "choose" their option (between Play, Exit, Highscore)
 	char arrow = '>';
 	// arrow position
@@ -32,15 +43,13 @@ private:
 	int option = 0;
 	const int min_op = 1, max_op = 3;
 
-	// Updates the arrow position
-	void UpdateArrow();
-	// Move Arrow and play sound
-	void MoveArrow();
-	// Update user's enter input
-	void UpdateInput();
-	// prints the map out
-	void PrintMap();
+	bool enterPressed = false;
+	float dt = 0.0f;
 
+	// next map
+	int mapIndex = 0;
+
+	Audio *bgm;
 	Audio *arrowSFX;
 	Audio *selectSFX;
 };

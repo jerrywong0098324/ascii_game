@@ -11,6 +11,8 @@ class SoundEngine : public Singleton<SoundEngine>
 {
 public:
 	ISoundEngine *GetSoundEngine() const;
+	// When exiting the level
+	void StopAllAudio();
 
 private:
 	// Singleton definition

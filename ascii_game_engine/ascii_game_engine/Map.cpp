@@ -7,16 +7,7 @@ Map::Map() : x(0), y(0), map(nullptr)
 
 Map::~Map()
 {
-	if (!map) // memory successfully deallocated already
-		return;
 
-	for (int i = 0; i < y; ++i)
-	{
-		delete[] map[i];
-		map[i] = nullptr;
-	}
-	delete[] map;
-	map = nullptr;
 }
 
 char** Map::GetMap() const

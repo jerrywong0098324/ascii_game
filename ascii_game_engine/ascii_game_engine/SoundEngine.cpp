@@ -1,4 +1,5 @@
 #include "SoundEngine.h"
+#include "AudioManager.h"
 #include <iostream>
 
 SoundEngine::SoundEngine() : engine(nullptr)
@@ -14,6 +15,13 @@ SoundEngine::~SoundEngine()
 ISoundEngine *SoundEngine::GetSoundEngine() const
 {
 	return engine;
+}
+
+// When exiting the level
+void SoundEngine::StopAllAudio()
+{
+	engine->stopAllSounds();
+	AudioManager::FreeAll();
 }
 
 // over-riding this to allocate relevant memory

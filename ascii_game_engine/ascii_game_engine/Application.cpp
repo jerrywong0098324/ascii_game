@@ -36,6 +36,9 @@ void Application::Run()
 			// refreshes the console
 			//system("cls");
 
+			Console::ClearScreen();
+			Console::ClearBox();
+
 			if (GameStateManager::GetInstance()->GetCurrentGameState() != GameStateManager::GetInstance()->GetPreviousGameState())
 				break;
 		}
@@ -49,6 +52,5 @@ void Application::Run()
 void Application::Exit()
 {
 	// free-ing all singleton memory here
-	SingletonManager::FreeAll();	
-	AudioManager::FreeAll();
+	SingletonManager::FreeAll();
 }

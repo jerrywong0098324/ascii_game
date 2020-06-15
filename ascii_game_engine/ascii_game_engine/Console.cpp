@@ -53,3 +53,32 @@ void Console::CreateConsole(int width, int height)
 	//std::cout << SBInfo.dwSize.X << " x ";
 	//std::cout << SBInfo.dwSize.Y << std::endl;
 }
+
+// Reset the cursor position
+void Console::ClearScreen()
+{
+	HANDLE hOut;
+	COORD Position;
+
+	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	Position.X = 0;
+	Position.Y = 0;
+	SetConsoleCursorPosition(hOut, Position);
+}
+
+// Prints out line of empty string to "clear" the screen
+void Console::ClearBox()
+{
+	HANDLE hOut;
+	COORD Position;
+	DWORD Written;
+
+	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	Position.X = 0;
+	Position.Y = 0;
+	FillConsoleOutputCharacter(hOut, ' ', INT32_MAX, Position, &Written);
+
+	SetConsoleCursorPosition(hOut, Position);
+}

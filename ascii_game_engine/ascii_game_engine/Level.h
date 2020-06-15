@@ -4,6 +4,7 @@
 
 #include "Map.h"
 #include "Audio.h"
+#include "Timer.h"
 #include "UserInput.h"
 #include "GameStateManager.h"
 
@@ -11,9 +12,9 @@ class Level
 {
 public:
 	// mapLevel -> file directory of the map
-	Level() : map()
+	Level() : nextLevel(0)
 	{
-
+		
 	};
 	virtual ~Level() = 0 {};
 
@@ -32,9 +33,10 @@ public:
 	virtual void Exit() {};
 
 protected:
+	// Index of the next level
+	int nextLevel;
 	// Map to handle the current map level
 	Map map;
-	// Sound to handle playing music?
 };
 
 #endif

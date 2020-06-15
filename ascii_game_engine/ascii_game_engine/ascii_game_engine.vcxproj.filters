@@ -28,6 +28,12 @@
     <Filter Include="Player">
       <UniqueIdentifier>{ae44388a-3c5a-44c3-be23-d64f0972b2ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Levels\Menu">
+      <UniqueIdentifier>{3f41fa8c-fcfd-4bfb-b08b-456d233358da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Levels\Level_01">
+      <UniqueIdentifier>{a901d8d7-7c36-46ab-be0b-dfd0ca6347f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -49,9 +55,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="KeyCode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h">
@@ -138,9 +141,6 @@
     <ClInclude Include="Map.h">
       <Filter>Levels</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Levels</Filter>
-    </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Levels</Filter>
     </ClInclude>
@@ -158,6 +158,15 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayableLevels.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Levels\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Level_01.h">
+      <Filter>Levels\Level_01</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -179,17 +188,11 @@
     <ClCompile Include="UserInput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Vector2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameStateManager.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>Levels</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>Levels</Filter>
@@ -206,11 +209,20 @@
     <ClCompile Include="Audio.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
-    <ClCompile Include="AudioManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayableLevels.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Levels\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Level_01.cpp">
+      <Filter>Levels\Level_01</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>Audio</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

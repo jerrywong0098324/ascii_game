@@ -4,8 +4,8 @@
 
 #include "Singleton.h"
 #include "Menu.h"
+#include "Level_01.h"
 
-//class Level;
 class LevelManager : public Singleton<LevelManager>
 {
 public:

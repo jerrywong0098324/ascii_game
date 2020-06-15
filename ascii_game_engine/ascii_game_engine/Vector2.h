@@ -12,6 +12,12 @@ public:
 	// taking int value cuz this is an ascii game
 	Vector2(int x = 0, int y = 0);
 	~Vector2();
+	// Copy Constructor
+	Vector2(Vector2 const& rhs);
+	// Move Constructor
+	Vector2(Vector2&& rhs);
+	// rvalue assignment
+	Vector2& operator=(Vector2&& rhs);
 
 	// check the two value to see if its the same
 	bool IsEqual(float a, float b) const;

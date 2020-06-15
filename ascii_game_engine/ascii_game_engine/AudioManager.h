@@ -8,7 +8,9 @@ class Audio;
 class AudioManager
 {
 public:
+	// add audio memory at start of level
 	static void AddInstance(Audio *audio);
+	// free audio memory when changing level
 	static void FreeAll();
 
 private:

@@ -11,6 +11,28 @@ Vector2::~Vector2()
 
 }
 
+// Copy Constructor
+Vector2::Vector2(Vector2 const& rhs)
+{
+    x = rhs.x;
+    y = rhs.y;
+}
+
+// Move Constructor
+Vector2::Vector2(Vector2&& rhs)
+{
+    x = rhs.x;
+    y = rhs.y;
+}
+
+// rvalue assignment
+Vector2& Vector2::operator=(Vector2&& rhs)
+{
+    x = rhs.x;
+    y = rhs.y;
+    return *this;
+}
+
 // check the two value to see if its the same
 bool Vector2::IsEqual(float a, float b) const
 {

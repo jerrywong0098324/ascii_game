@@ -1,4 +1,5 @@
 #include "LevelManager.h"
+#include "AudioManager.h"
 
 LevelManager::LevelManager() : mapIndex(0), isLevelChange(false)
 {
@@ -18,6 +19,7 @@ Level* LevelManager::GetMapLevel()
 // change to the next level
 void LevelManager::NextLevel()
 {
+	AudioManager::FreeAll();
 	levels[mapIndex]->GetMap().Exit();
 	++mapIndex;
 }
@@ -25,13 +27,15 @@ void LevelManager::NextLevel()
 // change to a specific map
 void LevelManager::NextLevel(const int mapIndex)
 {
+	AudioManager::FreeAll();
 	levels[mapIndex]->GetMap().Exit();
 	this->mapIndex = mapIndex;
 }
 
 void LevelManager::Init()
 {
-	AddLevels(new Menu());
+	AddLevels(new Menu()); // 0
+	AddLevels(new Level_01()); // 1
 }
 
 void LevelManager::AddLevels(Level *level)

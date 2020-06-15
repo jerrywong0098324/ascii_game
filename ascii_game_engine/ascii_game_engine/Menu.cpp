@@ -17,10 +17,17 @@ void Menu::Init()
 	const char* mapLevel = "../Game/Map/Default Maps/menu.txt";
 	map.Init(mapLevel);
 
+	// ****************************************************************
+	bgm = new Audio();
+	bgm->Init("../Game/Audio/Menu/menu.ogg", 0.5f, true, false, true);
+	bgm->Play();
+
 	arrowSFX = new Audio();
-	arrowSFX->Init("../Game/Audio/Menu/arrow1.wav");
+	arrowSFX->Init("../Game/Audio/Menu/arrow1.ogg");
+
 	selectSFX = new Audio();
 	selectSFX->Init("../Game/Audio/Menu/select.ogg");
+	// ****************************************************************
 
 	// init arrow y position
 	arrow_pos_y = 12;
@@ -36,6 +43,7 @@ void Menu::Update()
 {
 	UpdateArrow();
 	UpdateInput();
+	UpdateEnterPressed();
 }
 
 // print out the chars
@@ -48,6 +56,8 @@ void Menu::Render()
 void Menu::Exit()
 {
 	// Call LevelManager to change to next map
+	LevelManager::GetInstance()->NextLevel(mapIndex);
+	SoundEngine::GetInstance()->StopAllAudio();
 }
 
 // Updates the arrow position
@@ -78,6 +88,9 @@ void Menu::UpdateArrow()
 // Move Arrow and play sound
 void Menu::MoveArrow()
 {
+	if (enterPressed)
+		return;
+
 	if (UserInput::GetKeyDown(KeyCode::DownArrow))
 	{
 		++arrow_pos_y;
@@ -99,27 +112,41 @@ void Menu::UpdateInput()
 {
 	if (UserInput::GetKeyDown(KeyCode::Enter))
 	{
-		switch (option)
-		{
-		// play button
-		case 1:
-			break;
-		// highscore button
-		case 2:
-			break;
-		// exit button
-		case 3:
-			GameStateManager::GetInstance()->SetCurrentGameState(GameState::EXIT);
-			break;
-		}
+		enterPressed = true;
 		selectSFX->Play();
+	}
+}
+
+// Update time after enter key is pressed
+void Menu::UpdateEnterPressed()
+{
+	if (!enterPressed)
+		return;
+
+	dt += StopWatch::GetInstance()->GetDeltaTime();
+	if (dt < 0.3f)
+		return;
+
+	switch (option)
+	{
+		// play button
+	case 1:
+		GameStateManager::GetInstance()->SetCurrentGameState(GameState::GAME);
+		mapIndex = 1;
+		break;
+		// highscore button
+	case 2:
+		break;
+		// exit button
+	case 3:
+		GameStateManager::GetInstance()->SetCurrentGameState(GameState::EXIT);
+		break;
 	}
 }
 
 // prints the map out
 void Menu::PrintMap()
 {
-	int x = map.GetSizeX();
 	int y = map.GetSizeY();
 
 	for (int i = 0; i < y; ++i)

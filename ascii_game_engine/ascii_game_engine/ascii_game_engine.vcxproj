@@ -144,7 +144,6 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Audio.h" />
     <ClInclude Include="AudioManager.h" />
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="ConLib.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Game.h" />
@@ -175,8 +174,10 @@
     <ClInclude Include="KeyCode.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="Level_01.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="PlayableLevels.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SingletonManager.h" />
@@ -189,14 +190,15 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="AudioManager.cpp" />
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="LevelManager.cpp" />
+    <ClCompile Include="Level_01.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="PlayableLevels.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SingletonManager.cpp" />
     <ClCompile Include="SoundEngine.cpp" />
