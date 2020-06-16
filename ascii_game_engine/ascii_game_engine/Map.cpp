@@ -71,8 +71,8 @@ void Map::OpenFile(std::vector<std::string>& res)
 	if (inFile.fail())
 	{
 		std::cerr << "Unable to open file: " << mapLevel << std::endl;
-		//exit(1);
-		return; // just return
+		exit(1);
+		//return; // just return
 	}
 
 	// Loop through till the end of file

@@ -36,6 +36,8 @@ private:
 	void MovePlayer();
 	// Make sure player isn't going out of bounds
 	void LimitPlayer();
+	// Collision Detection
+	bool DetectCollision(int x_pos, int y_pos) const;
 
 	char playerChar[4];
 	// player's position on the map

@@ -12,6 +12,9 @@ public:
 	PlayableLevels();
 	~PlayableLevels() = 0;
 
+	/*******************************************************************
+						CALL THESE IN CHILD CLASSES
+	*******************************************************************/
 	// Init the level
 	virtual void Init();
 	// Update the level (Call this update in all Levels)
@@ -20,6 +23,7 @@ public:
 	virtual void Render();
 	// When Exiting the level
 	virtual void Exit();
+	// ******************************************************************
 
 private:
 	/*******************************************************************
@@ -41,8 +45,12 @@ private:
 	int XLimit();
 	int YLimit();
 
+	void Init2DArray();
+	void Delete2DArray();
+
 	int x_buffer, y_buffer;
-	Vector2* pos;
+	Vector2 *pos;
+	char **print; // using this 2d dynamic array to print out the map
 	// ******************************************************************
 
 protected:
@@ -56,4 +64,4 @@ protected:
 	// ******************************************************************
 };
 
-#endif 
+#endif

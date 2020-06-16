@@ -56,10 +56,9 @@ void Pause::PauseState()
 void Pause::PausedState()
 {
 	isPaused = !isPaused;
+	map[arrow_pos_y][arrow_pos_x] = ' ';
 	arrow_pos_y = min_y;
 	option = min_op;
-
-	map[arrow_pos_y][arrow_pos_x] = ' ';
 }
 
 // Print the map

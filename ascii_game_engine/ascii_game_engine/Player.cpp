@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "UserInput.h"
+#include "Game.h"
 
 Player::Player()
 {
@@ -111,28 +112,28 @@ void Player::MovePlayer()
 {
 	if (UserInput::GetKeyPress(KeyCode::UpArrow))
 	{
-		--pos.y;
+		if (!DetectCollision(pos.x, pos.y - 1))
+			--pos.y;
 		SetPlayerDir(Vector2(0, -1));
-
-		// add walking sound here based on tile player is walking(?)
+		// play sound based on the tile player is walking?
 	}
 	else if (UserInput::GetKeyPress(KeyCode::RightArrow))
 	{
-		++pos.x;
+		if (!DetectCollision(pos.x + 1, pos.y))
+			++pos.x;
 		SetPlayerDir(Vector2(1, 0));
-
 	}
 	else if (UserInput::GetKeyPress(KeyCode::DownArrow))
 	{
-		++pos.y;
+		if (!DetectCollision(pos.x, pos.y + 1))
+			++pos.y;
 		SetPlayerDir(Vector2(0, 1));
-
 	}
 	else if (UserInput::GetKeyPress(KeyCode::LeftArrow))
 	{
-		--pos.x;
+		if (!DetectCollision(pos.x - 1, pos.y))
+			--pos.x;
 		SetPlayerDir(Vector2(-1, 0));
-
 	}
 }
 
@@ -150,4 +151,22 @@ void Player::LimitPlayer()
 		pos.y = map.GetSizeY() - 1;
 	else if (pos.y <= 0)
 		pos.y = 0;
+}
+
+// Collision Detection
+bool Player::DetectCollision(int x_pos, int y_pos) const
+{
+	int sum = Game::GetInstance()->GetTotalCollide();
+
+	// if at the edge of the map, don't need to check for collision
+	if (x_pos >= map.GetSizeX() || x_pos < 0 || y_pos >= map.GetSizeY() || pos.y < 0)
+		return false;
+
+	// loop through to see if the next block ahead of player is something that cannot be collided with
+	for (int i = 0; i < sum; ++i)
+	{
+		if (map.GetMap()[y_pos][x_pos] == Game::GetInstance()->GetCollisionList()[i])
+			return true;
+	}
+	return false;
 }

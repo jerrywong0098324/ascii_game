@@ -28,7 +28,7 @@ void LevelManager::NextLevel()
 void LevelManager::NextLevel(const int mapIndex)
 {
 	SoundEngine::GetInstance()->StopAllAudio();
-	levels[mapIndex]->GetMap().Exit();
+	levels[this->mapIndex]->GetMap().Exit();
 	this->mapIndex = mapIndex;
 }
 

@@ -17,20 +17,23 @@ public:
 	void Update();
 	void Exit();
 
+	virtual void free_memory();
+
+	char* GetCollisionList() const;
+	int GetTotalCollide() const;
+
 private:
 	// Singleton definition
 	friend class Singleton<Game>;
 	Game();
 	~Game();
 
-	//// currState
-	//GameState currState;
+	void InitCollision();
+	void OpenFile(std::vector<std::string>& res);
+	void CreateCollisions(std::vector<std::string>& res);
 
-	float dt = 0.0f; // testing only
-
-	//Console console;
-	//Camera camera;
-	Player player;
+	char *collideList;
+	int totalCollide;
 };
 
 #endif
