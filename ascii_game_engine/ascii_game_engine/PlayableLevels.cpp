@@ -14,10 +14,7 @@ PlayableLevels::~PlayableLevels()
 // Init the level
 void PlayableLevels::Init()
 {
-	//InitBuffer();
-
-	y_buffer = 0;
-	x_buffer = 0;
+	InitBuffer();
 	
 	const char* pauseMap = "../Game/Map/Default Maps/pause.txt";
 	pause.Init(pauseMap);
@@ -129,12 +126,42 @@ void PlayableLevels::ScrollDown()
 		++y_buffer; // scrolling right
 }
 
-// init buffer based on player's pos
+// init buffer based on player's pos, putting the playing in the middle of the screen
 void PlayableLevels::InitBuffer()
 {
 	// TODO: rework formula for x and y buffer upon load
-	x_buffer = pos->x * 0.5f;
-	y_buffer = pos->y * 0.5f;
+	InitXBuffer();
+	InitYBuffer();
+}
+
+void PlayableLevels::InitXBuffer()
+{
+	// put the player in the middle of the screen
+	if (pos->x > Console::NewSBSize.X * 0.5f)
+		x_buffer = pos->x - Console::NewSBSize.X * 0.5f;
+
+	int x_buffer_limit = map.GetSizeX() - Console::NewSBSize.X;
+	// Limit the x_buffer as player's position is towards the edge of the game map
+	if (x_buffer > x_buffer_limit)
+	{
+		int temp = x_buffer - x_buffer_limit;
+		x_buffer -= temp;
+	}
+}
+
+void PlayableLevels::InitYBuffer()
+{
+	// put the player in the middle of the screen
+	if (pos->y > Console::NewSBSize.Y * 0.5f)
+		y_buffer = pos->y - Console::NewSBSize.Y * 0.5f;
+
+	int y_buffer_limit = map.GetSizeY() - Console::NewSBSize.Y;
+	// Limit the x_buffer as player's position is towards the edge of the game map
+	if (y_buffer > y_buffer_limit)
+	{
+		int temp = y_buffer - y_buffer_limit;
+		y_buffer -= temp;
+	}
 }
 
 void PlayableLevels::PrintMap()

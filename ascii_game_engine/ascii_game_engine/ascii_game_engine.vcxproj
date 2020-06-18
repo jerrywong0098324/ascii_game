@@ -147,6 +147,7 @@
     <ClInclude Include="ConLib.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="ControllerHandler.h" />
+    <ClInclude Include="FogLevels.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />

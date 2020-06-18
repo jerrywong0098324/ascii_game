@@ -195,6 +195,9 @@
     <ClInclude Include="ControllerHandler.h">
       <Filter>Misc</Filter>
     </ClInclude>
+    <ClInclude Include="FogLevels.h">
+      <Filter>Levels\Base Level Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingletonManager.cpp">

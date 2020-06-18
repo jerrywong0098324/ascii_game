@@ -39,8 +39,10 @@ private:
 	void ScrollUp();
 	void ScrollDown();
 
-	// init buffer based on player's pos
+	// init buffer based on player's pos, putting the playing in the middle of the screen
 	void InitBuffer();
+	void InitXBuffer();
+	void InitYBuffer();
 
 	void SideScroll();
 	void PrintMap();

@@ -65,12 +65,28 @@ void Player::Init(Map map, const Vector2 pos)
 {
 	this->map = map;
 	this->pos = pos;
+	LimitPos();
 }
 
 // Update function to get player's input
 void Player::Update()
 {
 	UpdatePlayer();
+}
+
+void Player::LimitPos()
+{
+	// Limit X
+	if (pos.x >= map.GetSizeX())
+		pos.x = map.GetSizeX() - 1;
+	else if (pos.x <= 0)
+		pos.x = 0;
+
+	// Limit Y
+	if (pos.y >= map.GetSizeY())
+		pos.y = map.GetSizeY() - 1;
+	else if (pos.y <= 0)
+		pos.y = 0;
 }
 
 // Set the dir char and finally the direction of where the player is facing
@@ -140,17 +156,7 @@ void Player::MovePlayer()
 // Make sure player isn't going out of bounds
 void Player::LimitPlayer()
 {
-	// Limit X
-	if (pos.x >= map.GetSizeX())
-		pos.x = map.GetSizeX() - 1;
-	else if (pos.x <= 0)
-		pos.x = 0;
-
-	// Limit Y
-	if (pos.y >= map.GetSizeY())
-		pos.y = map.GetSizeY() - 1;
-	else if (pos.y <= 0)
-		pos.y = 0;
+	LimitPos();
 }
 
 // Collision Detection

@@ -27,6 +27,8 @@ public:
 	void Update();
 
 private:
+	void LimitPos();
+
 	// Set the dir char
 	void SetDirectionChar(const int dirChar);
 

@@ -10,6 +10,7 @@ public:
 	Console();
 	~Console();
 
+	// Change the Console Title manually
 	static void CreateConsole(int width = 360, int height = 360);
 	static void ClearScreen();
 	static void ClearBox();

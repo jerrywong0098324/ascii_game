@@ -12,8 +12,11 @@ Console::~Console()
 
 }
 
+// Change the Console Title manually
 void Console::CreateConsole(int width, int height)
 {
+	SetConsoleTitle(L"Escape");
+
 	// Changes the size of console window
 	HWND console = GetConsoleWindow();
 	RECT ConsoleRect;
