@@ -3,7 +3,6 @@
 #define APPLICATION_H
 
 #include <iostream>
-#include <conio.h>
 #include <string>
 
 #include "Game.h"
@@ -23,6 +22,8 @@ public:
 	void Run();
 	// clear any memory
 	void Exit();
+	// Clear all memory when cross button is pressed
+	void Terminate();
 };
 
 #endif

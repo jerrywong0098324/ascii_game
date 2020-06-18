@@ -46,6 +46,12 @@
     <Filter Include="Misc">
       <UniqueIdentifier>{2a99fb6a-c29f-4928-baf1-62969b291cb6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Levels\Base Level Classes">
+      <UniqueIdentifier>{3d14450f-60ca-4eef-8824-7b092d429e05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Levels\Manager">
+      <UniqueIdentifier>{3e620a4c-9894-46dd-aa75-f9d40e97a91b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="irrklang\ik_ESoundEngineOptions.h">
@@ -120,12 +126,6 @@
     <ClInclude Include="Singleton.h">
       <Filter>Singleton</Filter>
     </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Levels</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelManager.h">
-      <Filter>Levels</Filter>
-    </ClInclude>
     <ClInclude Include="SoundEngine.h">
       <Filter>Audio</Filter>
     </ClInclude>
@@ -137,9 +137,6 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayableLevels.h">
-      <Filter>Levels</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
       <Filter>Levels\Menu</Filter>
@@ -183,11 +180,23 @@
     <ClInclude Include="Vector2.h">
       <Filter>Misc</Filter>
     </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Levels\Base Level Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayableLevels.h">
+      <Filter>Levels\Base Level Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>Levels\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryLeak.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllerHandler.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LevelManager.cpp">
-      <Filter>Levels</Filter>
-    </ClCompile>
     <ClCompile Include="SingletonManager.cpp">
       <Filter>Singleton</Filter>
     </ClCompile>
@@ -199,9 +208,6 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayableLevels.cpp">
-      <Filter>Levels</Filter>
     </ClCompile>
     <ClCompile Include="Menu.cpp">
       <Filter>Levels\Menu</Filter>
@@ -241,6 +247,12 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayableLevels.cpp">
+      <Filter>Levels\Base Level Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>Levels\Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

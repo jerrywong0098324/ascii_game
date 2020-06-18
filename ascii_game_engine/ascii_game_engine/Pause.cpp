@@ -42,6 +42,7 @@ void Pause::Render()
 
 void Pause::ExitP()
 {
+	Map::Exit();
 	LevelManager::GetInstance()->NextLevel(mapIndex);
 }
 

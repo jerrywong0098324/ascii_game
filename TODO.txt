@@ -1,0 +1,28 @@
+******************************************************************************
+TODO: Fix memory leaks
+17/6/2020
+Memory Leaks found when just launching and exiting the game
+More Memory Leaks can be found when the game transit to Level_01 and exiting
+the game afterwards
+
+DONE: Fixed memory leaks
+18/6/2020
+Some issues with the Memory Leaks detection... No Memory Leaks when launching
+and exiting the game. 
+Fixed Memory Leaks when exiting the game from Level_01 as I did not call the
+Map::Exit() inside Pause.cpp Exit() function, thus I didn't delete Pause's
+map
+******************************************************************************
+TODO: Implementing gameplay features
+18/6/2020
+Ideas:
+1) Fog
+2) Weapon/Equipments
+3) Inventory
+4) Enemy AI(?)
+5) Torch
+6) Dialogue Box(?)
+7) Unique blocks
+  -> Ice, Rock, Climbable, Invisable block (boundary box)
+8) Etc..
+******************************************************************************

@@ -8,6 +8,8 @@
 #include "Player.h"
 #include "Timer.h"
 
+#include "MemoryLeak.h"
+
 class Game : public Singleton<Game>
 {
 public:

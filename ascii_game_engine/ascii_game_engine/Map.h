@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 
+#include "MemoryLeak.h"
+
 class LevelManager;
 class Map
 {
@@ -24,8 +26,6 @@ public:
 
 private:
 	friend class LevelManager;
-	// Delete Map (using in LevelManager when changing to next scene)
-	void Exit();
 
 	// Load map from .txt file and store them into 2D Array
 	void LoadMap();
@@ -42,6 +42,8 @@ private:
 	const char* mapLevel;
 
 protected:
+	// Delete Map (using in LevelManager when changing to next scene)
+	void Exit();
 	// size of map for x and y coords
 	int x, y;
 	// dyanmic 2D array to store map

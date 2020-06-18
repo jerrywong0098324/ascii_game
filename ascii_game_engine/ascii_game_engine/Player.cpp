@@ -159,7 +159,7 @@ bool Player::DetectCollision(int x_pos, int y_pos) const
 	int sum = Game::GetInstance()->GetTotalCollide();
 
 	// if at the edge of the map, don't need to check for collision
-	if (x_pos >= map.GetSizeX() || x_pos < 0 || y_pos >= map.GetSizeY() || pos.y < 0)
+	if (x_pos >= map.GetSizeX() || x_pos <= 0 || y_pos >= map.GetSizeY() || pos.y <= 0)
 		return false;
 
 	// loop through to see if the next block ahead of player is something that cannot be collided with

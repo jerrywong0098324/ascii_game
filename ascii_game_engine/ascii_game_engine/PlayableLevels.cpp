@@ -65,12 +65,22 @@ void PlayableLevels::SideScroll()
 	ScrollDown();
 }
 
-int PlayableLevels::ScrollLimitX(int multiplier, int divider)
+int PlayableLevels::ScrollRightLimit(int multiplier, int divider)
 {
 	return Console::NewSBSize.X - Console::NewSBSize.X * multiplier / divider + x_buffer;
 }
 
-int PlayableLevels::ScrollLimitY(int multiplier, int divider)
+int PlayableLevels::ScrollLeftLimit(int multiplier, int divider)
+{
+	return Console::NewSBSize.X * multiplier / divider + x_buffer;
+}
+
+int PlayableLevels::ScrollUpLimit(int multiplier, int divider)
+{
+	return Console::NewSBSize.Y * multiplier / divider + y_buffer;;
+}
+
+int PlayableLevels::ScrollDownLimit(int multiplier, int divider)
 {
 	return Console::NewSBSize.Y - Console::NewSBSize.Y * multiplier / divider + y_buffer;
 }
@@ -82,7 +92,7 @@ void PlayableLevels::ScrollRight()
 		return;
 
 	// Only can scroll right at 1/3 (right side) of the map
-	if (pos->x >= ScrollLimitX(1, 3))
+	if (pos->x >= ScrollRightLimit(1, 4))
 		++x_buffer; // scrolling right
 }
 
@@ -92,8 +102,8 @@ void PlayableLevels::ScrollLeft()
 	if (x_buffer <= 0)
 		return;
 
-	// Only can scroll right at 2/3 (left side) of the map
-	if (pos->x <= ScrollLimitX(2, 3))
+	// Only can scroll right at 1/3 (left side) of the map
+	if (pos->x <= ScrollLeftLimit(1, 4))
 		--x_buffer; // scrolling right
 }
 
@@ -103,8 +113,8 @@ void PlayableLevels::ScrollUp()
 	if (y_buffer <= 0)
 		return;
 
-	// Only can scroll right at 2/3 way of top of the map
-	if (pos->y <= ScrollLimitY(2, 3))
+	// Only can scroll right at 1/3 way of top of the map
+	if (pos->y <= ScrollUpLimit(1, 4))
 		--y_buffer; // scrolling right
 }
 
@@ -115,7 +125,7 @@ void PlayableLevels::ScrollDown()
 		return;
 
 	// Only can scroll right at 1/3 (right side) of the map
-	if (pos->y >= ScrollLimitY(1, 3))
+	if (pos->y >= ScrollDownLimit(1, 4))
 		++y_buffer; // scrolling right
 }
 
@@ -129,14 +139,6 @@ void PlayableLevels::InitBuffer()
 
 void PlayableLevels::PrintMap()
 {
-	//// Put the map into print's 2d dynamic array
-	//for (int i = y_buffer; i < YLimit(); ++i)
-	//{
-	//	// printing the map one character at a time
-	//	for (int j = x_buffer; j < XLimit(); ++j)
-	//		std::cout << map.GetMap()[i][j];
-	//}
-
 	// Put the map into print's 2d dynamic array
 	for (int i = y_buffer; i < YLimit(); ++i)
 	{

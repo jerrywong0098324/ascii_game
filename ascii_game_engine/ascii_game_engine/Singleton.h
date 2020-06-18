@@ -2,8 +2,6 @@
 #define SINGLETON_H
 
 #include "ISingleton.h"
-#include <thread>
-#include <mutex>
 
 // template class for any singleton design pattern
 template <typename T>

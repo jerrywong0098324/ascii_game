@@ -1,19 +1,16 @@
-#include "Application.h"
-
-// used for debugging (checking for memory leaks)
-#define _CRTDBG_MAP_ALLOC
-#include <crtdbg.h>
-#ifdef _DEBUG
-#define DEBUG_NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
-#define new DEBUG_NEW
-#endif
+#include "ControllerHandler.h"
+#include "MemoryLeak.h"
 
 int main()
 {
-	Application app;
-	app.Init();
-	app.Run();
-	app.Exit();
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	_CrtDumpMemoryLeaks();
+	if (SetConsoleCtrlHandler(CtrlHandler, TRUE))
+	{
+		Application app;
+		myApp = &app;
+		app.Init();
+		app.Run();
+		app.Exit();
+	}
 }

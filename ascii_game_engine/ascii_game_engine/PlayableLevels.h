@@ -29,8 +29,10 @@ private:
 	/*******************************************************************
 						SIDE SCROLLING FEATURE
 	*******************************************************************/
-	int ScrollLimitX(int multiplier = 1, int divider = 1);
-	int ScrollLimitY(int multiplier = 1, int divider = 1);
+	int ScrollRightLimit(int multiplier = 1, int divider = 1);
+	int ScrollLeftLimit(int multiplier = 1, int divider = 1);
+	int ScrollUpLimit(int multiplier = 1, int divider = 1);
+	int ScrollDownLimit(int multiplier = 1, int divider = 1);
 
 	void ScrollRight();
 	void ScrollLeft();
@@ -49,7 +51,7 @@ private:
 	void Delete2DArray();
 
 	int x_buffer, y_buffer;
-	Vector2 *pos;
+	const Vector2 *pos;
 	char **print; // using this 2d dynamic array to print out the map
 	// ******************************************************************
 

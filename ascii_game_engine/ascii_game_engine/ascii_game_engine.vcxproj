@@ -146,6 +146,7 @@
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="ConLib.h" />
     <ClInclude Include="Console.h" />
+    <ClInclude Include="ControllerHandler.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Level_01.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MemoryLeak.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Pause.h" />
     <ClInclude Include="PlayableLevels.h" />

@@ -34,7 +34,7 @@ void Game::Exit()
 
 void Game::free_memory()
 {
-	delete collideList;
+	delete[] collideList;
 	collideList = nullptr;
 
 	Singleton::free_memory();

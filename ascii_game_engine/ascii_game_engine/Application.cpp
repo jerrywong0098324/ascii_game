@@ -54,3 +54,11 @@ void Application::Exit()
 	// free-ing all singleton memory here
 	SingletonManager::FreeAll();
 }
+
+// Clear all memory when cross button is pressed
+void Application::Terminate()
+{
+	GameStateManager::GetInstance()->SetCurrentGameState(GameState::EXIT);
+	Game::GetInstance()->Exit();
+	SingletonManager::FreeAll();
+}
