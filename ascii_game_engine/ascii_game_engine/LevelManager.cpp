@@ -36,6 +36,7 @@ void LevelManager::Init()
 {
 	AddLevels(new Menu()); // 0
 	AddLevels(new Level_01()); // 1
+	AddLevels(new Level_02()); // 2
 }
 
 void LevelManager::AddLevels(Level *level)

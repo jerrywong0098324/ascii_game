@@ -147,6 +147,7 @@
     <ClInclude Include="ConLib.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="ControllerHandler.h" />
+    <ClInclude Include="Fog.h" />
     <ClInclude Include="FogLevels.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
@@ -177,6 +178,7 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Level_01.h" />
+    <ClInclude Include="Level_02.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MemoryLeak.h" />
     <ClInclude Include="Menu.h" />
@@ -195,10 +197,13 @@
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Console.cpp" />
+    <ClCompile Include="Fog.cpp" />
+    <ClCompile Include="FogLevels.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="Level_01.cpp" />
+    <ClCompile Include="Level_02.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Menu.cpp" />

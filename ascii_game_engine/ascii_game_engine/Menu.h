@@ -37,7 +37,7 @@ private:
 	const int arrow_pos_x = 13;
 	int arrow_pos_y;
 	// max and min of y pos
-	const int min_y = 12, max_y = 14;
+	const int min_y = 13, max_y = 15;
 
 	// variables for play, highscore, exit
 	int option = 0;

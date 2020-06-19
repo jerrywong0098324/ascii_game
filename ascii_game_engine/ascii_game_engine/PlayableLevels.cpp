@@ -19,7 +19,7 @@ void PlayableLevels::Init()
 	const char* pauseMap = "../Game/Map/Default Maps/pause.txt";
 	pause.Init(pauseMap);
 
-	Init2DArray();
+	InitPrint();
 }
 
 // Update the level
@@ -50,7 +50,7 @@ void PlayableLevels::Render()
 void PlayableLevels::Exit()
 {
 	pause.ExitP();
-	Delete2DArray();
+	DeletePrint();
 }
 
 // For sidescrolling
@@ -129,6 +129,9 @@ void PlayableLevels::ScrollDown()
 // init buffer based on player's pos, putting the playing in the middle of the screen
 void PlayableLevels::InitBuffer()
 {
+	x_buffer = 0;
+	y_buffer = 0;
+
 	// TODO: rework formula for x and y buffer upon load
 	InitXBuffer();
 	InitYBuffer();
@@ -199,7 +202,7 @@ int PlayableLevels::YLimit()
 	return limit;
 }
 
-void PlayableLevels::Init2DArray()
+void PlayableLevels::InitPrint()
 {
 	int x = Console::NewSBSize.X;
 	int y = Console::NewSBSize.Y;
@@ -212,7 +215,7 @@ void PlayableLevels::Init2DArray()
 	}
 }
 
-void PlayableLevels::Delete2DArray()
+void PlayableLevels::DeletePrint()
 {
 	if (!print) // memory successfully deallocated already
 		return;

@@ -29,6 +29,8 @@ private:
 	/*******************************************************************
 						SIDE SCROLLING FEATURE
 	*******************************************************************/
+	void SideScroll(); 
+
 	int ScrollRightLimit(int multiplier = 1, int divider = 1);
 	int ScrollLeftLimit(int multiplier = 1, int divider = 1);
 	int ScrollUpLimit(int multiplier = 1, int divider = 1);
@@ -44,21 +46,21 @@ private:
 	void InitXBuffer();
 	void InitYBuffer();
 
-	void SideScroll();
-	void PrintMap();
+	void PrintMap(); // overriding it in FogLevels
+
+	void InitPrint();
+	void DeletePrint();
+
+	const Vector2 *pos; // player's pos
+
+protected:
 	int XLimit();
 	int YLimit();
 
-	void Init2DArray();
-	void Delete2DArray();
-
-	int x_buffer, y_buffer;
-	const Vector2 *pos;
+	int x_buffer, y_buffer; // buffer to know where to start printing the map from
 	char **print; // using this 2d dynamic array to print out the map
-	// ******************************************************************
-
-protected:
 	Player player;
+	// ******************************************************************
 
 	/*******************************************************************
 							PAUSED FEATURE

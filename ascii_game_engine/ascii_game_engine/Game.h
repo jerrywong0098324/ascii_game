@@ -23,6 +23,8 @@ public:
 
 	char* GetCollisionList() const;
 	int GetTotalCollide() const;
+	char* GetWallList() const;
+	int GetTotalWall() const;
 
 private:
 	// Singleton definition
@@ -31,11 +33,14 @@ private:
 	~Game();
 
 	void InitCollision();
-	void OpenFile(std::vector<std::string>& res);
-	void CreateCollisions(std::vector<std::string>& res);
+	void InitWalls();
+	void OpenFile(std::vector<std::string>& res, const char* txtFile);
+	void CreateCharArray(std::vector<std::string>& res, int &refSize, char* &list);
 
-	char *collideList;
+	char* collideList; // used for collision with player
+	char* wallList; // used for fog
 	int totalCollide;
+	int totalWall;
 };
 
 #endif

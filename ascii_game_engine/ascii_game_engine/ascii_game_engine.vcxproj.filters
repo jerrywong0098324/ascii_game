@@ -52,6 +52,15 @@
     <Filter Include="Levels\Manager">
       <UniqueIdentifier>{3e620a4c-9894-46dd-aa75-f9d40e97a91b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Levels\Level_02">
+      <UniqueIdentifier>{04704b78-a57b-44b0-85cb-b7a79ffa1d9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Levels\Base Level Classes\FogLevels">
+      <UniqueIdentifier>{b6e106ca-0edb-4239-b12c-b62aeaaa7a01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Levels\Base Level Classes\FogLevels\Fog">
+      <UniqueIdentifier>{df976bb6-4e84-47b0-9c18-23f80f894475}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="irrklang\ik_ESoundEngineOptions.h">
@@ -195,8 +204,14 @@
     <ClInclude Include="ControllerHandler.h">
       <Filter>Misc</Filter>
     </ClInclude>
+    <ClInclude Include="Level_02.h">
+      <Filter>Levels\Level_02</Filter>
+    </ClInclude>
     <ClInclude Include="FogLevels.h">
-      <Filter>Levels\Base Level Classes</Filter>
+      <Filter>Levels\Base Level Classes\FogLevels</Filter>
+    </ClInclude>
+    <ClInclude Include="Fog.h">
+      <Filter>Levels\Base Level Classes\FogLevels\Fog</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -256,6 +271,15 @@
     </ClCompile>
     <ClCompile Include="LevelManager.cpp">
       <Filter>Levels\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Level_02.cpp">
+      <Filter>Levels\Level_02</Filter>
+    </ClCompile>
+    <ClCompile Include="FogLevels.cpp">
+      <Filter>Levels\Base Level Classes\FogLevels</Filter>
+    </ClCompile>
+    <ClCompile Include="Fog.cpp">
+      <Filter>Levels\Base Level Classes\FogLevels\Fog</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

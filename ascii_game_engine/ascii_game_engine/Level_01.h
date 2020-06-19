@@ -20,7 +20,7 @@ public:
 	virtual void Exit();
 
 private:
-
+	// functions and variables for level 1's gameplay
 };
 
 #endif
