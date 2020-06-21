@@ -61,6 +61,30 @@
     <Filter Include="Levels\Base Level Classes\FogLevels\Fog">
       <UniqueIdentifier>{df976bb6-4e84-47b0-9c18-23f80f894475}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Item">
+      <UniqueIdentifier>{2d51f463-38f9-47c3-8e2f-3bcd0ec5b9be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Item\Base">
+      <UniqueIdentifier>{d854d36a-0038-4324-8f9c-8ea7465e94a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Item\Pickaxe">
+      <UniqueIdentifier>{eacaec97-c68a-49b8-bf2f-822ed136d40d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks">
+      <UniqueIdentifier>{e3cd2569-58ab-4319-9bc0-baf8ecae010c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Base">
+      <UniqueIdentifier>{71b4c563-1b08-4c25-a490-2af25b07d99d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Rock">
+      <UniqueIdentifier>{037f0330-17cd-4763-99f6-ea47198ef482}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player\Inventory">
+      <UniqueIdentifier>{adb62cb9-a238-400f-ae4c-b1a8379f875a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File Manager">
+      <UniqueIdentifier>{94a65d55-ce52-43c0-b71c-479fe12ee646}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="irrklang\ik_ESoundEngineOptions.h">
@@ -213,6 +237,30 @@
     <ClInclude Include="Fog.h">
       <Filter>Levels\Base Level Classes\FogLevels\Fog</Filter>
     </ClInclude>
+    <ClInclude Include="Equipment.h">
+      <Filter>Item\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Item\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemID.h">
+      <Filter>Item\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Pickaxe.h">
+      <Filter>Item\Pickaxe</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>Blocks\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock.h">
+      <Filter>Blocks\Rock</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Player\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManager.h">
+      <Filter>File Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingletonManager.cpp">
@@ -280,6 +328,18 @@
     </ClCompile>
     <ClCompile Include="Fog.cpp">
       <Filter>Levels\Base Level Classes\FogLevels\Fog</Filter>
+    </ClCompile>
+    <ClCompile Include="Pickaxe.cpp">
+      <Filter>Item\Pickaxe</Filter>
+    </ClCompile>
+    <ClCompile Include="Rock.cpp">
+      <Filter>Blocks\Rock</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Player\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManager.cpp">
+      <Filter>File Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

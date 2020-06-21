@@ -14,7 +14,7 @@ Level_02::~Level_02()
 void Level_02::Init()
 {
 	const char* mapLevel = "../Game/Map/Default Maps/level_02.txt";
-	map.Init(mapLevel);
+	map.Init(mapLevel, this);
 
 	// *******************************************************	
 	player.Init(map, std::move(Vector2(1, 1)));

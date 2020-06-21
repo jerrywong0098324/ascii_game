@@ -7,10 +7,10 @@ Player::Player()
 	SetPlayerDir(Vector2(1, 0));
 
 	// direction of the player
-	playerChar[0] = '^';
-	playerChar[1] = '>';
-	playerChar[2] = 'v';
-	playerChar[3] = '<';
+	playerChar[0] = '^'; // up
+	playerChar[1] = '>'; // right
+	playerChar[2] = 'v'; // down
+	playerChar[3] = '<'; // left
 }
 
 Player::~Player()
@@ -28,6 +28,12 @@ Vector2 &Player::GetRefPosition()
 Vector2 Player::GetPosition() const
 {
 	return pos;
+}
+
+// Return Player's Direction
+Vector2 Player::GetDirection() const
+{
+	return dir;
 }
 
 void Player::SetPosition(const Vector2 pos)
@@ -175,4 +181,10 @@ bool Player::DetectCollision(int x_pos, int y_pos) const
 			return true;
 	}
 	return false;
+}
+
+// Initialize inventory from save file
+void Player::InitInventory()
+{
+
 }

@@ -5,6 +5,7 @@ Game::Game() : collideList(nullptr), totalCollide(0)
 	Console::CreateConsole(420, 420);
 	InitCollision();
 	InitWalls();
+	InitTemporaryCharacters();
 }
 
 Game::~Game()
@@ -37,8 +38,12 @@ void Game::free_memory()
 {
 	delete[] collideList;
 	collideList = nullptr;
+
 	delete[] wallList;
 	wallList = nullptr;
+
+	delete[] replaceList;
+	replaceList = nullptr;
 
 	Singleton::free_memory();
 }
@@ -63,6 +68,16 @@ int Game::GetTotalWall() const
 	return totalWall;
 }
 
+char* Game::GetReplaceList() const
+{
+	return replaceList;
+}
+
+int Game::GetTotalReplace() const
+{
+	return totalReplace;
+}
+
 void Game::InitCollision()
 {
 	std::vector<std::string> res;
@@ -76,6 +91,13 @@ void Game::InitWalls()
 	std::vector<std::string> res;
 	OpenFile(res, "../Game/Walls/walls.txt");
 	CreateCharArray(res, totalWall, wallList);
+}
+
+void Game::InitTemporaryCharacters()
+{
+	std::vector<std::string> res;
+	OpenFile(res, "../Game/Temporary Characters/temp.txt");
+	CreateCharArray(res, totalReplace, replaceList, false); // using normal characters for easier reference
 }
 
 void Game::OpenFile(std::vector<std::string>& res, const char* txtFile)
@@ -98,7 +120,7 @@ void Game::OpenFile(std::vector<std::string>& res, const char* txtFile)
 	}
 }
 
-void Game::CreateCharArray(std::vector<std::string>& res, int &refSize, char* &list)
+void Game::CreateCharArray(std::vector<std::string>& res, int &refSize, char* &list, bool useAscii)
 {
 	refSize = res.size(); // total blocks of collision with player
 	int ascii; // ascii code from .txt file
@@ -106,9 +128,17 @@ void Game::CreateCharArray(std::vector<std::string>& res, int &refSize, char* &l
 	// Create pointer for collisions
 	list = new char[refSize];
 
-	for (int i = 0; i < refSize; ++i)
+	if (useAscii)
 	{
-		ascii = std::stoi(res[i]);
-		list[i] = (char)ascii;
+		for (int i = 0; i < refSize; ++i)
+		{
+			ascii = std::stoi(res[i]);
+			list[i] = (char)ascii;
+		}
+	}
+	else
+	{
+		for (int i = 0; i < refSize; ++i)
+			list[i] = res[i][0];
 	}
 }

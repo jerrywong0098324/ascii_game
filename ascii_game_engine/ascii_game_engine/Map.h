@@ -9,6 +9,7 @@
 
 #include "MemoryLeak.h"
 
+class Level;
 class LevelManager;
 class Map
 {
@@ -22,19 +23,21 @@ public:
 	int GetSizeX() const;
 	int GetSizeY() const;
 	// Init map from .txt file
-	virtual void Init(const char *map =  "");
+	virtual void Init(const char *map =  "", Level* level = nullptr);
 
 private:
 	friend class LevelManager;
 
 	// Load map from .txt file and store them into 2D Array
-	void LoadMap();
+	void LoadMap(Level* level);
 	// Open files
 	void OpenFile(std::vector<std::string> &res);
 	// Init x and y values
 	void InitBorders(std::string res);
 	// Creates dynamic 2D array
-	void CreateMap(std::vector<std::string> res);
+	void CreateMap(std::vector<std::string> res, Level* level);
+	// Replace and temporary characters to their specific char
+	char ReplaceCharacter(char placeHolder, Level* level, int& blockID, int x = 0, int y = 0);
 	// check if string contains specified characters
 	bool is_digit(const std::string &c);
 

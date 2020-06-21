@@ -1,0 +1,1 @@
+save relevant game data here, example player's last position etc

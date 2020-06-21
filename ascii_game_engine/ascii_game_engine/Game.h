@@ -25,6 +25,8 @@ public:
 	int GetTotalCollide() const;
 	char* GetWallList() const;
 	int GetTotalWall() const;
+	char* GetReplaceList() const;
+	int GetTotalReplace() const;
 
 private:
 	// Singleton definition
@@ -34,13 +36,24 @@ private:
 
 	void InitCollision();
 	void InitWalls();
+	void InitTemporaryCharacters();
 	void OpenFile(std::vector<std::string>& res, const char* txtFile);
-	void CreateCharArray(std::vector<std::string>& res, int &refSize, char* &list);
+	// @param useAscii: in the .txt file, use decimal code for the ascii characters you are using
+	void CreateCharArray(std::vector<std::string>& res, int &refSize, char* &list, bool useAscii = true);
 
 	char* collideList; // used for collision with player
 	char* wallList; // used for fog
+	char* replaceList; // list of temporary characters to be replaced in Map.cpp
 	int totalCollide;
 	int totalWall;
+	int totalReplace;
+
+	/*******************************************************************
+							SAVING FEATURE
+	*******************************************************************/
+	const char* saveFile; // use to save into which save file, total 3 save files
+
+	// ******************************************************************
 };
 
 #endif

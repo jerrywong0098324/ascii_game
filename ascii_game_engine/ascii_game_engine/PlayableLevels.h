@@ -5,6 +5,7 @@
 #include "Level.h"
 #include "Player.h"
 #include "Pause.h"
+#include "Block.h"
 
 class PlayableLevels : public Level
 {
@@ -23,6 +24,17 @@ public:
 	virtual void Render();
 	// When Exiting the level
 	virtual void Exit();
+	// ******************************************************************
+
+	/*******************************************************************
+							BLOCKS FEATURE
+	*******************************************************************/
+	// Add block into a vector
+	void AddBlock(Block* block);
+	// Delete the block at the position
+	void DeleteBlock(Block* block);
+	// Returns a reference to the block based on the position (nullptr if nth)
+	Block* GetBlock(const Vector2 pos);
 	// ******************************************************************
 
 private:
@@ -52,6 +64,16 @@ private:
 	void DeletePrint();
 
 	const Vector2 *pos; // player's pos
+
+	/*******************************************************************
+							BLOCKS FEATURE
+	*******************************************************************/
+	// Clear any remaining memory of blocks from the level
+	void DeleteBlocks();
+
+	// reference to blocks on the map
+	std::vector<Block*> blocks;
+	// ******************************************************************
 
 protected:
 	int XLimit();

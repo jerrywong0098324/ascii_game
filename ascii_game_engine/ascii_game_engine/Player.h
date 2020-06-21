@@ -5,6 +5,7 @@
 #include "Map.h"
 #include "Vector2.h"
 #include "GameStateManager.h"
+#include "Inventory.h"
 
 class Player
 {
@@ -16,6 +17,8 @@ public:
 	Vector2 &GetRefPosition();
 	// Return Player's Position
 	Vector2 GetPosition() const;
+	// Return Player's Direction
+	Vector2 GetDirection() const;
 
 	void SetPosition(const Vector2 pos);
 	void SetMap(Map map);
@@ -27,6 +30,7 @@ public:
 	void Update();
 
 private:
+	// Put the player within game map
 	void LimitPos();
 
 	// Set the dir char
@@ -41,6 +45,9 @@ private:
 	// Collision Detection
 	bool DetectCollision(int x_pos, int y_pos) const;
 
+	// Initialize inventory from save file
+	void InitInventory();
+
 	char playerChar[4];
 	// player's position on the map
 	Vector2 pos;
@@ -51,6 +58,11 @@ private:
 
 	// ref to the playing map
 	Map map;
+
+	// Add Inventory here, can choose which item to use from inventory
+	Inventory inventory;
+	// Item in hand
+	Item* currItem;
 };
 
 #endif 

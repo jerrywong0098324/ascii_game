@@ -46,9 +46,6 @@ private:
 	bool enterPressed;
 	float dt = 0.0f;
 
-	// next map
-	int mapIndex = 0;
-
 	Audio *bgm;
 	Audio *arrowSFX;
 	Audio *selectSFX;

@@ -1,8 +1,9 @@
 #include "Map.h"
+#include "Game.h"
 
 Map::Map() : x(0), y(0), map(nullptr)
 {
-	//LoadMap();
+
 }
 
 Map::~Map()
@@ -27,10 +28,10 @@ int Map::GetSizeY() const
 }
 
 // Init map from .txt file
-void Map::Init(const char *mapLevel)
+void Map::Init(const char *mapLevel, Level* level)
 {
 	this->mapLevel = mapLevel;
-	LoadMap();
+	LoadMap(level);
 }
 
 // Delete Map (using in LevelManager when changing to next scene)
@@ -49,7 +50,7 @@ void Map::Exit()
 }
 
 // Load map from .txt file and store them into 2D Array
-void Map::LoadMap()
+void Map::LoadMap(Level* level)
 {
 	std::vector<std::string> res; // result of strings in .txt file
 
@@ -58,7 +59,7 @@ void Map::LoadMap()
 	// get x and y value
 	InitBorders(res[0]);
 	// initialise 2D dynamic array
-	CreateMap(res);
+	CreateMap(res, level);
 }
 
 // Open files
@@ -72,7 +73,6 @@ void Map::OpenFile(std::vector<std::string>& res)
 	{
 		std::cerr << "Unable to open file: " << mapLevel << std::endl;
 		exit(1);
-		//return; // just return
 	}
 
 	// Loop through till the end of file
@@ -116,7 +116,7 @@ void Map::InitBorders(std::string res)
 }
 
 // Creates dynamic 2D array map
-void Map::CreateMap(std::vector<std::string> res)
+void Map::CreateMap(std::vector<std::string> res, Level* level)
 {
 	map = new char* [y]; // creates row
 	for (int i = 0; i < y; ++i)
@@ -125,17 +125,47 @@ void Map::CreateMap(std::vector<std::string> res)
 		map[i][x] = '\0';
 	}
 
+	int sum = Game::GetInstance()->GetTotalReplace();
+	char* list = Game::GetInstance()->GetReplaceList();
+	int blockID = 1; // ID of block
+
 	// storing map from .txt file into 2D dynamic array
 	for (int i = 0; i < y; ++i)
 	{
 		for (int j = 0; j < x; ++j)
 		{
 			char c = res[i + 1][j];
-			if (c == '+') // replacing '+' to become empty spaces
-				c = ' ';
+
+			// replacing all place holder characters to their respective chars in game
+			for (int k = 0; k < sum; ++k)
+			{
+				if (c == list[k])
+				{
+					c = ReplaceCharacter(list[k], level, blockID, j, i + 1);
+					break;
+				}
+			}
+
 			map[i][j] = c;
 		}
 	}
+}
+
+// Replace and temporary characters to their specific char
+char Map::ReplaceCharacter(char placeHolder, Level* level, int& blockID, int x, int y)
+{
+	char c = (char)0; // null char(?)
+
+	switch (placeHolder)
+	{
+	case '+':
+		c = ' ';
+		break;
+
+	// case blocks temp char, add them into a vector for storage, remember to add the ID for the block too
+	}
+
+	return c;
 }
 
 // check if string contains specified characters

@@ -51,7 +51,63 @@ void PlayableLevels::Exit()
 {
 	pause.ExitP();
 	DeletePrint();
+	DeleteBlocks();
 }
+
+/*******************************************************************
+						BLOCKS FEATURE
+*******************************************************************/
+// Add block into a vector
+void PlayableLevels::AddBlock(Block* block)
+{
+	blocks.push_back(block);
+}
+
+// Delete the block using the id
+void PlayableLevels::DeleteBlock(Block* block)
+{
+	for (int i = 0; i < blocks.size(); ++i)
+	{
+		// checking if it's this block
+		if (blocks[i]->GetID() == block->GetID())
+		{
+			// deallocating memory of this block
+			blocks[i]->Exit();
+			delete blocks[i];
+			blocks[i] = nullptr;
+
+			// removing this block from the vector
+			blocks.erase(blocks.begin() + i);
+
+			break;
+		}
+	}
+}
+
+// Clear any remaining memory of blocks from the level
+void PlayableLevels::DeleteBlocks()
+{
+	for (int i = 0; i < blocks.size(); ++i)
+	{
+		// deallocating memory
+		blocks[i]->Exit();
+		delete blocks[i];
+		blocks[i] = nullptr;
+	}
+}
+
+// Returns a reference to the block based on the position (nullptr if nth)
+Block* PlayableLevels::GetBlock(const Vector2 pos)
+{
+	for (int i = 0; i < blocks.size(); ++i)
+	{
+		Vector2 p = blocks[i]->GetPosition();
+		if (p.x == pos.x && p.y == pos.y)
+			return blocks[i];
+	}
+	return nullptr; // no such block in such position
+}
+// ******************************************************************
 
 // For sidescrolling
 void PlayableLevels::SideScroll()

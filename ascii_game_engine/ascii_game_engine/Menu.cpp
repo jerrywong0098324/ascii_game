@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include "LevelManager.h"
+#include "FileManager.h"
 
 Menu::Menu()
 {
@@ -58,7 +59,7 @@ void Menu::Render()
 void Menu::Exit()
 {
 	// Call LevelManager to change to next map
-	LevelManager::GetInstance()->NextLevel(mapIndex);	
+	LevelManager::GetInstance()->NextLevel(nextLevel);
 }
 
 // Updates the arrow position
@@ -133,9 +134,9 @@ void Menu::UpdateEnterPressed()
 		// play button
 	case 1:
 		GameStateManager::GetInstance()->SetCurrentGameState(GameState::CHANGE_LEVEL);
-		mapIndex = (int)GameState::LEVEL_01;
+		nextLevel = (int)GameState::LEVEL_01;
 		break;
-		// highscore button
+		// continue game
 	case 2:
 		break;
 		// exit button
