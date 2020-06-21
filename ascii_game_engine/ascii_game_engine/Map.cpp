@@ -1,5 +1,8 @@
 #include "Map.h"
 #include "Game.h"
+#include "FileManager.h"
+#include "Rock.h"
+#include "Ice.h"
 
 Map::Map() : x(0), y(0), map(nullptr)
 {
@@ -52,35 +55,12 @@ void Map::Exit()
 // Load map from .txt file and store them into 2D Array
 void Map::LoadMap(Level* level)
 {
-	std::vector<std::string> res; // result of strings in .txt file
+	std::vector<std::string> res = FileManager::LoadFile(mapLevel); // result of strings in .txt file
 
-	// open .txt file and store results into vector
-	OpenFile(res);
 	// get x and y value
 	InitBorders(res[0]);
 	// initialise 2D dynamic array
 	CreateMap(res, level);
-}
-
-// Open files
-void Map::OpenFile(std::vector<std::string>& res)
-{
-	std::string items; // use to store string per line from .txt file
-	std::ifstream inFile(mapLevel); // Input file
-
-	// Check for any errors -> corrupted files, wrong file name etc
-	if (inFile.fail())
-	{
-		std::cerr << "Unable to open file: " << mapLevel << std::endl;
-		exit(1);
-	}
-
-	// Loop through till the end of file
-	while (!inFile.eof())
-	{
-		inFile >> items;
-		res.push_back(items);
-	}
 }
 
 // Init x and y values
@@ -141,7 +121,7 @@ void Map::CreateMap(std::vector<std::string> res, Level* level)
 			{
 				if (c == list[k])
 				{
-					c = ReplaceCharacter(list[k], level, blockID, j, i + 1);
+					c = ReplaceCharacter(list[k], level, blockID, j, i);
 					break;
 				}
 			}
@@ -158,11 +138,43 @@ char Map::ReplaceCharacter(char placeHolder, Level* level, int& blockID, int x, 
 
 	switch (placeHolder)
 	{
-	case '+':
-		c = ' ';
-		break;
+		case '+': // empty block
+		{
+			c = ' ';
+			break;
+		}
+		case '~': // rock
+		{
+			c = (char)178;
+			PlayableLevels* plptr = dynamic_cast<PlayableLevels*>(level); // PlabaleLevels pointer
+			Vector2 pos(x,y);
 
-	// case blocks temp char, add them into a vector for storage, remember to add the ID for the block too
+			Rock* rptr = new Rock(blockID);
+			rptr->Init(); // init rocks
+			rptr->SetPosition(pos); // position of rock
+
+			plptr->AddBlock(rptr); // add into level
+
+			++blockID;
+			break;
+		}
+		case '`': // ice
+		{
+			c = (char)219;
+			PlayableLevels* plptr = dynamic_cast<PlayableLevels*>(level);
+			Vector2 pos(x, y);
+
+			Player* pptr = &plptr->GetRefPlayer(); // Player pointer
+
+			Ice* iptr = new Ice(blockID);
+			iptr->Init(pptr); // inits ice
+			iptr->SetPosition(pos); // position of ice
+
+			plptr->AddBlock(iptr); // add into level to update
+
+			++blockID;
+			break;
+		}
 	}
 
 	return c;

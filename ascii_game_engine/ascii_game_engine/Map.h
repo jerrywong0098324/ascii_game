@@ -30,8 +30,6 @@ private:
 
 	// Load map from .txt file and store them into 2D Array
 	void LoadMap(Level* level);
-	// Open files
-	void OpenFile(std::vector<std::string> &res);
 	// Init x and y values
 	void InitBorders(std::string res);
 	// Creates dynamic 2D array

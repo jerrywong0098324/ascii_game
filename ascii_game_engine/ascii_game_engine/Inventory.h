@@ -3,16 +3,16 @@
 #define INVENTORY_H
 
 #include <vector>
-#include "Item.h"
 
+class Item;
 class Inventory
 {
 public:
 	Inventory();
 	~Inventory();
 
-	// Add into the inventory
-	void AddItem(Item* item);
+	// Add into the inventory, returns size of inventory
+	int AddItem(Item* item);
 	// Remove from the inventory based on the item
 	void DeleteItem(Item* item);
 	// Remove from inventory based on index

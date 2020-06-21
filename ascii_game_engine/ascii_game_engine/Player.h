@@ -6,6 +6,7 @@
 #include "Vector2.h"
 #include "GameStateManager.h"
 #include "Inventory.h"
+#include "PlayerStatus.h"
 
 class Player
 {
@@ -13,29 +14,40 @@ public:
 	Player();
 	~Player();
 
+	// Init the player
+	void Init(Level* level, const Vector2 pos = Vector2(0, 0));
+	// Update function to get player's input
+	void Update();
+	// Render Inventory
+	void Render(char** print);
+	// Clear any necessary memory allocation
+	void Exit();
+
 	// Return Reference to Player's Position (To make camera side scroll)
 	Vector2 &GetRefPosition();
 	// Return Player's Position
 	Vector2 GetPosition() const;
 	// Return Player's Direction
 	Vector2 GetDirection() const;
+	// Return Player's current status
+	PlayerStatus GetPlayerStatus() const;
 
 	void SetPosition(const Vector2 pos);
 	void SetMap(Map map);
 	void SetPlayerDir(const Vector2 dir);
+	void SetPlayerStatus(const PlayerStatus state);
 
-	// Init the player
-	void Init(Map map, const Vector2 pos = Vector2(0, 0));
-	// Update function to get player's input
-	void Update();
+	// Add item into inventory
+	void AddItem(Item* item);
 
 private:
+	/*******************************************************************
+					   PLAYER MOVEMENTS & COLLISION
+	*******************************************************************/
 	// Put the player within game map
 	void LimitPos();
-
 	// Set the dir char
 	void SetDirectionChar(const int dirChar);
-
 	// Updates the player input
 	void UpdatePlayer();
 	// Moves the player and check for collision
@@ -44,9 +56,29 @@ private:
 	void LimitPlayer();
 	// Collision Detection
 	bool DetectCollision(int x_pos, int y_pos) const;
+	// ******************************************************************
 
+	/*******************************************************************
+					      INVENTORY & ITEM FEATURES
+	*******************************************************************/
 	// Initialize inventory from save file
-	void InitInventory();
+	void InitInventory(Level* level);
+	// Updates item the player is holding
+	void UpdateItem();
+	// Update item's interaction
+	void UpdateItemInteraction();
+	// Change item using 1 - 5
+	void ChangeItem();
+	// Change item using q and e
+	void NextItem();
+	// ******************************************************************
+
+	/*******************************************************************
+							SLIDING FEATURES
+			  Behaviour when player interacts with ice blocks
+	*******************************************************************/
+
+	// ******************************************************************
 
 	char playerChar[4];
 	// player's position on the map
@@ -56,6 +88,8 @@ private:
 	// determine which ascii character to use
 	int dirChar;
 
+	// ref to the level
+	Level* level;
 	// ref to the playing map
 	Map map;
 
@@ -63,6 +97,11 @@ private:
 	Inventory inventory;
 	// Item in hand
 	Item* currItem;
+	int curr_item_index;
+	int min_item_index, max_item_index, max_item_shown = 5; // @variable max_item_shown: how many items is shown in the "inventory" (game world)
+
+	// Status
+	PlayerStatus currState;
 };
 
 #endif 

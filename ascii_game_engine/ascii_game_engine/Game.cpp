@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "FileManager.h"
 
 Game::Game() : collideList(nullptr), totalCollide(0)
 {
@@ -78,46 +79,49 @@ int Game::GetTotalReplace() const
 	return totalReplace;
 }
 
+/*******************************************************************
+					SAVING FEATURE
+*******************************************************************/
+// set true if player is continuing from save file
+void Game::SetContinue(const bool cont)
+{
+	this->cont = cont;
+}
+
+// which save file is the player using
+void Game::SetSaveFile(const char* saveFile)
+{
+	this->saveFile = saveFile;
+}
+
+bool Game::GetContinue() const
+{
+	return cont;
+}
+
+const char* Game::GetSaveFile() const
+{
+	return saveFile;
+}
+
+// *******************************************************************
+
 void Game::InitCollision()
 {
-	std::vector<std::string> res;
-
-	OpenFile(res, "../Game/Collisions/collisions.txt");
+	std::vector<std::string> res = FileManager::LoadFile("../Game/Collisions/collisions.txt");
 	CreateCharArray(res, totalCollide, collideList);
 }
 
 void Game::InitWalls()
 {
-	std::vector<std::string> res;
-	OpenFile(res, "../Game/Walls/walls.txt");
+	std::vector<std::string> res = FileManager::LoadFile("../Game/Walls/walls.txt");
 	CreateCharArray(res, totalWall, wallList);
 }
 
 void Game::InitTemporaryCharacters()
 {
-	std::vector<std::string> res;
-	OpenFile(res, "../Game/Temporary Characters/temp.txt");
+	std::vector<std::string> res = FileManager::LoadFile("../Game/Temporary Characters/temp.txt");
 	CreateCharArray(res, totalReplace, replaceList, false); // using normal characters for easier reference
-}
-
-void Game::OpenFile(std::vector<std::string>& res, const char* txtFile)
-{
-	std::string items; // ascii code from .txt file
-	std::ifstream inFile(txtFile);
-
-	// Check for any errors, close program if fail
-	if (inFile.fail())
-	{
-		std::cerr << "Unable to open file: " << txtFile << std::endl;
-		exit(1);
-	}
-
-	// Loop till the end of file
-	while (!inFile.eof())
-	{
-		inFile >> items;
-		res.push_back(items);
-	}
 }
 
 void Game::CreateCharArray(std::vector<std::string>& res, int &refSize, char* &list, bool useAscii)

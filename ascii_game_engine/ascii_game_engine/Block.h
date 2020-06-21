@@ -11,10 +11,12 @@ public:
 	virtual ~Block() = 0 {};
 
 	virtual void Init() {};
-	// Different blocks will have different interactions with the player (Sort of a Update function)
-	virtual void Interactions() {}; 
+	// Updating the block
+	virtual void Update() {};
 	// Clear any memory if neccessary
 	virtual void Exit() {};
+	// Different blocks will have different interactions with the player
+	virtual void Interactions() {};
 
 	int GetID() const { return id; }
 	Vector2 GetPosition() const { return pos; }

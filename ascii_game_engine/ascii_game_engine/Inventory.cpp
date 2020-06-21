@@ -1,4 +1,5 @@
 #include "Inventory.h"
+#include "Item.h"
 
 Inventory::Inventory()
 {
@@ -10,8 +11,8 @@ Inventory::~Inventory()
 
 }
 
-// Add into the inventory
-void Inventory::AddItem(Item* item)
+// Add into the inventory, returns size of inventory
+int Inventory::AddItem(Item* item)
 {
 	// don't add into the inventory if there's another of the same item, instead just add to the amount
 	for (int i = 0; i < items.size(); ++i)
@@ -21,11 +22,12 @@ void Inventory::AddItem(Item* item)
 			item->Add(); // add one to the collection
 			if (item->GetAmount() >= item->GetMaximum())
 				item->SetAmount(item->GetMaximum());
-			return;
+			return items.size();
 		}
 	}
 	// No such item in the inventory, add it inside
 	items.push_back(item);
+	return items.size();
 }
 
 // Remove from the inventory
@@ -74,11 +76,12 @@ void Inventory::DeleteItems()
 // Save and delete allocated memory
 void Inventory::Exit()
 {
-
 	DeleteItems();
 }
 
 Item* Inventory::GetItem(int index)
 {
+	if (index >= items.size())
+		return nullptr;
 	return items[index];
 }

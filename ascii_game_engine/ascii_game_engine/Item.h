@@ -5,6 +5,7 @@
 #include "ItemID.h"
 #include "UserInput.h"
 #include "MemoryLeak.h"
+#include "Player.h"
 
 class Item
 {
@@ -13,7 +14,7 @@ public:
 	virtual ~Item() = 0 {};
 
 	// To init the item
-	virtual void Init(int max_amt, int amount, ItemID id) { this->max_amt = max_amt; this->amount = amount; this->id = id; };
+	virtual void Init(int max_amt, int amount, ItemID id, Player* player) { this->max_amt = max_amt; this->amount = amount; this->id = id; this->player = player; };
 	// Function to handle using of this item
 	virtual void Use() {};
 	// If I need to deallocate any memory
@@ -33,6 +34,7 @@ protected:
 	int max_amt; // maximum amount I can carry this item in this slot
 	int amount; // current amount I have of this item in this slot
 	ItemID id; // using this variable to save into file
+	const Player* player; // reference to the player
 
 	int useButton = (int)KeyCode::F; // code for using Item
 };

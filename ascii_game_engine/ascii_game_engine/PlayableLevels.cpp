@@ -31,6 +31,7 @@ void PlayableLevels::Update()
 
 	player.Update();
 	SideScroll();
+	UpdateBlocks();
 }
 
 // print out the chars
@@ -44,12 +45,14 @@ void PlayableLevels::Render()
 	}
 
 	PrintMap();
+	player.Render(print);
 }
 
 // When Exiting the level
 void PlayableLevels::Exit()
 {
 	pause.ExitP();
+	player.Exit();
 	DeletePrint();
 	DeleteBlocks();
 }
@@ -97,7 +100,7 @@ void PlayableLevels::DeleteBlocks()
 }
 
 // Returns a reference to the block based on the position (nullptr if nth)
-Block* PlayableLevels::GetBlock(const Vector2 pos)
+Block* PlayableLevels::GetBlock(const Vector2 pos) const
 {
 	for (int i = 0; i < blocks.size(); ++i)
 	{
@@ -107,6 +110,12 @@ Block* PlayableLevels::GetBlock(const Vector2 pos)
 	}
 	return nullptr; // no such block in such position
 }
+
+Player& PlayableLevels::GetRefPlayer()
+{
+	return player;
+}
+
 // ******************************************************************
 
 // For sidescrolling
@@ -285,4 +294,11 @@ void PlayableLevels::DeletePrint()
 	}
 	delete[] print;
 	print = nullptr;
+}
+
+// Update blocks
+void PlayableLevels::UpdateBlocks()
+{
+	for (int i = 0; i < blocks.size(); ++i)
+		blocks[i]->Update();
 }

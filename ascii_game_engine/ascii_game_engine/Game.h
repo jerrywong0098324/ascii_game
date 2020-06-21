@@ -28,6 +28,15 @@ public:
 	char* GetReplaceList() const;
 	int GetTotalReplace() const;
 
+	/*******************************************************************
+						SAVING FEATURE
+	*******************************************************************/
+	void SetContinue(const bool cont); // set true if player is continuing from save file
+	void SetSaveFile(const char* saveFile); // which save file is the player using
+
+	bool GetContinue() const;
+	const char* GetSaveFile() const;
+
 private:
 	// Singleton definition
 	friend class Singleton<Game>;
@@ -37,7 +46,6 @@ private:
 	void InitCollision();
 	void InitWalls();
 	void InitTemporaryCharacters();
-	void OpenFile(std::vector<std::string>& res, const char* txtFile);
 	// @param useAscii: in the .txt file, use decimal code for the ascii characters you are using
 	void CreateCharArray(std::vector<std::string>& res, int &refSize, char* &list, bool useAscii = true);
 
@@ -52,7 +60,7 @@ private:
 							SAVING FEATURE
 	*******************************************************************/
 	const char* saveFile; // use to save into which save file, total 3 save files
-
+	bool cont; // boolean to check if continue or new game
 	// ******************************************************************
 };
 

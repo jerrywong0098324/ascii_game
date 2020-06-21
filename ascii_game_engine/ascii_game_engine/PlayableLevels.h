@@ -34,7 +34,8 @@ public:
 	// Delete the block at the position
 	void DeleteBlock(Block* block);
 	// Returns a reference to the block based on the position (nullptr if nth)
-	Block* GetBlock(const Vector2 pos);
+	Block* GetBlock(const Vector2 pos) const;
+	Player& GetRefPlayer();
 	// ******************************************************************
 
 private:
@@ -68,11 +69,13 @@ private:
 	/*******************************************************************
 							BLOCKS FEATURE
 	*******************************************************************/
+	// Update blocks
+	void UpdateBlocks();
 	// Clear any remaining memory of blocks from the level
 	void DeleteBlocks();
 
 	// reference to blocks on the map
-	std::vector<Block*> blocks;
+	std::vector<Block*> blocks; 
 	// ******************************************************************
 
 protected:

@@ -36,6 +36,11 @@ Doing base class and logic for Items, firstly implementing Pickaxe class
 NOTE: use dynamic_cast to access individual class's Init() function, while 
 using parent's class function to override the function of the Item
 
-
+21/6/2020
+Completed logic for Inventory, Pickaxe, Rock, and Loading and Saving of files!
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Doing logic for Ice blocks and reworking Player's movement class to have
+intended feature with ice. Added a PlayerStatus to determine the state of the
+player.
 
 ******************************************************************************

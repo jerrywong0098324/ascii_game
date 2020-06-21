@@ -85,6 +85,12 @@
     <Filter Include="File Manager">
       <UniqueIdentifier>{94a65d55-ce52-43c0-b71c-479fe12ee646}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Player\Status">
+      <UniqueIdentifier>{71860f63-1d13-4dee-9dff-4796a777deda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Ice">
+      <UniqueIdentifier>{9d1e76ea-3803-4b8e-b107-f2f8c42faece}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="irrklang\ik_ESoundEngineOptions.h">
@@ -261,6 +267,15 @@
     <ClInclude Include="FileManager.h">
       <Filter>File Manager</Filter>
     </ClInclude>
+    <ClInclude Include="InventoryManager.h">
+      <Filter>Player\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerStatus.h">
+      <Filter>Player\Status</Filter>
+    </ClInclude>
+    <ClInclude Include="Ice.h">
+      <Filter>Blocks\Ice</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingletonManager.cpp">
@@ -340,6 +355,12 @@
     </ClCompile>
     <ClCompile Include="FileManager.cpp">
       <Filter>File Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryManager.cpp">
+      <Filter>Player\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="Ice.cpp">
+      <Filter>Blocks\Ice</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

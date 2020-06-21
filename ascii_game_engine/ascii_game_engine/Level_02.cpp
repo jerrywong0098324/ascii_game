@@ -17,7 +17,7 @@ void Level_02::Init()
 	map.Init(mapLevel, this);
 
 	// *******************************************************	
-	player.Init(map, std::move(Vector2(1, 1)));
+	player.Init(this, std::move(Vector2(1, 1)));
 	player.SetPlayerDir(std::move(Vector2(1, 0)));
 	// *******************************************************
 

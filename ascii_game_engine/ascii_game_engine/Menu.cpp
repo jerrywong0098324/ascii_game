@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include "LevelManager.h"
 #include "FileManager.h"
+#include "Game.h"
 
 Menu::Menu()
 {
@@ -134,6 +135,7 @@ void Menu::UpdateEnterPressed()
 		// play button
 	case 1:
 		GameStateManager::GetInstance()->SetCurrentGameState(GameState::CHANGE_LEVEL);
+		Game::GetInstance()->SetSaveFile("save_file_1.txt");
 		nextLevel = (int)GameState::LEVEL_01;
 		break;
 		// continue game

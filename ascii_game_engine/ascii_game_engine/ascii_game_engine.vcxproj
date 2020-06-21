@@ -155,7 +155,9 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
+    <ClInclude Include="Ice.h" />
     <ClInclude Include="Inventory.h" />
+    <ClInclude Include="InventoryManager.h" />
     <ClInclude Include="irrklang\ik_ESoundEngineOptions.h" />
     <ClInclude Include="irrklang\ik_ESoundOutputDrivers.h" />
     <ClInclude Include="irrklang\ik_EStreamModes.h" />
@@ -192,6 +194,7 @@
     <ClInclude Include="Pickaxe.h" />
     <ClInclude Include="PlayableLevels.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerStatus.h" />
     <ClInclude Include="Rock.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SingletonManager.h" />
@@ -210,7 +213,9 @@
     <ClCompile Include="FogLevels.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
+    <ClCompile Include="Ice.cpp" />
     <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="InventoryManager.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="Level_01.cpp" />
     <ClCompile Include="Level_02.cpp" />
