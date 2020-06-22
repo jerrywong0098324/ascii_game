@@ -181,7 +181,10 @@ void Player::UpdatePlayer()
 		}
 		case PlayerStatus::SLIDING: // interactions with ice block
 		{
-
+			Sliding();
+			//// update the new player's position onto the map
+			//map.GetMap()[pos.y][pos.x] = playerChar[dirChar];
+			break;
 		}
 	}
 }
@@ -228,7 +231,7 @@ bool Player::DetectCollision(int x_pos, int y_pos) const
 	int sum = Game::GetInstance()->GetTotalCollide();
 
 	// if at the edge of the map, don't need to check for collision
-	if (x_pos >= map.GetSizeX() || x_pos <= 0 || y_pos >= map.GetSizeY() || pos.y <= 0)
+	if (x_pos >= map.GetSizeX() || x_pos <= 0 || y_pos >= map.GetSizeY() || y_pos <= 0)
 		return false;
 
 	// loop through to see if the next block ahead of player is something that cannot be collided with
@@ -304,3 +307,20 @@ void Player::NextItem()
 	// set the item player is holding
 	currItem = inventory.GetItem(curr_item_index);
 }
+
+/*******************************************************************
+						SLIDING FEATURES
+		  Behaviour when player interacts with ice blocks
+*******************************************************************/
+void Player::Sliding()
+{
+	if (UserInput::GetKeyDown(KeyCode::UpArrow))
+		dirChar = 0;
+	else if (UserInput::GetKeyDown(KeyCode::RightArrow))
+		dirChar = 1;
+	else if (UserInput::GetKeyDown(KeyCode::DownArrow))
+		dirChar = 2;
+	else if (UserInput::GetKeyDown(KeyCode::LeftArrow))
+		dirChar = 3;
+}
+// ******************************************************************

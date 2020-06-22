@@ -77,7 +77,7 @@ private:
 							SLIDING FEATURES
 			  Behaviour when player interacts with ice blocks
 	*******************************************************************/
-
+	void Sliding();
 	// ******************************************************************
 
 	char playerChar[4];

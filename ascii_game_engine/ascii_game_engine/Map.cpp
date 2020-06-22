@@ -167,7 +167,7 @@ char Map::ReplaceCharacter(char placeHolder, Level* level, int& blockID, int x, 
 			Player* pptr = &plptr->GetRefPlayer(); // Player pointer
 
 			Ice* iptr = new Ice(blockID);
-			iptr->Init(pptr); // inits ice
+			iptr->Init(pptr, level); // inits ice
 			iptr->SetPosition(pos); // position of ice
 
 			plptr->AddBlock(iptr); // add into level to update

@@ -23,6 +23,7 @@ void Pickaxe::Init(Level* level)
 // Function to handle using of this item
 void Pickaxe::Use()
 {
+	UpdatePickaxeStatus();
 	UpdatePickaxe();
 }
 
@@ -49,7 +50,7 @@ void Pickaxe::UpdatePickaxe()
 			return;
 		// get the position of the block based one player's direction
 		int x = player->GetPosition().x + player->GetDirection().x;
-		int y = player->GetPosition().y + player->GetDirection().y;
+		int y = player->GetPosition().y - player->GetDirection().y;
 		PlayableLevels* plptr = dynamic_cast<PlayableLevels*>(level);
 
 		Rock* rptr = dynamic_cast<Rock*>(plptr->GetBlock(Vector2(x, y)));

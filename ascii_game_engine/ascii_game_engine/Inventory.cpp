@@ -71,6 +71,7 @@ void Inventory::DeleteItems()
 		delete items[i];
 		items[i] = nullptr;
 	}
+	items.clear();
 }
 
 // Save and delete allocated memory

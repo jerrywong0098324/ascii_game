@@ -97,6 +97,7 @@ void PlayableLevels::DeleteBlocks()
 		delete blocks[i];
 		blocks[i] = nullptr;
 	}
+	blocks.clear();
 }
 
 // Returns a reference to the block based on the position (nullptr if nth)
