@@ -14,7 +14,8 @@ Level_01::~Level_01()
 void Level_01::Init()
 {
 	const char *mapLevel = "../Game/Map/Default Maps/level_01.txt";
-	map.Init(mapLevel, this);
+	map.Init(mapLevel, false, this);
+	SetDuplicateMapName(mapLevel);
 
 	// *******************************************************	
 	player.Init(this, std::move(Vector2(1, 1)));

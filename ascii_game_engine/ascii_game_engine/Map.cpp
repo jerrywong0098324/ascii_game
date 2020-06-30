@@ -11,7 +11,7 @@ Map::Map() : x(0), y(0), map(nullptr)
 
 Map::~Map()
 {
-
+	//Exit();
 }
 
 char** Map::GetMap() const
@@ -31,10 +31,10 @@ int Map::GetSizeY() const
 }
 
 // Init map from .txt file
-void Map::Init(const char *mapLevel, Level* level)
+void Map::Init(const char *mapLevel, bool duplicate, Level* level)
 {
 	this->mapLevel = mapLevel;
-	LoadMap(level);
+	LoadMap(duplicate, level);
 }
 
 // Delete Map (using in LevelManager when changing to next scene)
@@ -53,14 +53,14 @@ void Map::Exit()
 }
 
 // Load map from .txt file and store them into 2D Array
-void Map::LoadMap(Level* level)
+void Map::LoadMap(bool duplicate, Level* level)
 {
 	std::vector<std::string> res = FileManager::LoadFile(mapLevel); // result of strings in .txt file
 
 	// get x and y value
 	InitBorders(res[0]);
 	// initialise 2D dynamic array
-	CreateMap(res, level);
+	CreateMap(res, duplicate, level);
 }
 
 // Init x and y values
@@ -96,7 +96,7 @@ void Map::InitBorders(std::string res)
 }
 
 // Creates dynamic 2D array map
-void Map::CreateMap(std::vector<std::string> res, Level* level)
+void Map::CreateMap(std::vector<std::string> res, bool duplicate, Level* level)
 {
 	map = new char* [y]; // creates row
 	for (int i = 0; i < y; ++i)
@@ -121,7 +121,7 @@ void Map::CreateMap(std::vector<std::string> res, Level* level)
 			{
 				if (c == list[k])
 				{
-					c = ReplaceCharacter(list[k], level, blockID, j, i);
+					c = ReplaceCharacter(list[k], duplicate, level, blockID, j, i);
 					break;
 				}
 			}
@@ -132,9 +132,67 @@ void Map::CreateMap(std::vector<std::string> res, Level* level)
 }
 
 // Replace and temporary characters to their specific char
-char Map::ReplaceCharacter(char placeHolder, Level* level, int& blockID, int x, int y)
+char Map::ReplaceCharacter(char placeHolder, bool duplicate, Level* level, int& blockID, int x, int y)
+{
+	if (!duplicate)
+		return NonDuplicated(placeHolder, level, blockID, x, y);
+	else if (duplicate)
+		return Duplicated(placeHolder);
+}
+
+// Non Duplicate Replace
+char Map::NonDuplicated(char placeHolder, Level* level, int& blockID, int x, int y)
 {
 	char c = (char)0; // null char(?)
+
+	switch (placeHolder)
+	{
+	case '+': // empty block
+	{
+		c = ' ';
+		break;
+	}
+	case '~': // rock
+	{
+		c = (char)178;
+		PlayableLevels* plptr = dynamic_cast<PlayableLevels*>(level); // PlabaleLevels pointer
+		Vector2 pos(x, y);
+
+		Rock* rptr = new Rock(blockID);
+		rptr->Init(); // init rocks
+		rptr->SetPosition(pos); // position of rock
+
+		plptr->AddBlock(rptr); // add into level
+
+		++blockID;
+		break;
+	}
+	case '`': // ice
+	{
+		c = (char)219;
+		PlayableLevels* plptr = dynamic_cast<PlayableLevels*>(level);
+		Vector2 pos(x, y);
+
+		Player* pptr = &plptr->GetRefPlayer(); // Player pointer
+
+		Ice* iptr = new Ice(blockID);
+		iptr->Init(pptr, level); // inits ice
+		iptr->SetPosition(pos); // position of ice
+
+		plptr->AddBlock(iptr); // add into level to update
+
+		++blockID;
+		break;
+	}
+	}
+
+	return c;
+}
+
+// Duplicate Replace
+char Map::Duplicated(char placeHolder)
+{
+	char c = (char)0; // null char
 
 	switch (placeHolder)
 	{
@@ -146,33 +204,11 @@ char Map::ReplaceCharacter(char placeHolder, Level* level, int& blockID, int x, 
 		case '~': // rock
 		{
 			c = (char)178;
-			PlayableLevels* plptr = dynamic_cast<PlayableLevels*>(level); // PlabaleLevels pointer
-			Vector2 pos(x,y);
-
-			Rock* rptr = new Rock(blockID);
-			rptr->Init(); // init rocks
-			rptr->SetPosition(pos); // position of rock
-
-			plptr->AddBlock(rptr); // add into level
-
-			++blockID;
 			break;
 		}
 		case '`': // ice
 		{
 			c = (char)219;
-			PlayableLevels* plptr = dynamic_cast<PlayableLevels*>(level);
-			Vector2 pos(x, y);
-
-			Player* pptr = &plptr->GetRefPlayer(); // Player pointer
-
-			Ice* iptr = new Ice(blockID);
-			iptr->Init(pptr, level); // inits ice
-			iptr->SetPosition(pos); // position of ice
-
-			plptr->AddBlock(iptr); // add into level to update
-
-			++blockID;
 			break;
 		}
 	}

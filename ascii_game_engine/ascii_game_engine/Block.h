@@ -7,7 +7,7 @@
 class Block
 {
 public:
-	Block(int id) : id(id), charBlock(nullptr) {};
+	Block(int id) : id(id), charBlock(nullptr), pos(0, 0) {};
 	virtual ~Block() = 0 {};
 
 	virtual void Init() {};

@@ -56,14 +56,21 @@ void Ice::InteractIce()
 	int y = player->GetPosition().y - player->GetDirection().y;
 	Vector2 pos(x, y);
 
-	// Replace prev char with ice block
-	level->GetMap().GetMap()[player->GetPosition().y][player->GetPosition().x] = charBlock[0];
+	if (!player->WithinMap(x, y))
+	{
+		player->SetPlayerStatus(PlayerStatus::NORMAL);
+		return;
+	}
+	// if cannot slide..
+	else if (!AbleToSlide(x, y))
+	{
+		player->SetPlayerStatus(PlayerStatus::NORMAL);
+		return;
+	}
+
+	level->SetMap(player->GetPosition().x, player->GetPosition().y, level->GetDuplicatedMap().GetMap()[player->GetPosition().y][player->GetPosition().x]);
 	// Set new player position
 	player->SetPosition(pos);
-
-	// if cannot slide..
-	if (!AbleToSlide(x, y))
-		player->SetPlayerStatus(PlayerStatus::NORMAL);
 }
 
 // Boolean to check if player is at the end of the ice block, collided with a wall or within the edge of the map
@@ -74,7 +81,12 @@ bool Ice::AbleToSlide(int x, int y)
 		return false;
 	// if next tile is not ice, cannot slide
 	if (level->GetMap().GetMap()[y][x] != charBlock[0])
+	{
+		level->GetMap().GetMap()[player->GetPosition().y][player->GetPosition().x] = level->GetDuplicatedMap().GetMap()[player->GetPosition().y][player->GetPosition().x];
+		
+		player->SetPosition(Vector2(x, y));
 		return false;
+	}
 
 	return true; // next tile is a ice block, and it's within the playing map
 }
@@ -83,10 +95,6 @@ bool Ice::AbleToSlide(int x, int y)
 bool Ice::DetectCollision(int x, int y)
 {
 	int sum = Game::GetInstance()->GetTotalCollide();
-
-	// if at the edge of the map, don't need to check for collision
-	if (x >= level->GetMap().GetSizeX() || x <= 0 || y >= level->GetMap().GetSizeY() || y <= 0)
-		return false;
 
 	// loop through to see if the next block ahead of player is something that cannot be collided with
 	for (int i = 0; i < sum; ++i)

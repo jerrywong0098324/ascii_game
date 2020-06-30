@@ -23,19 +23,23 @@ public:
 	int GetSizeX() const;
 	int GetSizeY() const;
 	// Init map from .txt file
-	virtual void Init(const char *map =  "", Level* level = nullptr);
+	virtual void Init(const char *map =  "", bool duplicate = false, Level* level = nullptr);
 
 private:
 	friend class LevelManager;
 
 	// Load map from .txt file and store them into 2D Array
-	void LoadMap(Level* level);
+	void LoadMap(bool duplicate, Level* level);
 	// Init x and y values
 	void InitBorders(std::string res);
 	// Creates dynamic 2D array
-	void CreateMap(std::vector<std::string> res, Level* level);
+	void CreateMap(std::vector<std::string> res, bool duplicate, Level* level);
 	// Replace and temporary characters to their specific char
-	char ReplaceCharacter(char placeHolder, Level* level, int& blockID, int x = 0, int y = 0);
+	char ReplaceCharacter(char placeHolder, bool duplicate, Level* level, int& blockID, int x = 0, int y = 0);
+	// Non Duplicate Replace
+	char NonDuplicated(char placeHolder, Level* level, int& blockID, int x, int y);
+	// Duplicate Replace
+	char Duplicated(char placeHolder);
 	// check if string contains specified characters
 	bool is_digit(const std::string &c);
 

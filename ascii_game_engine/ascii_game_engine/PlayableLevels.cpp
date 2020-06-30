@@ -45,7 +45,7 @@ void PlayableLevels::Render()
 	}
 
 	PrintMap();
-	player.Render(print);
+	//player.Render(print);
 }
 
 // When Exiting the level
@@ -55,6 +55,8 @@ void PlayableLevels::Exit()
 	player.Exit();
 	DeletePrint();
 	DeleteBlocks();
+
+	//duplicate_map.~Map();
 }
 
 /*******************************************************************

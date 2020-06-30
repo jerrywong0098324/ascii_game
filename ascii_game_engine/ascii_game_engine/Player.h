@@ -33,12 +33,20 @@ public:
 	PlayerStatus GetPlayerStatus() const;
 
 	void SetPosition(const Vector2 pos);
-	void SetMap(Map map);
 	void SetPlayerDir(const Vector2 dir);
 	void SetPlayerStatus(const PlayerStatus state);
 
 	// Add item into inventory
 	void AddItem(Item* item);
+
+	/*******************************************************************
+				   PLAYER MOVEMENTS & COLLISION
+	*******************************************************************/
+	// Check if player next movement is within playing area
+	bool WithinMap(int x_pos, int y_pos) const;
+	// Check if player is within map
+	bool WithinMap() const;
+	// ******************************************************************
 
 private:
 	/*******************************************************************
@@ -90,8 +98,6 @@ private:
 
 	// ref to the level
 	Level* level;
-	// ref to the playing map
-	Map map;
 
 	// Add Inventory here, can choose which item to use from inventory
 	Inventory inventory;

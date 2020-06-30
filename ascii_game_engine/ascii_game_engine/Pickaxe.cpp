@@ -57,10 +57,8 @@ void Pickaxe::UpdatePickaxe()
 		if (!rptr) // no rock at pos(x,y)
 			return;
 
-		char** map = level->GetMap().GetMap();
-
 		rptr->Interactions(); // specific interaction with rock here
-		map[y][x] = rptr->GetBlockCharacter(); // replace the character
+		level->SetBothMap(x, y, rptr->GetBlockCharacter());
 		if (rptr->Broken()) // if rock is broken, delete this block from the level
 			plptr->DeleteBlock(rptr);
 

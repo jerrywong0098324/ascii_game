@@ -18,9 +18,32 @@ public:
 	};
 	virtual ~Level() = 0 {};
 
-	Map GetMap()
+	Map GetMap() const
 	{
 		return map;
+	}
+
+	Map GetDuplicatedMap() const
+	{
+		return duplicate_map;
+	}
+
+	// change the characters of the map only
+	void SetMap(const int& x, const int& y, const char& c)
+	{
+		map.GetMap()[y][x] = c;
+	}
+
+	// change the characters of the map and duplicate map
+	void SetBothMap(const int& x, const int& y, const char& c)
+	{
+		map.GetMap()[y][x] = c;
+		duplicate_map.GetMap()[y][x] = c;
+	}
+
+	void SetDuplicateMapName(const char* map_name)
+	{
+		duplicate_map.Init(map_name, true);
 	}
 
 	// Init the level
@@ -37,6 +60,9 @@ protected:
 	int nextLevel;
 	// Map to handle the current map level
 	Map map;
+	// ******************************************************************
+	Map duplicate_map; // duplicate of the playing map, won't be able to change any data of the map here (making it a const variable at runtime)
+	// ******************************************************************
 };
 
 #endif

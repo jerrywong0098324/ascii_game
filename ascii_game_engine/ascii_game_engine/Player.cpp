@@ -23,14 +23,15 @@ Player::~Player()
 // Init the player
 void Player::Init(Level* level, const Vector2 pos)
 {
-	this->map = level->GetMap();
+	this->level = level;
+
 	this->pos = pos;
 	LimitPos();
 
 	// Inventory and items
 	curr_item_index = 0;
 	min_item_index = max_item_index = 0;
-	InitInventory(level);
+	InitInventory(this->level);
 	currItem = inventory.GetItem(curr_item_index);
 
 	// PlayerStatus
@@ -85,11 +86,6 @@ void Player::SetPosition(const Vector2 pos)
 	this->pos = pos;
 }
 
-void Player::SetMap(Map map)
-{
-	this->map = map;
-}
-
 void Player::SetPlayerDir(const Vector2 dir)
 {
 	int res = dir.x * 2 + dir.y * 3;	
@@ -129,14 +125,14 @@ void Player::AddItem(Item* item)
 void Player::LimitPos()
 {
 	// Limit X
-	if (pos.x >= map.GetSizeX())
-		pos.x = map.GetSizeX() - 1;
+	if (pos.x >= level->GetMap().GetSizeX())
+		pos.x = level->GetMap().GetSizeX() - 1;
 	else if (pos.x <= 0)
 		pos.x = 0;
 
 	// Limit Y
-	if (pos.y >= map.GetSizeY())
-		pos.y = map.GetSizeY() - 1;
+	if (pos.y >= level->GetMap().GetSizeY())
+		pos.y = level->GetMap().GetSizeY() - 1;
 	else if (pos.y <= 0)
 		pos.y = 0;
 }
@@ -169,21 +165,19 @@ void Player::UpdatePlayer()
 	{
 		case PlayerStatus::NORMAL: // Normal player movements
 		{
-			// Replace player's char with an empty space
-			map.GetMap()[pos.y][pos.x] = ' ';
+			// Replace player's char with what's on the map before
+			level->SetMap(pos.x, pos.y, level->GetDuplicatedMap().GetMap()[pos.y][pos.x]);
 
 			MovePlayer();
 			LimitPlayer();
 
 			// update the new player's position onto the map
-			map.GetMap()[pos.y][pos.x] = playerChar[dirChar];
+			level->SetMap(pos.x, pos.y, playerChar[dirChar]);
 			break;
 		}
 		case PlayerStatus::SLIDING: // interactions with ice block
 		{
 			Sliding();
-			//// update the new player's position onto the map
-			//map.GetMap()[pos.y][pos.x] = playerChar[dirChar];
 			break;
 		}
 	}
@@ -231,16 +225,28 @@ bool Player::DetectCollision(int x_pos, int y_pos) const
 	int sum = Game::GetInstance()->GetTotalCollide();
 
 	// if at the edge of the map, don't need to check for collision
-	if (x_pos >= map.GetSizeX() || x_pos <= 0 || y_pos >= map.GetSizeY() || y_pos <= 0)
+	if (!WithinMap(x_pos, y_pos))
 		return false;
 
 	// loop through to see if the next block ahead of player is something that cannot be collided with
 	for (int i = 0; i < sum; ++i)
 	{
-		if (map.GetMap()[y_pos][x_pos] == Game::GetInstance()->GetCollisionList()[i])
+		if (level->GetMap().GetMap()[y_pos][x_pos] == Game::GetInstance()->GetCollisionList()[i])
 			return true;
 	}
 	return false;
+}
+
+// Check if player next movement is within playing area
+bool Player::WithinMap(int x_pos, int y_pos) const
+{
+	return x_pos <= level->GetMap().GetSizeX() && x_pos >= 0 && y_pos <= level->GetMap().GetSizeY() && y_pos >= 0;
+}
+
+// Check if player is within map
+bool Player::WithinMap() const
+{
+	return pos.x <= level->GetMap().GetSizeX() && pos.x >= 0 && pos.y <= level->GetMap().GetSizeY() && pos.y >= 0;
 }
 
 // Initialize inventory from save file

@@ -27,6 +27,9 @@ void Application::Run()
 			Game::GetInstance()->Update();
 			Game::GetInstance()->Render();
 
+			// Include a renderer class to display game characters onto the screen
+			// Renderer Class handles colors and printing of characters at specific position
+
 			// Frame rate limiter
 			StopWatch::GetInstance()->WaitUntil(frameTime);
 

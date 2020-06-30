@@ -1,3 +1,43 @@
-﻿  Player.cpp
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Player.cpp(250,20): warning C4018: '<': signed/unsigned mismatch
-  ascii_game_engine.vcxproj -> C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\Debug\ascii_game_engine.exe
+﻿  Application.cpp
+  Fog.cpp
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Fog.cpp(57,20): warning C4018: '<': signed/unsigned mismatch
+  FogLevels.cpp
+  Game.cpp
+  Ice.cpp
+  InventoryManager.cpp
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\InventoryManager.cpp(22,20): warning C4018: '<': signed/unsigned mismatch
+  LevelManager.cpp
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\LevelManager.cpp(23,34): error C2662: 'void Map::Exit(void)': cannot convert 'this' pointer from 'const Map' to 'Map &'
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\LevelManager.cpp(23,18): message : Conversion loses qualifiers
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Map.h(51,7): message : see declaration of 'Map::Exit'
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\LevelManager.cpp(24,44): error C2662: 'void Map::Exit(void)': cannot convert 'this' pointer from 'const Map' to 'Map &'
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\LevelManager.cpp(24,18): message : Conversion loses qualifiers
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Map.h(51,7): message : see declaration of 'Map::Exit'
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\LevelManager.cpp(32,40): error C2662: 'void Map::Exit(void)': cannot convert 'this' pointer from 'const Map' to 'Map &'
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\LevelManager.cpp(32,24): message : Conversion loses qualifiers
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Map.h(51,7): message : see declaration of 'Map::Exit'
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\LevelManager.cpp(33,50): error C2662: 'void Map::Exit(void)': cannot convert 'this' pointer from 'const Map' to 'Map &'
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\LevelManager.cpp(33,24): message : Conversion loses qualifiers
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Map.h(51,7): message : see declaration of 'Map::Exit'
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\LevelManager.cpp(51,20): warning C4018: '<': signed/unsigned mismatch
+  Level_01.cpp
+  Level_02.cpp
+  Map.cpp
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Map.cpp(71,20): warning C4018: '<': signed/unsigned mismatch
+  Menu.cpp
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Menu.cpp(129,48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  Pause.cpp
+  Pickaxe.cpp
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Pickaxe.cpp(39,48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  PlayableLevels.cpp
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(74,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(95,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(108,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(212,21): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(227,21): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(305,20): warning C4018: '<': signed/unsigned mismatch
+  Player.cpp
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Player.cpp(268,20): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+  Generating Code...
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Map.cpp(141): warning C4715: 'Map::ReplaceCharacter': not all control paths return a value
