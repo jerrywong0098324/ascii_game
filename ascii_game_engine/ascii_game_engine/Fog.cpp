@@ -72,7 +72,7 @@ void Fog::UpdateFog(int x, int y, int length)
 	for (int i = 0; i < Game::GetInstance()->GetTotalWall(); ++i)
 	{
 		// if the current position is wall that cannot see through, don't allow vision beyond it
-		if (map.GetMap()[y][x] == Game::GetInstance()->GetWallList()[i])
+		if (map.GetCharacter(x, y) == Game::GetInstance()->GetWallList()[i])
 		{
 			fog[y][x] = false;
 			visionPos.push_back(Vector2(x, y));

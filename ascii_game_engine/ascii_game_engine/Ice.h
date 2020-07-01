@@ -27,9 +27,7 @@ private:
 	// Player's interactions with ice
 	void InteractIce();
 	// Boolean to check if player is at the end of the ice block, collided with a wall or within the edge of the map
-	bool AbleToSlide(int x, int y);
-	// Detect collision
-	bool DetectCollision(int x, int y);
+	bool AbleToSlide(const int& x, const int& y);
 
 	Player* player; // reference to the player
 	Level* level; // reference to the map

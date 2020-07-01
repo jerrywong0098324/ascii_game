@@ -27,7 +27,8 @@ Ideas:
      Climbable, Invisable block (boundary box)
 8) Trigger Event boxes
 9) Redo printing so that console can have color (do this last)
-10) etc
+10) Renderer class to handle "rendering" of the game
+11) etc
 
 19/6/2020
 Completed Fog Logic
@@ -42,5 +43,18 @@ Completed logic for Inventory, Pickaxe, Rock, and Loading and Saving of files!
 Doing logic for Ice blocks and reworking Player's movement class to have
 intended feature with ice. Added a PlayerStatus to determine the state of the
 player.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+30/6/2020
+Completed logic for Ice blocks, able to slide. Reworked level such that it 
+has a copy of a playing map, so that it can be original map can go back after
+player walks over it
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+1/7/2020
+Completed logic for Boulder block. Need to rework Ice block.
+-> When Boulder moves over Ice, because of update loops (Ice blocks being
+updated before Boulders), Ice block's code remove Boulder (by replacing the
+character at that position with an Ice block.)
 
+Next up, do invisible blocks. This is to declare an invisible wall that the
+player cannot pass.
 ******************************************************************************

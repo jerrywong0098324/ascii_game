@@ -145,6 +145,7 @@
     <ClInclude Include="Audio.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Block.h" />
+    <ClInclude Include="Boulder.h" />
     <ClInclude Include="ConLib.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="ControllerHandler.h" />
@@ -207,6 +208,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="Boulder.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="Fog.cpp" />

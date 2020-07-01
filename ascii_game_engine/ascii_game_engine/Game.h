@@ -21,8 +21,8 @@ public:
 
 	virtual void free_memory();
 
-	char* GetCollisionList() const;
-	int GetTotalCollide() const;
+	// Check collision
+	bool DetectCollision(const char& c);
 	char* GetWallList() const;
 	int GetTotalWall() const;
 	char* GetReplaceList() const;

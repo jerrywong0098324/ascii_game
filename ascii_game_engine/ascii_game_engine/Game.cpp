@@ -49,14 +49,16 @@ void Game::free_memory()
 	Singleton::free_memory();
 }
 
-char* Game::GetCollisionList() const
+// Check collision (returns true if 
+bool Game::DetectCollision(const char& c)
 {
-	return collideList;
-}
-
-int Game::GetTotalCollide() const
-{
-	return totalCollide;
+	// loop through to see if the next block ahead of player is something that cannot be collided with
+	for (int i = 0; i < totalCollide; ++i)
+	{
+		if (c == collideList[i]) // the next character c is a wall, so collision is detected
+			return true;
+	}
+	return false;
 }
 
 char* Game::GetWallList() const

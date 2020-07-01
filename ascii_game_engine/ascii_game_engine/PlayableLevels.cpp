@@ -242,7 +242,7 @@ void PlayableLevels::PrintMap()
 	{
 		// printing the map one character at a time
 		for (int j = x_buffer; j < XLimit(); ++j)
-			print[i - y_buffer][j - x_buffer] = map.GetMap()[i][j];
+			print[i - y_buffer][j - x_buffer] = map.GetCharacter(j, i);
 	}
 
 	int y = Console::NewSBSize.Y; // Console size

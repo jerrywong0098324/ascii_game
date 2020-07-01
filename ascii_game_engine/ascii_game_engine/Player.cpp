@@ -81,12 +81,12 @@ PlayerStatus Player::GetPlayerStatus() const
 	return currState;
 }
 
-void Player::SetPosition(const Vector2 pos)
+void Player::SetPosition(const Vector2& pos)
 {
 	this->pos = pos;
 }
 
-void Player::SetPlayerDir(const Vector2 dir)
+void Player::SetPlayerDir(const Vector2& dir)
 {
 	int res = dir.x * 2 + dir.y * 3;	
 	switch (res) // fails to update player's dir if somehow the dir set where both x and y is non-zero
@@ -106,7 +106,7 @@ void Player::SetPlayerDir(const Vector2 dir)
 	}
 }
 
-void Player::SetPlayerStatus(const PlayerStatus state)
+void Player::SetPlayerStatus(const PlayerStatus& state)
 {
 	currState = state;
 }
@@ -166,7 +166,7 @@ void Player::UpdatePlayer()
 		case PlayerStatus::NORMAL: // Normal player movements
 		{
 			// Replace player's char with what's on the map before
-			level->SetMap(pos.x, pos.y, level->GetDuplicatedMap().GetMap()[pos.y][pos.x]);
+			level->CorrectMap(pos.x, pos.y);
 
 			MovePlayer();
 			LimitPlayer();
@@ -220,33 +220,20 @@ void Player::LimitPlayer()
 }
 
 // Collision Detection
-bool Player::DetectCollision(int x_pos, int y_pos) const
+bool Player::DetectCollision(int x, int y) const
 {
-	int sum = Game::GetInstance()->GetTotalCollide();
-
 	// if at the edge of the map, don't need to check for collision
-	if (!WithinMap(x_pos, y_pos))
+	if (!level->WithinMap(x, y))
 		return false;
 
-	// loop through to see if the next block ahead of player is something that cannot be collided with
-	for (int i = 0; i < sum; ++i)
-	{
-		if (level->GetMap().GetMap()[y_pos][x_pos] == Game::GetInstance()->GetCollisionList()[i])
-			return true;
-	}
-	return false;
-}
-
-// Check if player next movement is within playing area
-bool Player::WithinMap(int x_pos, int y_pos) const
-{
-	return x_pos <= level->GetMap().GetSizeX() && x_pos >= 0 && y_pos <= level->GetMap().GetSizeY() && y_pos >= 0;
+	char c = level->GetCharacter(x, y);
+	return Game::GetInstance()->DetectCollision(c);
 }
 
 // Check if player is within map
 bool Player::WithinMap() const
 {
-	return pos.x <= level->GetMap().GetSizeX() && pos.x >= 0 && pos.y <= level->GetMap().GetSizeY() && pos.y >= 0;
+	return pos.x < level->GetMap().GetSizeX() && pos.x >= 0 && pos.y < level->GetMap().GetSizeY() && pos.y >= 0;
 }
 
 // Initialize inventory from save file

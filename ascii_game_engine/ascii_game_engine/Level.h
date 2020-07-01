@@ -28,22 +28,40 @@ public:
 		return duplicate_map;
 	}
 
-	// change the characters of the map only
-	void SetMap(const int& x, const int& y, const char& c)
+	// Get specific character from map at x, y pos
+	char GetCharacter(const int& x, const int& y)
 	{
-		map.GetMap()[y][x] = c;
+		return map.GetCharacter(x, y);
 	}
 
-	// change the characters of the map and duplicate map
+	// Change the characters of the map at x, y pos
+	void SetMap(const int& x, const int& y, const char& c)
+	{
+		map.SetCharacter(x, y, c);
+	}
+
+	// Change the characters of the map and duplicate map
 	void SetBothMap(const int& x, const int& y, const char& c)
 	{
-		map.GetMap()[y][x] = c;
-		duplicate_map.GetMap()[y][x] = c;
+		map.SetCharacter(x, y, c);
+		duplicate_map.SetCharacter(x, y, c);
+	}
+
+	// Correct the map by putting duplicate map over map
+	void CorrectMap(const int& x, const int& y)
+	{
+		char c = duplicate_map.GetCharacter(x, y);
+		map.SetCharacter(x, y, c);
 	}
 
 	void SetDuplicateMapName(const char* map_name)
 	{
 		duplicate_map.Init(map_name, true);
+	}
+
+	bool WithinMap(const int& x, const int& y)
+	{
+		return x < map.GetSizeX() && x >= 0 && y < map.GetSizeY() && y >= 0;
 	}
 
 	// Init the level
@@ -61,7 +79,7 @@ protected:
 	// Map to handle the current map level
 	Map map;
 	// ******************************************************************
-	Map duplicate_map; // duplicate of the playing map, won't be able to change any data of the map here (making it a const variable at runtime)
+	Map duplicate_map; // duplicate of the playing map, won't be able to change any data of the map here unneccessarily
 	// ******************************************************************
 };
 

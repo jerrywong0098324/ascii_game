@@ -66,9 +66,8 @@ void Menu::Exit()
 // Updates the arrow position
 void Menu::UpdateArrow()
 {
-	char **menu = map.GetMap();
 	// replacing current arrow position to an empty space
-	menu[arrow_pos_y][arrow_pos_x] = ' ';
+	map.SetCharacter(arrow_pos_x, arrow_pos_y, ' ');
 
 	MoveArrow();
 
@@ -85,7 +84,7 @@ void Menu::UpdateArrow()
 	}
 
 	// new arrow position after player's input
-	menu[arrow_pos_y][arrow_pos_x] = arrow;
+	map.SetCharacter(arrow_pos_x, arrow_pos_y, arrow);
 }
 
 // Move Arrow and play sound
@@ -155,7 +154,7 @@ void Menu::PrintMap()
 
 	for (int i = 0; i < y; ++i)
 	{
-		char *row = *(map.GetMap() + i);
+		const char *row = *(map.GetMap() + i);
 		std::cout << row << std::endl;
 	}
 }

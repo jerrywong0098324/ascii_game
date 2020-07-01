@@ -91,6 +91,9 @@
     <Filter Include="Blocks\Ice">
       <UniqueIdentifier>{9d1e76ea-3803-4b8e-b107-f2f8c42faece}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blocks\Boulder">
+      <UniqueIdentifier>{3027d5be-dc37-4893-b415-9e457849f92d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="irrklang\ik_ESoundEngineOptions.h">
@@ -276,6 +279,9 @@
     <ClInclude Include="Ice.h">
       <Filter>Blocks\Ice</Filter>
     </ClInclude>
+    <ClInclude Include="Boulder.h">
+      <Filter>Blocks\Boulder</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingletonManager.cpp">
@@ -361,6 +367,9 @@
     </ClCompile>
     <ClCompile Include="Ice.cpp">
       <Filter>Blocks\Ice</Filter>
+    </ClCompile>
+    <ClCompile Include="Boulder.cpp">
+      <Filter>Blocks\Boulder</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -32,9 +32,9 @@ public:
 	// Return Player's current status
 	PlayerStatus GetPlayerStatus() const;
 
-	void SetPosition(const Vector2 pos);
-	void SetPlayerDir(const Vector2 dir);
-	void SetPlayerStatus(const PlayerStatus state);
+	void SetPosition(const Vector2& pos);
+	void SetPlayerDir(const Vector2& dir);
+	void SetPlayerStatus(const PlayerStatus& state);
 
 	// Add item into inventory
 	void AddItem(Item* item);
@@ -42,8 +42,6 @@ public:
 	/*******************************************************************
 				   PLAYER MOVEMENTS & COLLISION
 	*******************************************************************/
-	// Check if player next movement is within playing area
-	bool WithinMap(int x_pos, int y_pos) const;
 	// Check if player is within map
 	bool WithinMap() const;
 	// ******************************************************************
@@ -63,7 +61,7 @@ private:
 	// Make sure player isn't going out of bounds
 	void LimitPlayer();
 	// Collision Detection
-	bool DetectCollision(int x_pos, int y_pos) const;
+	bool DetectCollision(int x, int y) const;
 	// ******************************************************************
 
 	/*******************************************************************

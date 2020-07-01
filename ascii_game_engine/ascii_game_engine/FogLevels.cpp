@@ -58,7 +58,7 @@ void FogLevels::PrintMap()
 			if (fog.GetFog()[i][j]) // there's fog here
 				print[i - y_buffer][j - x_buffer] = ' '; // empty space
 			else // no fog here
-				print[i - y_buffer][j - x_buffer] = map.GetMap()[i][j]; // sees the map
+				print[i - y_buffer][j - x_buffer] = map.GetCharacter(j, i); // sees the map
 		}
 	}
 

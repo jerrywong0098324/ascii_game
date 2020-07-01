@@ -18,7 +18,11 @@ public:
 	~Map();
 
 	// Returns the map for the camera to "render"
-	char **GetMap() const;
+	char** GetMap() const;
+	// Returns specific character from dynamic 2D array
+	char GetCharacter(const int& x, const int& y);
+	// Set specific character into dynamic 2D array
+	void SetCharacter(const int& x, const int& y, const char& c);
 	// Get size of x and y
 	int GetSizeX() const;
 	int GetSizeY() const;

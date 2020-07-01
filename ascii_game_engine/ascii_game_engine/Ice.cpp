@@ -54,53 +54,36 @@ void Ice::InteractIce()
 	// move player to the next tile based on the initial 
 	int x = player->GetPosition().x + player->GetDirection().x;
 	int y = player->GetPosition().y - player->GetDirection().y;
-	Vector2 pos(x, y);
+	Vector2 p_pos(x, y);
 
-	if (!player->WithinMap(x, y))
-	{
-		player->SetPlayerStatus(PlayerStatus::NORMAL);
-		return;
-	}
-	// if cannot slide..
-	else if (!AbleToSlide(x, y))
+	if (!level->WithinMap(x, y) || !AbleToSlide(x, y))
 	{
 		player->SetPlayerStatus(PlayerStatus::NORMAL);
 		return;
 	}
 
-	level->SetMap(player->GetPosition().x, player->GetPosition().y, level->GetDuplicatedMap().GetMap()[player->GetPosition().y][player->GetPosition().x]);
+	// Sliding
+	level->CorrectMap(player->GetPosition().x, player->GetPosition().y);
 	// Set new player position
-	player->SetPosition(pos);
+	player->SetPosition(p_pos);
 }
 
 // Boolean to check if player is at the end of the ice block, collided with a wall or within the edge of the map
-bool Ice::AbleToSlide(int x, int y)
+bool Ice::AbleToSlide(const int& x, const int& y)
 {
+	char c = level->GetCharacter(x, y);
+
 	// Checks for collision and if the next tile is the end
-	if (DetectCollision(x, y))
+	if (Game::GetInstance()->DetectCollision(c))
 		return false;
 	// if next tile is not ice, cannot slide
-	if (level->GetMap().GetMap()[y][x] != charBlock[0])
+	if (level->GetCharacter(x, y) != charBlock[0])
 	{
-		level->GetMap().GetMap()[player->GetPosition().y][player->GetPosition().x] = level->GetDuplicatedMap().GetMap()[player->GetPosition().y][player->GetPosition().x];
+		level->CorrectMap(player->GetPosition().x, player->GetPosition().y);
 		
 		player->SetPosition(Vector2(x, y));
 		return false;
 	}
 
 	return true; // next tile is a ice block, and it's within the playing map
-}
-
-// Detect collision
-bool Ice::DetectCollision(int x, int y)
-{
-	int sum = Game::GetInstance()->GetTotalCollide();
-
-	// loop through to see if the next block ahead of player is something that cannot be collided with
-	for (int i = 0; i < sum; ++i)
-	{
-		if (level->GetMap().GetMap()[y][x] == Game::GetInstance()->GetCollisionList()[i])
-			return true;
-	}
-	return false;
 }
