@@ -9,6 +9,7 @@
 #include "Timer.h"
 #include "LevelManager.h"
 #include "GameStateManager.h"
+#include "Renderer.h"
 
 class Application
 {

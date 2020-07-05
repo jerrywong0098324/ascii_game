@@ -158,7 +158,7 @@ char Map::NonDuplicated(char placeHolder, Level* level, int& blockID, int x, int
 {
 	char c = (char)0; // null char(?)
 	PlayableLevels* plptr;
-	Vector2 pos;
+	Vector2 pos(x, y);
 
 	switch (placeHolder)
 	{
@@ -167,14 +167,19 @@ char Map::NonDuplicated(char placeHolder, Level* level, int& blockID, int x, int
 			c = ' ';
 			break;
 		}
+		case '!':
+		{
+			c = (char)255;
+			break;
+		}
 		case '~': // rock
 		{
 			c = (char)178;
 			plptr = dynamic_cast<PlayableLevels*>(level); // PlabaleLevels pointer
-			pos.Set(x, y);
 
 			Rock* rptr = new Rock(blockID);
 			rptr->Init(); // init rocks
+			rptr->SetBlockType("Rock");
 			rptr->SetPosition(pos); // position of rock
 
 			plptr->AddBlock(rptr); // add into level
@@ -186,12 +191,12 @@ char Map::NonDuplicated(char placeHolder, Level* level, int& blockID, int x, int
 		{
 			c = (char)219;
 			plptr = dynamic_cast<PlayableLevels*>(level); // PlabaleLevels pointer
-			pos.Set(x, y);
 
 			Player* pptr = &plptr->GetRefPlayer(); // Player pointer
 
 			Ice* iptr = new Ice(blockID);
 			iptr->Init(pptr, level); // inits ice
+			iptr->SetBlockType("Ice");
 			iptr->SetPosition(pos); // position of ice
 
 			plptr->AddBlock(iptr); // add into level to update
@@ -203,12 +208,12 @@ char Map::NonDuplicated(char placeHolder, Level* level, int& blockID, int x, int
 		{
 			c = (char)254;
 			plptr = dynamic_cast<PlayableLevels*>(level); // PlabaleLevels pointer
-			pos.Set(x, y);
 
 			Player* pptr = &plptr->GetRefPlayer(); // Player pointer
 
 			Boulder* bptr = new Boulder(blockID);
 			bptr->SetPosition(pos); // position of the boulder
+			bptr->SetBlockType("Boulder");
 			bptr->Init(pptr, level); // inits boulder
 
 			plptr->AddBlock(bptr); // add into level to update
@@ -231,6 +236,11 @@ char Map::Duplicated(char placeHolder)
 		case '+': // empty block
 		{
 			c = ' ';
+			break;
+		}
+		case '!':
+		{
+			c = (char)255;
 			break;
 		}
 		case '~': // rock

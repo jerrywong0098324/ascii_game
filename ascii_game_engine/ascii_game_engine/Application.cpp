@@ -25,7 +25,10 @@ void Application::Run()
 			StopWatch::GetInstance()->UpdateTimer();
 
 			Game::GetInstance()->Update();
+			// Use game level's render function and call upon Renderer class to print onto screen
 			Game::GetInstance()->Render();
+			// This is the true render function to put characters onto screen
+			Renderer::GetInstance()->Render();
 
 			// Include a renderer class to display game characters onto the screen
 			// Renderer Class handles colors and printing of characters at specific position

@@ -7,10 +7,10 @@
 class Block
 {
 public:
-	Block(int id) : id(id), charBlock(nullptr), pos(0, 0) {};
+	Block(int id) : id(id) {};
 	virtual ~Block() = 0 {};
 
-	virtual void Init() {};
+	virtual void Init() { blockIndex = 0; };
 	// Updating the block
 	virtual void Update() {};
 	// Clear any memory if neccessary
@@ -23,12 +23,14 @@ public:
 
 	char GetBlockCharacter() const { return charBlock[blockIndex]; }
 
-	void SetPosition(const Vector2 pos) { this->pos = pos; }
+	void SetPosition(const Vector2& pos) { this->pos = pos; }
+	void SetBlockType(const char* blockType) { this->blockType = blockType; }
 
 protected:
 	int id; // ID of the block
 	char* charBlock; // store ascii character for this block (can have more than 2)
-	int blockIndex = 0; // index for charBlock
+	const char* blockType;
+	int blockIndex; // index for charBlock
 	Vector2 pos; // position of the block
 };
 

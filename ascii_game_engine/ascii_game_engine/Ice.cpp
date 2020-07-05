@@ -39,6 +39,7 @@ void Ice::Exit()
 
 void Ice::InitIce()
 {
+	Block::Init();
 	charBlock = new char[1];
 	charBlock[0] = (char)219;
 }
@@ -54,9 +55,12 @@ void Ice::InteractIce()
 	// move player to the next tile based on the initial 
 	int x = player->GetPosition().x + player->GetDirection().x;
 	int y = player->GetPosition().y - player->GetDirection().y;
-	Vector2 p_pos(x, y);
+	Vector2 p_pos(x, y); // position of the next tile, also new position for player if conditions are met
 
-	if (!level->WithinMap(x, y) || !AbleToSlide(x, y))
+	// check the next position if it's a existing block
+	PlayableLevels* plptr = dynamic_cast<PlayableLevels*>(level);
+
+	if (plptr->GetNotThisBlock(pos, charBlock[blockIndex]) || plptr->GetNotThisBlock(p_pos, charBlock[blockIndex]) || !level->WithinMap(x, y) || !AbleToSlide(x, y))
 	{
 		player->SetPlayerStatus(PlayerStatus::NORMAL);
 		return;

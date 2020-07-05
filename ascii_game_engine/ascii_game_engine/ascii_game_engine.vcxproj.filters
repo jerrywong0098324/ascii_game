@@ -94,6 +94,9 @@
     <Filter Include="Blocks\Boulder">
       <UniqueIdentifier>{3027d5be-dc37-4893-b415-9e457849f92d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{968a8ff1-0882-47af-bca1-8aba418e5000}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="irrklang\ik_ESoundEngineOptions.h">
@@ -282,6 +285,15 @@
     <ClInclude Include="Boulder.h">
       <Filter>Blocks\Boulder</Filter>
     </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Colours.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="PrintMap.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingletonManager.cpp">
@@ -370,6 +382,12 @@
     </ClCompile>
     <ClCompile Include="Boulder.cpp">
       <Filter>Blocks\Boulder</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="PrintMap.cpp">
+      <Filter>Renderer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

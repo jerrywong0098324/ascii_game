@@ -24,10 +24,10 @@ Ideas:
 6) Dialogue Box(?)
 7) Unique blocks
   -> Ice [219], Rock [177] & [178] (use pickaxe), Boulder [254] (pushable), 
-     Climbable, Invisable block (boundary box)
+     Climbable, Invisable block [255] (boundary box)
 8) Trigger Event boxes
 9) Redo printing so that console can have color (do this last)
-10) Renderer class to handle "rendering" of the game
+10) Renderer class to handle "rendering" of the game (Do together with pointer 9)
 11) etc
 
 19/6/2020
@@ -57,4 +57,11 @@ character at that position with an Ice block.)
 
 Next up, do invisible blocks. This is to declare an invisible wall that the
 player cannot pass.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+5/7/2020
+Reworked Ice block codes such that it works with boulder and future blocks that
+may not be a collision, but can be put over an ice block
+
+Completed invisible wall. Can just use ! on map to declare invisible wall
+
 ******************************************************************************

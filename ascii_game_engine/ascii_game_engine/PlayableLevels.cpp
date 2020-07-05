@@ -102,8 +102,21 @@ void PlayableLevels::DeleteBlocks()
 	blocks.clear();
 }
 
+// Returns true if the block at this position is not this variable 'c'
+bool PlayableLevels::GetNotThisBlock(const Vector2& pos, const char& c)
+{
+	for (int i = 0; i < blocks.size(); ++i)
+	{
+		Vector2 p = blocks[i]->GetPosition();
+		char cb = blocks[i]->GetBlockCharacter();
+		if (p.x == pos.x && p.y == pos.y && cb != c)
+			return true;
+	}
+	return false;
+}
+
 // Returns a reference to the block based on the position (nullptr if nth)
-Block* PlayableLevels::GetBlock(const Vector2 pos) const
+Block* PlayableLevels::GetBlock(const Vector2& pos) const
 {
 	for (int i = 0; i < blocks.size(); ++i)
 	{

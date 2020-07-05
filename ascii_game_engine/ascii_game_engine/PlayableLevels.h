@@ -33,8 +33,10 @@ public:
 	void AddBlock(Block* block);
 	// Delete the block at the position
 	void DeleteBlock(Block* block);
+	// Returns true if the block at this position is not this variable 'c'
+	bool GetNotThisBlock(const Vector2& pos, const char& c);
 	// Returns a reference to the block based on the position (nullptr if nth)
-	Block* GetBlock(const Vector2 pos) const;
+	Block* GetBlock(const Vector2& pos) const;
 	Player& GetRefPlayer();
 	// ******************************************************************
 

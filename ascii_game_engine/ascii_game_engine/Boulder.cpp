@@ -40,6 +40,7 @@ void Boulder::Exit()
 
 void Boulder::InitBoulder()
 {
+	Block::Init(); 
 	charBlock = new char[1];
 	charBlock[0] = (char)254;
 
@@ -71,7 +72,7 @@ void Boulder::InteractBoulder()
 	// Check if next tile is a wall (collidable)
 	if (!AbleToPush(x, y)) // don't do anything to the boulder, if conditions are not met
 	{
-		level->SetMap(pos.x, pos.y, charBlock[0]);
+		level->SetMap(pos.x, pos.y, charBlock[blockIndex]);
 		return;
 	}
 

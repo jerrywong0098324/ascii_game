@@ -36,13 +36,13 @@ void Rock::Exit()
 
 void Rock::InitRock()
 {
+	Block::Init();
 	// 3 characters for the rock block
 	charBlock = new char[3];
 	charBlock[0] = (char)178; // Before picking the rock
 	charBlock[1] = (char)177; // After picking the rock once
 	charBlock[2] = ' ';		  // Breaking the rock
 
-	blockIndex = 0;
 	isBroken = false;
 }
 
