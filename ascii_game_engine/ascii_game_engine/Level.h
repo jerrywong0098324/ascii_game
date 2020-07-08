@@ -5,6 +5,7 @@
 #include "Map.h"
 #include "Audio.h"
 #include "Timer.h"
+#include "Renderer.h"
 #include "UserInput.h"
 #include "GameStateManager.h"
 

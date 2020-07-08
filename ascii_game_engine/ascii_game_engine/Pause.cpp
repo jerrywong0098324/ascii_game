@@ -24,6 +24,8 @@ void Pause::Init(const char* map)
 	arrow_pos_y = min_y;
 	option = min_op;
 	isPaused = false;
+
+	//Renderer::GetInstance()->Add()
 }
 
 // Updates the pause screen

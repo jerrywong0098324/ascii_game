@@ -15,6 +15,8 @@ void Application::Run()
 	// While game is not "exited"
 	while (GameStateManager::GetInstance()->GetCurrentGameState() != GameState::EXIT)
 	{
+		// Set variables in Renderer class to be the default
+		Renderer::GetInstance()->Init();
 		// Level manager shit handling stuff here
 		Game::GetInstance()->Init();
 
@@ -52,6 +54,7 @@ void Application::Run()
 		// refreshes the console
 		system("cls"); // refresh one more time to be sure
 		Game::GetInstance()->Exit();
+		Renderer::GetInstance()->Exit();
 	}
 }
 

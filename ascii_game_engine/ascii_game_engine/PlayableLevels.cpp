@@ -20,6 +20,8 @@ void PlayableLevels::Init()
 	pause.Init(pauseMap);
 
 	InitPrint();
+	Renderer::GetInstance()->SetLevel(this);
+	Renderer::GetInstance()->Add(print, 1);
 }
 
 // Update the level
@@ -133,6 +135,11 @@ Player& PlayableLevels::GetRefPlayer()
 }
 
 // ******************************************************************
+
+bool PlayableLevels::GetIsPaused() const
+{
+	return pause.GetIsPaused();
+}
 
 // For sidescrolling
 void PlayableLevels::SideScroll()
@@ -258,13 +265,13 @@ void PlayableLevels::PrintMap()
 			print[i - y_buffer][j - x_buffer] = map.GetCharacter(j, i);
 	}
 
-	int y = Console::NewSBSize.Y; // Console size
-	// Print the map
-	for (int i = 0; i < y; ++i)
-	{
-		const char* row = *(print + i);
-		std::printf("%s", row);
-	}
+	//int y = Console::NewSBSize.Y; // Console size
+	//// Print the map
+	//for (int i = 0; i < y; ++i)
+	//{
+	//	const char* row = *(print + i);
+	//	std::printf("%s", row);
+	//}
 }
 
 int PlayableLevels::XLimit()

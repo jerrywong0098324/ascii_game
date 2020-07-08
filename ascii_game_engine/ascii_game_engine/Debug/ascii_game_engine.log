@@ -1,6 +1,2 @@
-﻿  Application.cpp
-  Ice.cpp
-  main.cpp
-  Renderer.cpp
-  Generating Code...
+﻿  Renderer.cpp
   ascii_game_engine.vcxproj -> C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\Debug\ascii_game_engine.exe

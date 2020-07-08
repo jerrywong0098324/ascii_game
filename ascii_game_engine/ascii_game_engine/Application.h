@@ -14,8 +14,8 @@
 class Application
 {
 public:
-	Application() {};
-	~Application() {};
+	Application() {}; // construtor -> function will be called when i create an object
+	~Application() {}; // destructor
 
 	// use to initialise objects
 	void Init();
