@@ -7,8 +7,8 @@
 #define RENDERER_H
 
 #include "Singleton.h"
-#include "Colours.h"
 #include "PrintMap.h"
+#include "OverlapPrint.h"
 
 class Level;
 class PlayableLevels;
@@ -18,8 +18,15 @@ public:
 
 	// Add maps to be rendered onto the screen
 	void Add(char** print, const int& order);
+	// Add special cases rendering to be rendered over the original
+	void AddOverlap(const OverlapPrint& print);
+
 	// Calling this function only for PlayableLevels, to check if the ice block have a player on it, then render a Ice color background over the player
 	void SetLevel(Level* level);
+	// Get Colours based on the char
+	int GetColours(const char& c);
+	// Get temp string
+	char* GetTemporaryString() const;
 
 	void Init();
 	void Render();
@@ -33,21 +40,30 @@ private:
 	Renderer();
 	~Renderer();
 
+	// Normal rendering
+	void RenderNormal();
+	// Special render conditions, Eg: Ice
+	void RenderOverlap();
+
 	void AllocateMemory();
 	void DeallocateMemory();
 
 	// Set default colour for characters
 	void DefaultColour();
-	void Print(char*& c, const int& x, const int& y);
+	void Print(char*& str, const int& x, const int& y);
+	void Print(char*& str, const int& x, const int& y, const int& colours);
 	void SetCursorPosition(const int& x, const int& y);
 
-	int Ice, Boulder, Rock;
+	int ice, boulder, rock;
 
 	char* print;
+	char* temp; // used outside of this class
 
 	PrintMap *pm;
 	Level* level;
 	PlayableLevels* plptr;
+
+	std::vector<OverlapPrint> ol_prints;
 };
 
 #endif

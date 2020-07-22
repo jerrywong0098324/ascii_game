@@ -8,6 +8,7 @@ Ice block: When player steps on it, will slide towards the initial direction he 
 #include "Block.h"
 #include "Player.h"
 
+class PlayableLevels;
 class Ice : public Block
 {
 public:
@@ -22,6 +23,9 @@ public:
 	// Clear any memory if neccessary
 	virtual void Exit();
 
+	// Returns the block on the ice
+	char GetBlockOnIce() const;
+
 private:
 	void InitIce();	
 	// Player's interactions with ice
@@ -29,8 +33,10 @@ private:
 	// Boolean to check if player is at the end of the ice block, collided with a wall or within the edge of the map
 	bool AbleToSlide(const int& x, const int& y);
 
+	char blockOnIce; // Gets the block on top of the ice
 	Player* player; // reference to the player
 	Level* level; // reference to the map
+	PlayableLevels* plptr; 
 };
 
 #endif

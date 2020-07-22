@@ -3,6 +3,7 @@
 #define INVENTORY_MANAGER_H
 
 #include "Pickaxe.h"
+#include "Pistol.h"
 
 class InventoryManager
 {

@@ -19,7 +19,7 @@ void PlayableLevels::Init()
 	const char* pauseMap = "../Game/Map/Default Maps/pause.txt";
 	pause.Init(pauseMap);
 
-	InitPrint();
+	print = RendererManager::GetInstance()->GetPrint();
 	Renderer::GetInstance()->SetLevel(this);
 	Renderer::GetInstance()->Add(print, 1);
 }
@@ -47,7 +47,6 @@ void PlayableLevels::Render()
 	}
 
 	PrintMap();
-	//player.Render(print);
 }
 
 // When Exiting the level
@@ -55,7 +54,6 @@ void PlayableLevels::Exit()
 {
 	pause.ExitP();
 	player.Exit();
-	DeletePrint();
 	DeleteBlocks();
 
 	//duplicate_map.~Map();
@@ -73,48 +71,73 @@ void PlayableLevels::AddBlock(Block* block)
 // Delete the block using the id
 void PlayableLevels::DeleteBlock(Block* block)
 {
-	for (int i = 0; i < blocks.size(); ++i)
-	{
-		// checking if it's this block
-		if (blocks[i]->GetID() == block->GetID())
-		{
-			// deallocating memory of this block
-			blocks[i]->Exit();
-			delete blocks[i];
-			blocks[i] = nullptr;
+	int i = block->GetID();
+	// deallocating memory of this block
+	blocks[i]->Exit();
+	delete blocks[i];
+	blocks[i] = nullptr;
 
-			// removing this block from the vector
-			blocks.erase(blocks.begin() + i);
-
-			break;
-		}
-	}
+	// removing this block from the vector
+	blocks.erase(blocks.begin() + i);
 }
 
 // Clear any remaining memory of blocks from the level
 void PlayableLevels::DeleteBlocks()
 {
-	for (int i = 0; i < blocks.size(); ++i)
+	while (blocks.size() > 0)
 	{
-		// deallocating memory
-		blocks[i]->Exit();
-		delete blocks[i];
-		blocks[i] = nullptr;
+		blocks[0]->Exit();
+		delete blocks[0];
+		blocks[0] = nullptr;
+		blocks.erase(blocks.begin());
 	}
-	blocks.clear();
 }
 
-// Returns true if the block at this position is not this variable 'c'
-bool PlayableLevels::GetNotThisBlock(const Vector2& pos, const char& c)
+// Returns true if theres a block at this position that is not this variable 'c'
+char PlayableLevels::GetNotThisBlock(const Vector2& pos, const char& c)
+{
+	char res = (char)0; // returning this to an if-else statement will result in a false result
+
+	// Loop through to find if there's a block that is not 'c'
+	for (int i = 0; i < blocks.size(); ++i)
+	{
+		Vector2 p = blocks[i]->GetPosition(); // Get the position of this block
+		char cb = blocks[i]->GetBlockCharacter(); // Get the block character
+		// Check if it's at this position and there's no other block on it
+		if (p.x == pos.x && p.y == pos.y && cb != c)
+		{
+			res = cb; // there's a block that's not 'c'
+			break;
+		}
+	}
+	return res;
+
+	//for (int i = y_buffer; i < YLimit(); ++i)
+	//{
+	//	const int y = i;
+	//	for (int j = x_buffer; j < XLimit(); ++j)
+	//	{
+	//		const int x = j;
+	//		char cb = map.GetCharacter(i, j); // Get the character from this position
+	//		if (x == pos.x && y == pos.y && cb != c)
+	//		{
+	//			res = cb;
+	//			return res;
+	//		}
+	//	}
+	//}
+	//return (char)0;
+}
+
+// Returns the id of the block
+int PlayableLevels::GetBlockID(const Vector2& pos)
 {
 	for (int i = 0; i < blocks.size(); ++i)
 	{
 		Vector2 p = blocks[i]->GetPosition();
-		char cb = blocks[i]->GetBlockCharacter();
-		if (p.x == pos.x && p.y == pos.y && cb != c)
-			return true;
+		if (p.x == pos.x && p.y == pos.y)
+			return blocks[i]->GetID();
 	}
-	return false;
 }
 
 // Returns a reference to the block based on the position (nullptr if nth)
@@ -127,6 +150,16 @@ Block* PlayableLevels::GetBlock(const Vector2& pos) const
 			return blocks[i];
 	}
 	return nullptr; // no such block in such position
+}
+
+// Returns a reference to the block based on the block's ID (nullptr if nth)
+Block* PlayableLevels::GetBlock(const int& id) const
+{
+	Block* res = nullptr;
+	// id < size and id cannot be negative number
+	if (blocks.size() > id && 0 <= id)
+		res = blocks[id];
+	return res;
 }
 
 Player& PlayableLevels::GetRefPlayer()
@@ -178,7 +211,10 @@ void PlayableLevels::ScrollRight()
 
 	// Only can scroll right at 1/3 (right side) of the map
 	if (pos->x >= ScrollRightLimit(1, 4))
+	{
 		++x_buffer; // scrolling right
+		AddUpdateBlocks();
+	}
 }
 
 void PlayableLevels::ScrollLeft()
@@ -189,7 +225,10 @@ void PlayableLevels::ScrollLeft()
 
 	// Only can scroll right at 1/3 (left side) of the map
 	if (pos->x <= ScrollLeftLimit(1, 4))
+	{
 		--x_buffer; // scrolling right
+		AddUpdateBlocks();
+	}
 }
 
 void PlayableLevels::ScrollUp()
@@ -200,7 +239,10 @@ void PlayableLevels::ScrollUp()
 
 	// Only can scroll right at 1/3 way of top of the map
 	if (pos->y <= ScrollUpLimit(1, 4))
+	{
 		--y_buffer; // scrolling right
+		AddUpdateBlocks();
+	}
 }
 
 void PlayableLevels::ScrollDown()
@@ -211,7 +253,10 @@ void PlayableLevels::ScrollDown()
 
 	// Only can scroll right at 1/3 (right side) of the map
 	if (pos->y >= ScrollDownLimit(1, 4))
+	{
 		++y_buffer; // scrolling right
+		AddUpdateBlocks();
+	}
 }
 
 // init buffer based on player's pos, putting the playing in the middle of the screen
@@ -223,6 +268,7 @@ void PlayableLevels::InitBuffer()
 	// TODO: rework formula for x and y buffer upon load
 	InitXBuffer();
 	InitYBuffer();
+	AddUpdateBlocks();
 }
 
 void PlayableLevels::InitXBuffer()
@@ -264,14 +310,6 @@ void PlayableLevels::PrintMap()
 		for (int j = x_buffer; j < XLimit(); ++j)
 			print[i - y_buffer][j - x_buffer] = map.GetCharacter(j, i);
 	}
-
-	//int y = Console::NewSBSize.Y; // Console size
-	//// Print the map
-	//for (int i = 0; i < y; ++i)
-	//{
-	//	const char* row = *(print + i);
-	//	std::printf("%s", row);
-	//}
 }
 
 int PlayableLevels::XLimit()
@@ -290,38 +328,25 @@ int PlayableLevels::YLimit()
 	return limit;
 }
 
-void PlayableLevels::InitPrint()
-{
-	int x = Console::NewSBSize.X;
-	int y = Console::NewSBSize.Y;
-
-	print = new char* [y]; // creates row
-	for (int i = 0; i < y; ++i)
-	{
-		print[i] = new char[x + 1]; // create column	
-		print[i][x] = '\0';
-	}
-}
-
-void PlayableLevels::DeletePrint()
-{
-	if (!print) // memory successfully deallocated already
-		return;
-
-	int x = Console::NewSBSize.X;
-	int y = Console::NewSBSize.Y;
-	for (int i = 0; i < y; ++i)
-	{
-		delete[] print[i];
-		print[i] = nullptr;
-	}
-	delete[] print;
-	print = nullptr;
-}
-
 // Update blocks
 void PlayableLevels::UpdateBlocks()
 {
+	for (int i = 0; i < update_blocks.size(); ++i)
+		update_blocks[i]->Update();
+}
+
+// Adding blocks into the update_blocks vector
+void PlayableLevels::AddUpdateBlocks()
+{
+	// clearing vector
+	update_blocks.clear();
+
 	for (int i = 0; i < blocks.size(); ++i)
-		blocks[i]->Update();
+	{
+		const int x = blocks[i]->GetPosition().x;
+		const int y = blocks[i]->GetPosition().y;
+
+		if (x >= x_buffer && x <= XLimit() && y >= y_buffer && y <= YLimit())
+			update_blocks.push_back(blocks[i]);
+	}
 }

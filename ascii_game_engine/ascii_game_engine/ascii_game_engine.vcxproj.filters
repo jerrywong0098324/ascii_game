@@ -97,6 +97,24 @@
     <Filter Include="Renderer">
       <UniqueIdentifier>{968a8ff1-0882-47af-bca1-8aba418e5000}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Renderer\Manager">
+      <UniqueIdentifier>{da4e6bca-60fb-4ffa-846d-8c0b1e629902}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\PrintMap">
+      <UniqueIdentifier>{84c7f022-bc4c-4a6f-a343-10056a241bb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\OverlapPrint">
+      <UniqueIdentifier>{c5d35f26-763f-45f5-a12a-4c0c79cc1eb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Item\Weapon">
+      <UniqueIdentifier>{4c721032-eae2-4c44-a539-2cdb282448ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Item\Weapon\Base">
+      <UniqueIdentifier>{ecd64649-b62a-4769-8003-a521fa359687}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Item\Weapon\Pistol">
+      <UniqueIdentifier>{cb617af2-d8e9-4727-a7e6-afe304ff575c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="irrklang\ik_ESoundEngineOptions.h">
@@ -291,8 +309,23 @@
     <ClInclude Include="Colours.h">
       <Filter>Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="RendererManager.h">
+      <Filter>Renderer\Manager</Filter>
+    </ClInclude>
     <ClInclude Include="PrintMap.h">
-      <Filter>Renderer</Filter>
+      <Filter>Renderer\PrintMap</Filter>
+    </ClInclude>
+    <ClInclude Include="OverlapPrint.h">
+      <Filter>Renderer\OverlapPrint</Filter>
+    </ClInclude>
+    <ClInclude Include="RangeWeapon.h">
+      <Filter>Item\Weapon\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Item\Weapon\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Pistol.h">
+      <Filter>Item\Weapon\Pistol</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -387,7 +420,16 @@
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="PrintMap.cpp">
-      <Filter>Renderer</Filter>
+      <Filter>Renderer\PrintMap</Filter>
+    </ClCompile>
+    <ClCompile Include="RendererManager.cpp">
+      <Filter>Renderer\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="OverlapPrint.cpp">
+      <Filter>Renderer\OverlapPrint</Filter>
+    </ClCompile>
+    <ClCompile Include="Pistol.cpp">
+      <Filter>Item\Weapon\Pistol</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

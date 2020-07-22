@@ -8,6 +8,8 @@ enum class ItemID
 	TORCH = 0,
 	PICKAXE,
 	HP_POTS,
+	PISTOL, 
+	RIFFLE, 
 };
 
 #endif

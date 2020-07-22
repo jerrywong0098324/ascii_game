@@ -63,5 +63,21 @@ Reworked Ice block codes such that it works with boulder and future blocks that
 may not be a collision, but can be put over an ice block
 
 Completed invisible wall. Can just use ! on map to declare invisible wall
-
 ******************************************************************************
+22/7/2020
+Start working on weapons (guns/riffles)
+1) Pistol
+2) Riffle
+
+- Difference between them is shoot rate
+- 
+
+
+
+
+
+
+
+
+
+

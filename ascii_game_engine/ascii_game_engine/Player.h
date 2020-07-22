@@ -83,7 +83,16 @@ private:
 							SLIDING FEATURES
 			  Behaviour when player interacts with ice blocks
 	*******************************************************************/
+public:
+	bool CanSlide();
+private:
 	void Sliding();
+	void UpdateSlide();
+	void ResetSlide();
+
+	float slide_dt;
+	float slide_time;
+	bool slide;
 	// ******************************************************************
 
 	char playerChar[4];

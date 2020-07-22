@@ -39,6 +39,7 @@ bool Pause::Update()
 // render the pause onto the screen
 void Pause::Render()
 {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), Colours::DEFAULT);
 	Print();
 }
 

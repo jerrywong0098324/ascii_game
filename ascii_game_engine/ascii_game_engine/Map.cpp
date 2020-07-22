@@ -120,7 +120,7 @@ void Map::CreateMap(std::vector<std::string> res, bool duplicate, Level* level)
 
 	int sum = Game::GetInstance()->GetTotalReplace();
 	char* list = Game::GetInstance()->GetReplaceList();
-	int blockID = 1; // ID of block
+	int blockID = 0; // ID of block
 
 	// storing map from .txt file into 2D dynamic array
 	for (int i = 0; i < y; ++i)

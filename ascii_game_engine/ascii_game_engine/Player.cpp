@@ -36,6 +36,11 @@ void Player::Init(Level* level, const Vector2 pos)
 
 	// PlayerStatus
 	currState = PlayerStatus::NORMAL;
+
+	// Slide
+	slide_dt = 0.0f;
+	slide_time = 0.00001f;
+	slide = true;
 }
 
 // Update function to get player's input
@@ -43,6 +48,7 @@ void Player::Update()
 {
 	UpdatePlayer();
 	UpdateItem();
+	UpdateSlide();
 }
 
 // Render Inventory
@@ -305,6 +311,14 @@ void Player::NextItem()
 						SLIDING FEATURES
 		  Behaviour when player interacts with ice blocks
 *******************************************************************/
+bool Player::CanSlide()
+{
+	bool temp = slide;
+	if (slide)
+		ResetSlide();
+	return temp;
+}
+
 void Player::Sliding()
 {
 	if (UserInput::GetKeyDown(KeyCode::UpArrow))
@@ -315,5 +329,18 @@ void Player::Sliding()
 		dirChar = 2;
 	else if (UserInput::GetKeyDown(KeyCode::LeftArrow))
 		dirChar = 3;
+}
+
+void Player::UpdateSlide()
+{
+	slide_dt += StopWatch::GetInstance()->GetDeltaTime();
+	if (slide_dt > slide_time)
+		slide = true;
+}
+
+void Player::ResetSlide()
+{
+	slide_dt = 0.0f;
+	slide = false;
 }
 // ******************************************************************

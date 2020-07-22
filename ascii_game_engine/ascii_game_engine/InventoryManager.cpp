@@ -19,7 +19,7 @@ std::vector<Item*> InventoryManager::InitInventory(Level* level, Player* player)
 	int max_amt = 0, amt = 0;
 	ItemID id = ItemID::INVALID;
 
-	for (int i = 1; i < res.size(); ++i)
+	for (int i = 1; i < res.size(); ++i) // this works here even with new level because condition is not met (size of res is 1)
 	{
 		GetData(res[i], max_amt, amt, id);
 		Item* item = InitItem(max_amt, amt, id, level, player);
@@ -49,6 +49,19 @@ Item* InventoryManager::InitItem(int max_amt, int amount, ItemID id, Level* leve
 			break;
 		}
 		case ItemID::HP_POTS:
+		{
+
+			break;
+		}
+		case ItemID::PISTOL:
+		{
+			item = new Pistol(); // create new pistol
+			item->Init(max_amt, amount, id, player); // init item
+			RangeWeapon* rwpn = dynamic_cast<RangeWeapon*>(item);
+			rwpn->Init(amount, max_amt, 0.5f);
+			break;
+		}
+		case ItemID::RIFFLE:
 		{
 
 			break;

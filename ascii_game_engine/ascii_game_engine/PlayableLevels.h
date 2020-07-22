@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Pause.h"
 #include "Block.h"
+#include "RendererManager.h"
 
 class PlayableLevels : public Level
 {
@@ -33,10 +34,14 @@ public:
 	void AddBlock(Block* block);
 	// Delete the block at the position
 	void DeleteBlock(Block* block);
-	// Returns true if the block at this position is not this variable 'c'
-	bool GetNotThisBlock(const Vector2& pos, const char& c);
+	// Returns true if theres a block at this position that is not this variable 'c'
+	char GetNotThisBlock(const Vector2& pos, const char& c);
+	// Returns the id of the block
+	int GetBlockID(const Vector2& pos);
 	// Returns a reference to the block based on the position (nullptr if nth)
 	Block* GetBlock(const Vector2& pos) const;
+	// Returns a reference to the block based on the block's ID (nullptr if nth)
+	Block* GetBlock(const int& id) const;
 	Player& GetRefPlayer();
 	// ******************************************************************
 
@@ -68,9 +73,6 @@ private:
 
 	void PrintMap(); // overriding it in FogLevels
 
-	void InitPrint();
-	void DeletePrint();
-
 	const Vector2 *pos; // player's pos
 
 	/*******************************************************************
@@ -78,11 +80,15 @@ private:
 	*******************************************************************/
 	// Update blocks
 	void UpdateBlocks();
+	// Adding blocks into the update_blocks vector
+	void AddUpdateBlocks();
 	// Clear any remaining memory of blocks from the level
 	void DeleteBlocks();
 
 	// reference to blocks on the map
 	std::vector<Block*> blocks; 
+	// blocks to be updated
+	std::vector<Block*> update_blocks;
 	// ******************************************************************
 
 protected:
