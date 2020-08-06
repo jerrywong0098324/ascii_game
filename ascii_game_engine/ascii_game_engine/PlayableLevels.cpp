@@ -21,7 +21,6 @@ void PlayableLevels::Init()
 
 	print = RendererManager::GetInstance()->GetPrint();
 	Renderer::GetInstance()->SetLevel(this);
-	Renderer::GetInstance()->Add(print, 1);
 }
 
 // Update the level
@@ -47,6 +46,7 @@ void PlayableLevels::Render()
 	}
 
 	PrintMap();
+	RenderBlocks();
 }
 
 // When Exiting the level
@@ -55,8 +55,19 @@ void PlayableLevels::Exit()
 	pause.ExitP();
 	player.Exit();
 	DeleteBlocks();
+}
 
-	//duplicate_map.~Map();
+/*******************************************************************
+						GETTERS AND SETTERS
+*******************************************************************/
+int PlayableLevels::GetXBuffer() const
+{
+	return x_buffer;
+}
+
+int PlayableLevels::GetYBuffer() const
+{
+	return y_buffer;
 }
 
 /*******************************************************************
@@ -111,22 +122,6 @@ char PlayableLevels::GetNotThisBlock(const Vector2& pos, const char& c)
 		}
 	}
 	return res;
-
-	//for (int i = y_buffer; i < YLimit(); ++i)
-	//{
-	//	const int y = i;
-	//	for (int j = x_buffer; j < XLimit(); ++j)
-	//	{
-	//		const int x = j;
-	//		char cb = map.GetCharacter(i, j); // Get the character from this position
-	//		if (x == pos.x && y == pos.y && cb != c)
-	//		{
-	//			res = cb;
-	//			return res;
-	//		}
-	//	}
-	//}
-	//return (char)0;
 }
 
 // Returns the id of the block
@@ -213,7 +208,7 @@ void PlayableLevels::ScrollRight()
 	if (pos->x >= ScrollRightLimit(1, 4))
 	{
 		++x_buffer; // scrolling right
-		AddUpdateBlocks();
+		UpdateBlocksOnScreen();
 	}
 }
 
@@ -227,7 +222,7 @@ void PlayableLevels::ScrollLeft()
 	if (pos->x <= ScrollLeftLimit(1, 4))
 	{
 		--x_buffer; // scrolling right
-		AddUpdateBlocks();
+		UpdateBlocksOnScreen();
 	}
 }
 
@@ -241,7 +236,7 @@ void PlayableLevels::ScrollUp()
 	if (pos->y <= ScrollUpLimit(1, 4))
 	{
 		--y_buffer; // scrolling right
-		AddUpdateBlocks();
+		UpdateBlocksOnScreen();
 	}
 }
 
@@ -255,7 +250,7 @@ void PlayableLevels::ScrollDown()
 	if (pos->y >= ScrollDownLimit(1, 4))
 	{
 		++y_buffer; // scrolling right
-		AddUpdateBlocks();
+		UpdateBlocksOnScreen();
 	}
 }
 
@@ -268,7 +263,7 @@ void PlayableLevels::InitBuffer()
 	// TODO: rework formula for x and y buffer upon load
 	InitXBuffer();
 	InitYBuffer();
-	AddUpdateBlocks();
+	UpdateBlocksOnScreen();
 }
 
 void PlayableLevels::InitXBuffer()
@@ -308,7 +303,7 @@ void PlayableLevels::PrintMap()
 	{
 		// printing the map one character at a time
 		for (int j = x_buffer; j < XLimit(); ++j)
-			print[i - y_buffer][j - x_buffer] = map.GetCharacter(j, i);
+			Renderer::GetInstance()->Add(j - x_buffer, i - y_buffer, 1, Colours::TBC, map.GetCharacter(j, i));
 	}
 }
 
@@ -331,15 +326,22 @@ int PlayableLevels::YLimit()
 // Update blocks
 void PlayableLevels::UpdateBlocks()
 {
-	for (int i = 0; i < update_blocks.size(); ++i)
-		update_blocks[i]->Update();
+	for (int i = 0; i < blocks_on_screen.size(); ++i)
+		blocks_on_screen[i]->Update();
+}
+
+// Render blocks
+void PlayableLevels::RenderBlocks()
+{
+	for (int i = 0; i < blocks_on_screen.size(); ++i)
+		blocks_on_screen[i]->Render();
 }
 
 // Adding blocks into the update_blocks vector
-void PlayableLevels::AddUpdateBlocks()
+void PlayableLevels::UpdateBlocksOnScreen()
 {
 	// clearing vector
-	update_blocks.clear();
+	blocks_on_screen.clear();
 
 	for (int i = 0; i < blocks.size(); ++i)
 	{
@@ -347,6 +349,6 @@ void PlayableLevels::AddUpdateBlocks()
 		const int y = blocks[i]->GetPosition().y;
 
 		if (x >= x_buffer && x <= XLimit() && y >= y_buffer && y <= YLimit())
-			update_blocks.push_back(blocks[i]);
+			blocks_on_screen.push_back(blocks[i]);
 	}
 }

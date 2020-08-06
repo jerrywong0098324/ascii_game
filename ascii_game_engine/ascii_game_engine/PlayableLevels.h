@@ -28,6 +28,14 @@ public:
 	// ******************************************************************
 
 	/*******************************************************************
+							GETTERS AND SETTERS
+	*******************************************************************/
+	int GetXBuffer() const;
+	int GetYBuffer() const;
+	// ******************************************************************
+
+
+	/*******************************************************************
 							BLOCKS FEATURE
 	*******************************************************************/
 	// Add block into a vector
@@ -80,15 +88,17 @@ private:
 	*******************************************************************/
 	// Update blocks
 	void UpdateBlocks();
-	// Adding blocks into the update_blocks vector
-	void AddUpdateBlocks();
+	// Render blocks
+	void RenderBlocks();
+	// Adding blocks into the blocks_on_screen vector
+	void UpdateBlocksOnScreen();
 	// Clear any remaining memory of blocks from the level
 	void DeleteBlocks();
 
 	// reference to blocks on the map
 	std::vector<Block*> blocks; 
 	// blocks to be updated
-	std::vector<Block*> update_blocks;
+	std::vector<Block*> blocks_on_screen;
 	// ******************************************************************
 
 protected:

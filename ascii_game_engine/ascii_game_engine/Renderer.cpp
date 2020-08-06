@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include "Console.h"
 #include "PlayableLevels.h"
 #include "Ice.h"
 
@@ -11,16 +12,37 @@ Renderer::~Renderer()
 
 }
 
-// Add maps to be rendered onto the screen
-void Renderer::Add(char** print, const int& order)
+//// Add maps to be rendered onto the screen
+//void Renderer::Add(char** print, const int& order)
+//{
+//	//pm->Add(print, order);
+//}
+//// Add special cases rendering to be rendered over the original
+//void Renderer::AddOverlap(const OverlapPrint& print)
+//{
+//	//ol_prints.push_back(print);
+//}
+
+// Replace the current pt data to be used for rendering
+void Renderer::Add(const int& x, const int& y, const Print& pt)
 {
-	pm->Add(print, order);
+	Print prt = this->pt[y][x];
+	// overlap if pt's (passed in varible) order is greater
+	if (prt.GetOrder() > pt.GetOrder())
+		return;
+	this->pt[y][x] = pt;
 }
 
-// Add special cases rendering to be rendered over the original
-void Renderer::AddOverlap(const OverlapPrint& print)
+void Renderer::Add(const int& x, const int& y, const int& order, const int& colour, char c)
 {
-	ol_prints.push_back(print);
+	Print prt;
+	prt.SetOrder(order);
+	prt.SetColour(colour);
+	prt.SetCharacter(c);
+	// overlap if order (passed in variable) is greater
+	if (this->pt[y][x].GetOrder() > order)
+		return;
+	this->pt[y][x] = prt;
 }
 
 void Renderer::SetLevel(Level* level)
@@ -75,62 +97,10 @@ void Renderer::Init()
 
 void Renderer::Render()
 {
-	RenderNormal();
-	//RenderOverlap();
-}
-
-// Normal rendering
-void Renderer::RenderNormal()
-{
-	if (pm->GetSize() <= 0 || plptr->GetIsPaused())
+	if (!plptr)
 		return;
 
-	char** p_map = pm->GetPrintMap();
-	for (int i = 0; i < Console::NewSBSize.Y; ++i)
-	{
-		char c_array[2] = { p_map[i][0], '\0' };
-		strcpy(print, c_array); // Copy from source to destination
-		int x = 0;
-		int y = i;
-		Vector2 pos(x, y);
-		for (int j = 1; j < Console::NewSBSize.X; ++j)
-		{
-			// To put the first position for printing
-			if (x < 0)
-				x = j - 1;
-			// Consolidate and put it into print (to render onto the screen with colour)
-			else if (p_map[i][j] == print[0])
-			{
-				c_array[0] = p_map[i][j];
-				strcat(print, c_array); // append the string (add into destination)
-				continue;
-			}
-			Print(print, x, y);
-			c_array[0] = p_map[i][j];
-			strcpy(print, c_array);
-			x = -1;
-
-			if (j <= Console::NewSBSize.X - 1) // at the end of the loop with only 1 character
-				x = j; // last index of console size x
-		}
-		// Have to call another print so that can print from starting of position x
-		Print(print, x, y);
-	}
-}
-
-// Special render conditions, Eg: Ice
-void Renderer::RenderOverlap()
-{
-	if (ol_prints.size() <= 0 || plptr->GetIsPaused())
-		return;
-
-	while (ol_prints.size() > 0)
-	{
-		char* cp = ol_prints[0].GetString();
-		Print(cp, ol_prints[0].GetPosition().x, ol_prints[0].GetPosition().y, ol_prints[0].GetColour());
-		// decrease the amount of prints in the vector
-		ol_prints.erase(ol_prints.begin());
-	}
+	PrintMap();
 }
 
 void Renderer::Exit()
@@ -145,14 +115,19 @@ void Renderer::free_memory()
 
 void Renderer::AllocateMemory()
 {
-	int size_x = Console::NewSBSize.X;
-	print = new char[size_x + 1];
-	print[size_x] = '\0';
+	int x = Console::NewSBSize.X;
+	int y = Console::NewSBSize.Y;
 
-	temp = new char[size_x + 1];
-	temp[size_x] = '\0';
+	print = new char[x + 1];
+	print[x] = '\0';
 
-	pm = new PrintMap;
+	temp = new char[x + 1];
+	temp[x] = '\0';
+
+	//pm = new PrintMap;
+	pt = new Print*[y];
+	for (int i = 0; i < y; ++i)
+		pt[i] = new Print[x];
 }
 
 void Renderer::DeallocateMemory()
@@ -163,10 +138,18 @@ void Renderer::DeallocateMemory()
 	delete[] temp;
 	temp = nullptr;
 
-	delete pm;
-	pm = nullptr;
-
-	ol_prints.clear();
+	// if pt is initialized, then deallocate data
+	if (pt)
+	{
+		int y = Console::NewSBSize.Y;
+		for (int i = 0; i < y; ++i)
+		{
+			delete[] pt[i];
+			pt[i] = nullptr;
+		}
+		delete[] pt;
+		pt = nullptr;
+	}
 }
 
 // Set default colour for characters
@@ -177,7 +160,49 @@ void Renderer::DefaultColour()
 	rock = Colours::FG_GREY;
 }
 
-void Renderer::Print(char*& str, const int& x, const int& y)
+void Renderer::PrintMap()
+{
+	if (plptr->GetIsPaused())
+		return;
+
+	for (int i = 0; i < Console::NewSBSize.Y; ++i)
+	{
+		char c_array[2] = { pt[i][0].GetCharacter(), '\0' };
+		strcpy(print, c_array); // Copy from source to destination
+		int x = 0;
+		int y = i;
+		Vector2 pos(x, y);
+
+		for (int j = 1; j < Console::NewSBSize.X; ++j)
+		{
+			char c = pt[i][j].GetCharacter();
+
+			// To put the first position for printing
+			if (x < 0)
+				x = j - 1;
+			// Consolidate and put it into print (to render onto the screen with colour)
+			else if (pt[i][j].GetCharacter() == print[0])
+			{
+				c_array[0] = pt[i][j].GetCharacter();
+				strcat(print, c_array); // append the string (add into destination)
+				continue;
+			}
+ 			PrintMap(print, x, y, pt[i][j - 1].GetColour());
+			c_array[0] = pt[i][j].GetCharacter(); // Get current char for the next loop
+			strcpy(print, c_array);
+			x = -1;
+
+			if (j <= Console::NewSBSize.X - 1) // at the end of the loop with only 1 character
+				x = j; // last index of console size x
+		}
+		// Have to call another print so that can print from starting of position x
+		PrintMap(print, x, y, pt[y][x].GetColour());
+	}
+
+	ResetPrint();
+}
+
+void Renderer::PrintMap(char*& str, const int& x, const int& y)
 {
 	int console_colour = Colours::DEFAULT;
 
@@ -190,12 +215,17 @@ void Renderer::Print(char*& str, const int& x, const int& y)
 	std::cout << str;
 }
 
-void Renderer::Print(char*& str, const int& x, const int& y, const int& colours)
+void Renderer::PrintMap(char*& str, const int& x, const int& y, const int& colours)
 {
+	int console_colour = colours;
+
 	// Set console cursor position
 	SetCursorPosition(x, y);
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colours);
+	if(colours == Colours::TBC)
+		console_colour = GetColours(str[0]);
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), console_colour);
 	std::cout << str;
 }
 
@@ -207,42 +237,11 @@ void Renderer::SetCursorPosition(const int& x, const int& y)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-//// Get the first ice block's id
-//Vector2 pos(x, y);
-//int id = plptr->GetBlockID(pos);
-//int index = 0; // use to add to position
-//// if nothing on top of ice
-//console_colour = ice;
-//// Prints out all the ice first
-//SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), console_colour);
-//std::cout << str;
-//const char* str2 = str;
-//// if something on top of ice, bg becomes cyan, fg_be whatever it is and print out the character on top
-//while (str2[index] != '\0') // Searching through the ice blocks to find if there's anything other characters on it
-//{
-//	Ice* iptr = dynamic_cast<Ice*>(plptr->GetBlock(id + index));
-//	char c = iptr->GetBlockOnIce();
-//	SetCursorPosition(pos.x + index, pos.y);
-//
-//	// changes the console colour
-//	switch (c)
-//	{
-//	case (char)254: // Boulder
-//	{
-//		console_colour = boulder | Colours::BG_CYAN;
-//		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), console_colour);
-//		std::cout << c;
-//		break;
-//	}
-//	default: // Could be player
-//	{
-//		console_colour = Colours::DEFAULT | Colours::BG_CYAN;
-//		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), console_colour);
-//		std::cout << c;
-//		break;
-//	}
-//	}
-//
-//	++index; // increment the index to loop through the entire str
-//}
-//return;
+void Renderer::ResetPrint()
+{
+	for (int i = 0; i < Console::NewSBSize.Y; ++i)
+	{
+		for (int j = 0; j < Console::NewSBSize.X; ++j)
+			pt[i][j].Reset();
+	}
+}

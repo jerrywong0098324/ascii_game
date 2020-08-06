@@ -7,19 +7,21 @@
 #define RENDERER_H
 
 #include "Singleton.h"
-#include "PrintMap.h"
-#include "OverlapPrint.h"
+#include "Print.h"
 
 class Level;
 class PlayableLevels;
 class Renderer : public Singleton<Renderer>
 {
 public:
+	// Replace the current pt data to be used for rendering
+	void Add(const int& x, const int& y, const Print& pt);
+	void Add(const int& x, const int& y, const int& order, const int& colour, char c);
 
-	// Add maps to be rendered onto the screen
-	void Add(char** print, const int& order);
-	// Add special cases rendering to be rendered over the original
-	void AddOverlap(const OverlapPrint& print);
+	//// Add maps to be rendered onto the screen
+	//void Add(char** print, const int& order);
+	//// Add special cases rendering to be rendered over the original
+	//void AddOverlap(const OverlapPrint& print);
 
 	// Calling this function only for PlayableLevels, to check if the ice block have a player on it, then render a Ice color background over the player
 	void SetLevel(Level* level);
@@ -40,30 +42,34 @@ private:
 	Renderer();
 	~Renderer();
 
-	// Normal rendering
-	void RenderNormal();
-	// Special render conditions, Eg: Ice
-	void RenderOverlap();
+	//// Normal rendering
+	//void RenderNormal();
+	//// Special render conditions, Eg: Ice
+	//void RenderOverlap();
 
 	void AllocateMemory();
 	void DeallocateMemory();
 
 	// Set default colour for characters
 	void DefaultColour();
-	void Print(char*& str, const int& x, const int& y);
-	void Print(char*& str, const int& x, const int& y, const int& colours);
+	void PrintMap();
+	void PrintMap(char*& str, const int& x, const int& y);
+	void PrintMap(char*& str, const int& x, const int& y, const int& colours);
 	void SetCursorPosition(const int& x, const int& y);
+
+	void ResetPrint();
 
 	int ice, boulder, rock;
 
 	char* print;
 	char* temp; // used outside of this class
 
-	PrintMap *pm;
+	//PrintMap *pm;
+	Print** pt;
 	Level* level;
 	PlayableLevels* plptr;
 
-	std::vector<OverlapPrint> ol_prints;
+	//std::vector<OverlapPrint> ol_prints;
 };
 
 #endif

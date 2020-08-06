@@ -87,6 +87,11 @@ PlayerStatus Player::GetPlayerStatus() const
 	return currState;
 }
 
+char Player::GetPlayerChar() const
+{
+	return playerChar[dirChar];
+}
+
 void Player::SetPosition(const Vector2& pos)
 {
 	this->pos = pos;

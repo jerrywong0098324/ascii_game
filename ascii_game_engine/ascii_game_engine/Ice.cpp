@@ -1,7 +1,6 @@
 #include "Ice.h"
 #include "Game.h"
 #include "Renderer.h"
-#include "OverlapPrint.h"
 
 Ice::Ice(int id) : Block(id)
 {
@@ -20,13 +19,24 @@ void Ice::Init(Player* player, Level* level)
 	
 	plptr = dynamic_cast<PlayableLevels*>(level);
 
+	blockOnIce = (char)0;
+	blockOrder = 10;
+
 	InitIce();
 }
 
 // Updates the interaction between ice block and player
 void Ice::Update()
 {
+	UpdateBlockOnIce();
 	Interactions();
+}
+
+// Render player's and any block foreground with ice background
+void Ice::Render()
+{
+	RenderPlayer();
+	RenderBlock();
 }
 
 // Interactions when player is on top of the block
@@ -67,10 +77,10 @@ void Ice::InteractIce()
 	int x = player->GetPosition().x + player->GetDirection().x;
 	int y = player->GetPosition().y - player->GetDirection().y;
 	Vector2 p_pos(x, y); // position of the next tile, also new position for player if conditions are met
-	
+
 	// First check checks if there is a boulder like block so that it will acts as a "collision" detection
 	// param p_pos checks if the next position is a not a "wall" but cannot be collided with (eg. Boulder)
-	if (plptr->GetNotThisBlock(pos, charBlock[blockIndex]) || plptr->GetNotThisBlock(p_pos, charBlock[blockIndex]) || !level->WithinMap(x, y) || !AbleToSlide(x, y))
+	if (blockOnIce || plptr->GetNotThisBlock(p_pos, charBlock[blockIndex]) || !level->WithinMap(x, y) || !AbleToSlide(x, y))
 	{
 		player->SetPlayerStatus(PlayerStatus::NORMAL);
 		return;
@@ -103,20 +113,34 @@ bool Ice::AbleToSlide(const int& x, const int& y)
 	return true; // next tile is a ice block, and it's within the playing map
 }
 
-// Failed idea for printing block with colours over ice
-//char c = plptr->GetNotThisBlock(pos, charBlock[blockIndex]);
-//if (c)
-//{
-//	OverlapPrint ol_print;
-//	char c_array[2] = { c , '\0' };
-//	int console_colour = Renderer::GetInstance()->GetColours(c) | Colours::BG_CYAN;
-//	char* temp = Renderer::GetInstance()->GetTemporaryString();
-//	strcpy(temp, c_array);
-//	// Set the parameters
-//	ol_print.SetString(temp);
-//	ol_print.SetPosition(pos);
-//	ol_print.SetColour(console_colour);
-//	// Add into the renderer
-//	Renderer::GetInstance()->AddOverlap(ol_print);
-//	return;
-//}
+// Updates if there's any other blocks on the ice
+void Ice::UpdateBlockOnIce()
+{
+	blockOnIce = plptr->GetNotThisBlock(pos, charBlock[blockIndex]);
+}
+
+// Render player
+void Ice::RenderPlayer()
+{
+	if (pos.x != player->GetPosition().x || pos.y != player->GetPosition().y)
+		return;
+
+	int colour = Colours::BLACK | Colours::BG_CYAN;
+	int x_buffer = plptr->GetXBuffer();
+	int y_buffer = plptr->GetYBuffer();
+
+	Renderer::GetInstance()->Add(pos.x - x_buffer, pos.y - y_buffer, blockOrder, colour, player->GetPlayerChar());
+}
+
+// Render any block that will is on the ice
+void Ice::RenderBlock()
+{
+	if (!blockOnIce)
+		return;
+
+	int colour = Renderer::GetInstance()->GetColours(blockOnIce) | Colours::BG_CYAN;
+	int x_buffer = plptr->GetXBuffer();
+	int y_buffer = plptr->GetYBuffer();
+
+	Renderer::GetInstance()->Add(pos.x - x_buffer, pos.y - y_buffer, blockOrder, colour, blockOnIce);
+}

@@ -13,4 +13,7 @@ public:
 		DEFAULT: Set text to white and background to black
 	*/
 	static const int BLACK = 0, DEFAULT = 0 | 0x0001 | 0x0002 | 0x0004 | 0x0008;
+
+	// TBC (To Be Confirm) -> No colour code, need to give it a value
+	static const int TBC = -1;
 };

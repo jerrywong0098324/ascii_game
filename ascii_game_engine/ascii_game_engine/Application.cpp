@@ -8,6 +8,7 @@ void Application::Init()
 	// Init LevelManager here	
 	StopWatch::GetInstance()->StartTimer();
 	LevelManager::GetInstance()->Init();
+	Console::CreateConsole(420, 420);
 }
 
 void Application::Run()

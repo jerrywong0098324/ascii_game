@@ -32,9 +32,15 @@ public:
 	// Return Player's current status
 	PlayerStatus GetPlayerStatus() const;
 
+	/*******************************************************************
+						GETTERS AND SETTERS
+	*******************************************************************/
+	char GetPlayerChar() const;
+
 	void SetPosition(const Vector2& pos);
 	void SetPlayerDir(const Vector2& dir);
 	void SetPlayerStatus(const PlayerStatus& state);
+	// ******************************************************************
 
 	// Add item into inventory
 	void AddItem(Item* item);

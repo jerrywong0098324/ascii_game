@@ -14,6 +14,8 @@ public:
 	virtual void Init() { blockIndex = 0; };
 	// Updating the block
 	virtual void Update() {};
+	// Rendering of blocks (special cases)
+	virtual void Render() {};
 	// Clear any memory if neccessary
 	virtual void Exit() {};
 	// Different blocks will have different interactions with the player

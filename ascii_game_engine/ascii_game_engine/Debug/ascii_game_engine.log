@@ -1,11 +1,2 @@
-﻿  PlayableLevels.cpp
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(102,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(135,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(146,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(160,20): warning C4018: '>': signed/unsigned mismatch
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(278,21): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(293,21): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(334,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(344,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(141): warning C4715: 'PlayableLevels::GetBlockID': not all control paths return a value
+﻿  Ice.cpp
   ascii_game_engine.vcxproj -> C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\Debug\ascii_game_engine.exe

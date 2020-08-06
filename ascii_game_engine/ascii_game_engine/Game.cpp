@@ -3,7 +3,6 @@
 
 Game::Game() : collideList(nullptr), totalCollide(0)
 {
-	Console::CreateConsole(420, 420);
 	InitCollision();
 	InitWalls();
 	InitTemporaryCharacters();
