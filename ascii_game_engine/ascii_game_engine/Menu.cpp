@@ -31,6 +31,9 @@ void Menu::Init()
 	selectSFX->Init("../Game/Audio/Menu/select.ogg");
 	// ****************************************************************
 
+	print = RendererManager::GetInstance()->GetPrint();
+	InitPrint();
+
 	// init arrow y position
 	arrow_pos_y = min_y;
 
@@ -67,7 +70,7 @@ void Menu::Exit()
 void Menu::UpdateArrow()
 {
 	// replacing current arrow position to an empty space
-	map.SetCharacter(arrow_pos_x, arrow_pos_y, ' ');
+	print[arrow_pos_y][arrow_pos_x] = ' ';
 
 	MoveArrow();
 
@@ -84,7 +87,7 @@ void Menu::UpdateArrow()
 	}
 
 	// new arrow position after player's input
-	map.SetCharacter(arrow_pos_x, arrow_pos_y, arrow);
+	print[arrow_pos_y][arrow_pos_x] = arrow;
 }
 
 // Move Arrow and play sound
@@ -147,14 +150,27 @@ void Menu::UpdateEnterPressed()
 	}
 }
 
-// prints the map out
-void Menu::PrintMap()
+// Init the print
+void Menu::InitPrint()
 {
-	int y = map.GetSizeY();
+	int x = Console::NewSBSize.X;
+	int y = Console::NewSBSize.Y;
 
 	for (int i = 0; i < y; ++i)
 	{
-		const char *row = *(map.GetMap() + i);
+		for (int j = 0; j < x; ++j)
+			print[i][j] = map.GetCharacter(j, i);
+	}
+}
+
+// prints the map out
+void Menu::PrintMap()
+{
+	int y = Console::NewSBSize.Y;
+
+	for (int i = 0; i < y; ++i)
+	{
+		const char *row = *(print + i);
 		std::cout << row << std::endl;
 	}
 }

@@ -9,7 +9,8 @@ class RendererManager : public Singleton<RendererManager>
 {
 public:
 	char** GetPrint();
-	char GetIgnore() const;
+	// Called when end or change of level
+	void Exit();
 
 	virtual void free_memory();
 
@@ -20,8 +21,7 @@ private:
 	~RendererManager();
 
 	void DeletePrints();
-
-	std::vector<char**> prints;
+	std::vector<char**> prints; // used to free memory
 };
 
 #endif

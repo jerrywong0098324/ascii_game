@@ -206,6 +206,8 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SingletonManager.h" />
     <ClInclude Include="SoundEngine.h" />
+    <ClInclude Include="TbxID.h" />
+    <ClInclude Include="TextBox.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="UserInput.h" />
     <ClInclude Include="Vector2.h" />

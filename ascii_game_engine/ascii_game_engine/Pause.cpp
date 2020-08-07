@@ -25,7 +25,8 @@ void Pause::Init(const char* map)
 	option = min_op;
 	isPaused = false;
 
-	//Renderer::GetInstance()->Add()
+	print = RendererManager::GetInstance()->GetPrint();
+	InitPrint();
 }
 
 // Updates the pause screen
@@ -60,7 +61,7 @@ void Pause::PauseState()
 void Pause::PausedState()
 {
 	isPaused = !isPaused;
-	map[arrow_pos_y][arrow_pos_x] = ' ';
+	print[arrow_pos_y][arrow_pos_x] = ' ';
 	arrow_pos_y = min_y;
 	option = min_op;
 }
@@ -73,7 +74,7 @@ void Pause::Print()
 
 	for (int i = 0; i < y; ++i)
 	{
-		char* row = *(map + i);
+		char* row = *(print + i);
 		std::cout << row << std::endl;
 	}
 }
@@ -92,13 +93,13 @@ void Pause::UpdateInputs()
 void Pause::UpdateArrow()
 {
 	// replace current position with an empty space
-	map[arrow_pos_y][arrow_pos_x] = ' '; 
+	print[arrow_pos_y][arrow_pos_x] = ' ';
 
 	MoveArrow();
 	WrapArrow();
 
 	// new arrow position after player's input
-	map[arrow_pos_y][arrow_pos_x] = arrow;
+	print[arrow_pos_y][arrow_pos_x] = arrow;
 }
 
 // Moves arrow
@@ -150,5 +151,18 @@ void Pause::UpdateEnterPress()
 	case 3: // exit
 		GameStateManager::GetInstance()->SetCurrentGameState(GameState::EXIT);
 		break;
+	}
+}
+
+// Init print
+void Pause::InitPrint()
+{
+	int x = GetSizeX();
+	int y = GetSizeY();
+
+	for (int i = 0; i < y; ++i)
+	{
+		for (int j = 0; j < x; ++j)
+			print[i][j] = GetCharacter(j, i);
 	}
 }

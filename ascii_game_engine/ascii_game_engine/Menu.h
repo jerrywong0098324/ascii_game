@@ -28,8 +28,12 @@ private:
 	void UpdateInput();
 	// Update time after enter key is pressed
 	void UpdateEnterPressed();
+	// Init the print
+	void InitPrint();
 	// prints the map out
 	void PrintMap();
+
+	char** print; // used to print the map out
 
 	// display the arrow key for player to "choose" their option (between Play, Exit, Highscore)
 	char arrow = '>';

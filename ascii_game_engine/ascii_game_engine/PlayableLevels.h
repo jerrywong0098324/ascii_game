@@ -6,7 +6,6 @@
 #include "Player.h"
 #include "Pause.h"
 #include "Block.h"
-#include "RendererManager.h"
 
 class PlayableLevels : public Level
 {

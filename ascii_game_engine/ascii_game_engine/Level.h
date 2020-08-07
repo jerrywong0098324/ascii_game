@@ -8,6 +8,7 @@
 #include "Renderer.h"
 #include "UserInput.h"
 #include "GameStateManager.h"
+#include "RendererManager.h"
 
 class Level
 {
@@ -35,24 +36,37 @@ public:
 		return map.GetCharacter(x, y);
 	}
 
+	// Get id of map at x, y pos
+	TbxID GetID(const int& x, const int& y)
+	{
+		return map.GetID(x, y);
+	}
+
 	// Change the characters of the map at x, y pos
 	void SetMap(const int& x, const int& y, const char& c)
 	{
 		map.SetCharacter(x, y, c);
+		map.SetID(x, y, c);
 	}
 
 	// Change the characters of the map and duplicate map
 	void SetBothMap(const int& x, const int& y, const char& c)
 	{
 		map.SetCharacter(x, y, c);
+		map.SetID(x, y, c);
+
 		duplicate_map.SetCharacter(x, y, c);
+		duplicate_map.SetID(x, y, c);
 	}
 
 	// Correct the map by putting duplicate map over map
 	void CorrectMap(const int& x, const int& y)
 	{
 		char c = duplicate_map.GetCharacter(x, y);
+		TbxID id = duplicate_map.GetID(x, y);
+
 		map.SetCharacter(x, y, c);
+		map.SetID(x, y, id);
 	}
 
 	void SetDuplicateMapName(const char* map_name)

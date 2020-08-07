@@ -42,6 +42,11 @@ private:
 	// Update key press
 	void UpdateEnterPress();
 
+	// Init print
+	void InitPrint();
+
+	char** print;
+
 	int arrow_pos_x = 13, arrow_pos_y;
 	int min_y = 11, max_y = 13;
 	int option;

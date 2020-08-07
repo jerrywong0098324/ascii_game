@@ -15,7 +15,7 @@ Map::~Map()
 	//Exit();
 }
 
-char** Map::GetMap() const
+TextBox** Map::GetMap() const
 {
 	return map;
 }
@@ -23,13 +23,31 @@ char** Map::GetMap() const
 // Returns specific character from dynamic 2D array
 char Map::GetCharacter(const int& x, const int& y)
 {
-	return map[y][x];
+	return map[y][x].GetCharacter();
+}
+
+// Return id from dynamic 2D array
+TbxID Map::GetID(const int& x, const int& y)
+{
+	return map[y][x].GetID();
 }
 
 // Set specific character into dynamic 2D array
 void Map::SetCharacter(const int& x, const int& y, const char& c)
 {
-	map[y][x] = c;
+	map[y][x].SetCharacter(c);
+}
+
+// Set ID based on char
+void Map::SetID(const int& x, const int& y, const char& c)
+{
+	map[y][x].SetID(c);
+}
+
+// Set ID based on TbxID itself
+void Map::SetID(const int& x, const int& y, const TbxID& id)
+{
+	map[y][x].SetID(id);
 }
 
 // Get size of x and y
@@ -109,14 +127,11 @@ void Map::InitBorders(std::string res)
 }
 
 // Creates dynamic 2D array map
-void Map::CreateMap(std::vector<std::string> res, bool duplicate, Level* level)
+void Map::CreateMap(std::vector<std::string> res, const bool& duplicate, Level* level)
 {
-	map = new char* [y]; // creates row
+	map = new TextBox* [y]; // creates row
 	for (int i = 0; i < y; ++i)
-	{
-		map[i] = new char[x + 1]; // create column	
-		map[i][x] = '\0';
-	}
+		map[i] = new TextBox[x]; // create column
 
 	int sum = Game::GetInstance()->GetTotalReplace();
 	char* list = Game::GetInstance()->GetReplaceList();
@@ -129,6 +144,7 @@ void Map::CreateMap(std::vector<std::string> res, bool duplicate, Level* level)
 		{
 			char c = res[i + 1][j];
 
+			map[i][j].SetID(TbxID::NON_COLLIDABLE);
 			// replacing all place holder characters to their respective chars in game
 			for (int k = 0; k < sum; ++k)
 			{
@@ -139,22 +155,22 @@ void Map::CreateMap(std::vector<std::string> res, bool duplicate, Level* level)
 				}
 			}
 
-			map[i][j] = c;
+			map[i][j].SetCharacter(c);
 		}
 	}
 }
 
 // Replace and temporary characters to their specific char
-char Map::ReplaceCharacter(char placeHolder, bool duplicate, Level* level, int& blockID, int x, int y)
+char Map::ReplaceCharacter(const char& placeHolder, const bool& duplicate, Level* level, int& blockID, const int& x, const int& y)
 {
 	if (!duplicate)
 		return NonDuplicated(placeHolder, level, blockID, x, y);
 	else if (duplicate)
-		return Duplicated(placeHolder);
+		return Duplicated(placeHolder, x, y);
 }
 
 // Non Duplicate Replace
-char Map::NonDuplicated(char placeHolder, Level* level, int& blockID, int x, int y)
+char Map::NonDuplicated(const char& placeHolder, Level* level, int& blockID, const int& x, const int& y)
 {
 	char c = (char)0; // null char(?)
 	PlayableLevels* plptr;
@@ -165,11 +181,13 @@ char Map::NonDuplicated(char placeHolder, Level* level, int& blockID, int x, int
 		case '+': // empty block
 		{
 			c = ' ';
+			map[y][x].SetID(TbxID::EMPTY_SPACE);
 			break;
 		}
-		case '!':
+		case '!': // invisible wall
 		{
 			c = (char)255;
+			map[y][x].SetID(TbxID::INVISIBLE_WALL);
 			break;
 		}
 		case '~': // rock
@@ -183,6 +201,8 @@ char Map::NonDuplicated(char placeHolder, Level* level, int& blockID, int x, int
 			rptr->SetPosition(pos); // position of rock
 
 			plptr->AddBlock(rptr); // add into level
+
+			map[y][x].SetID(TbxID::ROCK);
 
 			++blockID;
 			break;
@@ -201,6 +221,8 @@ char Map::NonDuplicated(char placeHolder, Level* level, int& blockID, int x, int
 
 			plptr->AddBlock(iptr); // add into level to update
 
+			map[y][x].SetID(TbxID::ICE);
+
 			++blockID;
 			break;
 		}
@@ -218,6 +240,8 @@ char Map::NonDuplicated(char placeHolder, Level* level, int& blockID, int x, int
 
 			plptr->AddBlock(bptr); // add into level to update
 
+			map[y][x].SetID(TbxID::BOULDER);
+
 			++blockID;
 			break;
 		}
@@ -227,7 +251,7 @@ char Map::NonDuplicated(char placeHolder, Level* level, int& blockID, int x, int
 }
 
 // Duplicate Replace
-char Map::Duplicated(char placeHolder)
+char Map::Duplicated(const char& placeHolder, const int& x, const int& y)
 {
 	char c = (char)0; // null char
 
@@ -236,26 +260,31 @@ char Map::Duplicated(char placeHolder)
 		case '+': // empty block
 		{
 			c = ' ';
+			map[y][x].SetID(TbxID::EMPTY_SPACE);
 			break;
 		}
-		case '!':
+		case '!': // invisible wall
 		{
 			c = (char)255;
+			map[y][x].SetID(TbxID::INVISIBLE_WALL);
 			break;
 		}
 		case '~': // rock
 		{
 			c = (char)178;
+			map[y][x].SetID(TbxID::ROCK);
 			break;
 		}
 		case '`': // ice
 		{
 			c = (char)219;
+			map[y][x].SetID(TbxID::ICE);
 			break;
 		}
 		case '{': // boulder
 		{
 			c = (char)254;
+			map[y][x].SetID(TbxID::BOULDER);
 			break;
 		}
 	}

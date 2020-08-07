@@ -1,0 +1,13 @@
+// TbxID => Text Box ID
+
+enum class TbxID
+{
+	INVALID = -1,
+	PLAYER = 1,
+	ROCK,
+	ICE,
+	BOULDER,
+	EMPTY_SPACE,
+	INVISIBLE_WALL,
+	NON_COLLIDABLE,
+};

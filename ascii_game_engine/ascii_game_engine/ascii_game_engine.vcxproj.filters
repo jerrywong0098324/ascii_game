@@ -112,6 +112,9 @@
     <Filter Include="Renderer\Print">
       <UniqueIdentifier>{513fd748-ecc5-427d-a3ae-567a27ae56f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Levels\Map\TextBox">
+      <UniqueIdentifier>{7a5c24aa-8691-48c8-bfc3-1d9e4de368f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="irrklang\ik_ESoundEngineOptions.h">
@@ -320,6 +323,12 @@
     </ClInclude>
     <ClInclude Include="Print.h">
       <Filter>Renderer\Print</Filter>
+    </ClInclude>
+    <ClInclude Include="TextBox.h">
+      <Filter>Levels\Map\TextBox</Filter>
+    </ClInclude>
+    <ClInclude Include="TbxID.h">
+      <Filter>Levels\Map\TextBox</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

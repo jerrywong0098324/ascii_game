@@ -19,7 +19,7 @@ void PlayableLevels::Init()
 	const char* pauseMap = "../Game/Map/Default Maps/pause.txt";
 	pause.Init(pauseMap);
 
-	print = RendererManager::GetInstance()->GetPrint();
+	//print = RendererManager::GetInstance()->GetPrint();
 	Renderer::GetInstance()->SetLevel(this);
 }
 
@@ -108,19 +108,12 @@ void PlayableLevels::DeleteBlocks()
 char PlayableLevels::GetNotThisBlock(const Vector2& pos, const char& c)
 {
 	char res = (char)0; // returning this to an if-else statement will result in a false result
+	const TbxID id = TextBox::GetID(c);
+	const TbxID mapID = map.GetID(pos.x, pos.y);
 
-	// Loop through to find if there's a block that is not 'c'
-	for (int i = 0; i < blocks.size(); ++i)
-	{
-		Vector2 p = blocks[i]->GetPosition(); // Get the position of this block
-		char cb = blocks[i]->GetBlockCharacter(); // Get the block character
-		// Check if it's at this position and there's no other block on it
-		if (p.x == pos.x && p.y == pos.y && cb != c)
-		{
-			res = cb; // there's a block that's not 'c'
-			break;
-		}
-	}
+	if (mapID != id && mapID != TbxID::PLAYER && mapID != TbxID::EMPTY_SPACE && mapID != TbxID::NON_COLLIDABLE)
+		res = map.GetCharacter(pos.x, pos.y);
+
 	return res;
 }
 

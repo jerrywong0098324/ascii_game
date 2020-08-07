@@ -12,17 +12,6 @@ Renderer::~Renderer()
 
 }
 
-//// Add maps to be rendered onto the screen
-//void Renderer::Add(char** print, const int& order)
-//{
-//	//pm->Add(print, order);
-//}
-//// Add special cases rendering to be rendered over the original
-//void Renderer::AddOverlap(const OverlapPrint& print)
-//{
-//	//ol_prints.push_back(print);
-//}
-
 // Replace the current pt data to be used for rendering
 void Renderer::Add(const int& x, const int& y, const Print& pt)
 {
@@ -97,14 +86,12 @@ void Renderer::Init()
 
 void Renderer::Render()
 {
-	if (!plptr)
-		return;
-
 	PrintMap();
 }
 
 void Renderer::Exit()
 {
+	RendererManager::GetInstance()->Exit();
 	DeallocateMemory();
 }
 
@@ -162,7 +149,7 @@ void Renderer::DefaultColour()
 
 void Renderer::PrintMap()
 {
-	if (plptr->GetIsPaused())
+	if (!plptr || plptr->GetIsPaused())
 		return;
 
 	for (int i = 0; i < Console::NewSBSize.Y; ++i)
