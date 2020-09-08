@@ -10,6 +10,7 @@
 #include "LevelManager.h"
 #include "GameStateManager.h"
 #include "Renderer.h"
+#include "Mouse.h"
 
 class Application
 {

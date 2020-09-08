@@ -1,4 +1,5 @@
 #include "FileManager.h"
+#include "Error.h"
 
 std::vector<std::string> FileManager::LoadFile(const char* txtFile)
 {
@@ -9,8 +10,9 @@ std::vector<std::string> FileManager::LoadFile(const char* txtFile)
 	// Check for any error
 	if (inFile.fail())
 	{
-		std::cerr << "Unable to open file: " << txtFile << std::endl;
-		exit(1);
+		std::string s = "Unable to open file: ";
+		s.append(txtFile);
+		Error::MyErrorExit(s.c_str());
 	}
 
 	// Loop through till the end of the file
@@ -36,7 +38,7 @@ void FileManager::SaveFile(const std::string saveData, const char* txtFile)
 	outFile << saveData;
 }
 
-bool FileManager::DeleteFile(const char* txtFile)
+bool FileManager::RemoveFile(const char* txtFile)
 {
 	// delete the file
 	return remove(txtFile);

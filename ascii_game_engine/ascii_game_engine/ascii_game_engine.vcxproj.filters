@@ -115,6 +115,9 @@
     <Filter Include="Levels\Map\TextBox">
       <UniqueIdentifier>{7a5c24aa-8691-48c8-bfc3-1d9e4de368f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Inputs\Mouse">
+      <UniqueIdentifier>{02d8bbd6-c116-4e2a-bbee-330411c8ce39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="irrklang\ik_ESoundEngineOptions.h">
@@ -330,6 +333,12 @@
     <ClInclude Include="TbxID.h">
       <Filter>Levels\Map\TextBox</Filter>
     </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>Inputs\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="Error.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SingletonManager.cpp">
@@ -430,6 +439,9 @@
     </ClCompile>
     <ClCompile Include="Print.cpp">
       <Filter>Renderer\Print</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>Inputs\Mouse</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

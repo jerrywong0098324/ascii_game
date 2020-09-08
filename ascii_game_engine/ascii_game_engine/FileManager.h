@@ -16,7 +16,7 @@ public:
 	static std::vector<std::string> LoadFile(const char* txtFile);
 	static void SaveFile(const std::vector<std::string> saveData, const char* txtFile);
 	static void SaveFile(const std::string saveData, const char* txtFile);
-	static bool DeleteFile(const char* txtFile);
+	static bool RemoveFile(const char* txtFile);
 	static bool FileExist(const char* txtFile);
 };
 

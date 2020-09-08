@@ -2,6 +2,7 @@
 #include "LevelManager.h"
 #include "FileManager.h"
 #include "Game.h"
+#include "Mouse.h"
 
 Menu::Menu()
 {

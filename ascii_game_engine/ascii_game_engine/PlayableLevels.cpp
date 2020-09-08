@@ -19,7 +19,6 @@ void PlayableLevels::Init()
 	const char* pauseMap = "../Game/Map/Default Maps/pause.txt";
 	pause.Init(pauseMap);
 
-	//print = RendererManager::GetInstance()->GetPrint();
 	Renderer::GetInstance()->SetLevel(this);
 }
 

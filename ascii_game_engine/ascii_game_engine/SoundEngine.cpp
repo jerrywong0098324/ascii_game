@@ -1,6 +1,7 @@
 #include "SoundEngine.h"
 #include "AudioManager.h"
 #include <iostream>
+#include "Error.h"
 
 SoundEngine::SoundEngine() : engine(nullptr)
 {
@@ -31,10 +32,7 @@ void SoundEngine::alloc_memory()
 	engine = createIrrKlangDevice();
 	// don't run the program if sound engine cannot be initialized
 	if (!engine)
-	{
-		std::cerr << "Error starting up sound engine" << std::endl;
-		exit(1);
-	}
+		Error::MyErrorExit("Error starting up sound engine");
 }
 
 // additional step to free engine memory

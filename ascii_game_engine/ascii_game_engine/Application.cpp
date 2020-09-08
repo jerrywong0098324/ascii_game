@@ -9,6 +9,7 @@ void Application::Init()
 	StopWatch::GetInstance()->StartTimer();
 	LevelManager::GetInstance()->Init();
 	Console::CreateConsole(420, 420);
+	Mouse::GetInstance()->Init();
 }
 
 void Application::Run()
@@ -63,6 +64,7 @@ void Application::Exit()
 {
 	// free-ing all singleton memory here
 	SingletonManager::FreeAll();
+	Mouse::GetInstance()->Exit();
 }
 
 // Clear all memory when cross button is pressed
