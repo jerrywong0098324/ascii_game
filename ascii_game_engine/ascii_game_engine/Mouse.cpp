@@ -12,6 +12,7 @@ Mouse::~Mouse()
 
 }
 
+// Kick off a worker thread to run update loop individually
 void Mouse::Init()
 {
 	HANDLE hin = GetStdHandle(STD_INPUT_HANDLE);
@@ -22,10 +23,11 @@ void Mouse::Init()
 	}
 
 	SetConsoleMode(hin, ENABLE_PROCESSED_INPUT | ENABLE_MOUSE_INPUT);
-	std::thread worker(&Mouse::Update, this);
+	std::thread worker(&Mouse::Update, this); // start a new thread for mouse update
 	worker.detach(); // detach so that a worker thread can update the mouse position independently
 }
 
+// Updates the mouse position whenever there is a mouse input from the user
 void Mouse::Update()
 {
 	while (GameStateManager::GetInstance()->GetCurrentGameState() != GameState::EXIT)
@@ -57,4 +59,9 @@ void Mouse::Exit()
 Vector2 Mouse::GetPosition()
 {
 	return position;
+}
+
+void Mouse::free_memory()
+{
+	Singleton::free_memory();
 }

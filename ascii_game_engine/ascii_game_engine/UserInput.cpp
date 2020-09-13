@@ -69,3 +69,9 @@ bool UserInput::GetKeyPress(const unsigned int keyCode)
 
 	return GetAsyncKeyState(keyCode);
 }
+
+// Returns the mouse position inside the window console
+Vector2 UserInput::GetMousePosition()
+{
+	return Mouse::GetInstance()->GetPosition();
+}

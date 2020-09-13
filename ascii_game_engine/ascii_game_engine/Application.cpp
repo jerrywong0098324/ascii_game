@@ -73,4 +73,5 @@ void Application::Terminate()
 	GameStateManager::GetInstance()->SetCurrentGameState(GameState::EXIT);
 	Game::GetInstance()->Exit();
 	SingletonManager::FreeAll();
+	Mouse::GetInstance()->Exit();
 }

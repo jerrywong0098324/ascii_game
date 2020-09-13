@@ -4,6 +4,7 @@
 
 #include <Windows.h>
 #include "KeyCode.h"
+#include "Mouse.h"
 
 class UserInput
 {
@@ -19,6 +20,8 @@ public:
 	static bool GetKeyDown(const unsigned int keyCode);
 	// When the user is holding down on the key
 	static bool GetKeyPress(const unsigned int keyCode);
+	// Returns the mouse position inside the window console
+	static Vector2 GetMousePosition();
 
 private:
 	// Biggest int number of last user input data

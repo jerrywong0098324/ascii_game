@@ -146,6 +146,7 @@
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Boulder.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Colours.h" />
     <ClInclude Include="ConLib.h" />
     <ClInclude Include="Console.h" />

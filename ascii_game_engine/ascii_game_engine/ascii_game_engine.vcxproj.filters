@@ -118,6 +118,12 @@
     <Filter Include="Inputs\Mouse">
       <UniqueIdentifier>{02d8bbd6-c116-4e2a-bbee-330411c8ce39}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Inputs\Buttons">
+      <UniqueIdentifier>{180a35db-3179-43bc-9de0-8853cb146169}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NewFilter1">
+      <UniqueIdentifier>{cbc627c2-08df-4588-9946-22268e2db797}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="irrklang\ik_ESoundEngineOptions.h">
@@ -338,6 +344,9 @@
     </ClInclude>
     <ClInclude Include="Error.h">
       <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Inputs\Buttons</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

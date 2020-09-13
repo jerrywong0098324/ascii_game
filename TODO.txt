@@ -71,7 +71,10 @@ Start working on weapons (guns/riffles)
 
 - Difference between them is shoot rate
 - 
-
+******************************************************************************
+8/9/2020
+Added mouse feature.
+-> Able to get mouse position individually on a different thread
 
 
 

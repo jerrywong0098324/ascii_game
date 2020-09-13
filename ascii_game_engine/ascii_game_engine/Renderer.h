@@ -6,6 +6,7 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
+#include "MemoryLeak.h"
 #include "Singleton.h"
 #include "Print.h"
 
