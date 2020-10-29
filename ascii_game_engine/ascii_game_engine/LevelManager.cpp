@@ -16,9 +16,12 @@ Level* LevelManager::GetMapLevel()
 	return levels[mapIndex];
 }
 
-// change to the next level
+// change to the next level in the next index
 void LevelManager::NextLevel()
 {
+	if (mapIndex + 1 >= levels.size())
+		return;
+
 	SoundEngine::GetInstance()->StopAllAudio();
 	levels[mapIndex]->GetMap().Exit();
 	levels[mapIndex]->GetDuplicatedMap().Exit();
@@ -28,6 +31,9 @@ void LevelManager::NextLevel()
 // change to a specific map
 void LevelManager::NextLevel(const int mapIndex)
 {
+	if (mapIndex >= levels.size() || mapIndex < 0)
+		return;
+
 	SoundEngine::GetInstance()->StopAllAudio();
 	levels[this->mapIndex]->GetMap().Exit();
 	levels[this->mapIndex]->GetDuplicatedMap().Exit();
@@ -37,8 +43,6 @@ void LevelManager::NextLevel(const int mapIndex)
 void LevelManager::Init()
 {
 	AddLevels(new Menu()); // 0
-	AddLevels(new Level_01()); // 1
-	AddLevels(new Level_02()); // 2
 }
 
 void LevelManager::AddLevels(Level *level)

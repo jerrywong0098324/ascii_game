@@ -1,7 +1,6 @@
 #include "Renderer.h"
 #include "Console.h"
 #include "PlayableLevels.h"
-#include "Ice.h"
 
 Renderer::Renderer() : print(nullptr)
 {
@@ -46,23 +45,6 @@ int Renderer::GetColours(const char& c)
 	int console_colour = Colours::BLACK | Colours::FG_WHITE;
 	switch (c)
 	{
-			// Rock
-		case (char)177:
-		case (char)178:
-			console_colour = rock;
-			break;
-			// Ice
-		case (char)219:
-		{
-			console_colour = ice;
-			break;
-		}
-		// Boulder
-		case (char)254:
-		{
-			console_colour = boulder;
-			break;
-		}
 		default:
 		{
 			console_colour = Colours::BLACK | Colours::FG_WHITE;

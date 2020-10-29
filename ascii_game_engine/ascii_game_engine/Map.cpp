@@ -1,9 +1,6 @@
 #include "Map.h"
 #include "Game.h"
 #include "FileManager.h"
-#include "Rock.h"
-#include "Ice.h"
-#include "Boulder.h"
 
 Map::Map() : x(0), y(0), map(nullptr)
 {
@@ -144,7 +141,7 @@ void Map::CreateMap(std::vector<std::string> res, const bool& duplicate, Level* 
 		{
 			char c = res[i + 1][j];
 
-			map[i][j].SetID(TbxID::NON_COLLIDABLE);
+			map[i][j].SetID(TbxID::INVALID);
 			// replacing all place holder characters to their respective chars in game
 			for (int k = 0; k < sum; ++k)
 			{
@@ -184,67 +181,6 @@ char Map::NonDuplicated(const char& placeHolder, Level* level, int& blockID, con
 			map[y][x].SetID(TbxID::EMPTY_SPACE);
 			break;
 		}
-		case '!': // invisible wall
-		{
-			c = (char)255;
-			map[y][x].SetID(TbxID::INVISIBLE_WALL);
-			break;
-		}
-		case '~': // rock
-		{
-			c = (char)178;
-			plptr = dynamic_cast<PlayableLevels*>(level); // PlabaleLevels pointer
-
-			Rock* rptr = new Rock(blockID);
-			rptr->Init(); // init rocks
-			rptr->SetBlockType("Rock");
-			rptr->SetPosition(pos); // position of rock
-
-			plptr->AddBlock(rptr); // add into level
-
-			map[y][x].SetID(TbxID::ROCK);
-
-			++blockID;
-			break;
-		}
-		case '`': // ice
-		{
-			c = (char)219;
-			plptr = dynamic_cast<PlayableLevels*>(level); // PlabaleLevels pointer
-
-			Player* pptr = &plptr->GetRefPlayer(); // Player pointer
-
-			Ice* iptr = new Ice(blockID);
-			iptr->Init(pptr, level); // inits ice
-			iptr->SetBlockType("Ice");
-			iptr->SetPosition(pos); // position of ice
-
-			plptr->AddBlock(iptr); // add into level to update
-
-			map[y][x].SetID(TbxID::ICE);
-
-			++blockID;
-			break;
-		}
-		case '{': // boulder
-		{
-			c = (char)254;
-			plptr = dynamic_cast<PlayableLevels*>(level); // PlabaleLevels pointer
-
-			Player* pptr = &plptr->GetRefPlayer(); // Player pointer
-
-			Boulder* bptr = new Boulder(blockID);
-			bptr->SetPosition(pos); // position of the boulder
-			bptr->SetBlockType("Boulder");
-			bptr->Init(pptr, level); // inits boulder
-
-			plptr->AddBlock(bptr); // add into level to update
-
-			map[y][x].SetID(TbxID::BOULDER);
-
-			++blockID;
-			break;
-		}
 	}
 
 	return c;
@@ -261,30 +197,6 @@ char Map::Duplicated(const char& placeHolder, const int& x, const int& y)
 		{
 			c = ' ';
 			map[y][x].SetID(TbxID::EMPTY_SPACE);
-			break;
-		}
-		case '!': // invisible wall
-		{
-			c = (char)255;
-			map[y][x].SetID(TbxID::INVISIBLE_WALL);
-			break;
-		}
-		case '~': // rock
-		{
-			c = (char)178;
-			map[y][x].SetID(TbxID::ROCK);
-			break;
-		}
-		case '`': // ice
-		{
-			c = (char)219;
-			map[y][x].SetID(TbxID::ICE);
-			break;
-		}
-		case '{': // boulder
-		{
-			c = (char)254;
-			map[y][x].SetID(TbxID::BOULDER);
 			break;
 		}
 	}

@@ -3,9 +3,7 @@
 #define PLAYABLE_LEVELS_H
 
 #include "Level.h"
-#include "Player.h"
 #include "Pause.h"
-#include "Block.h"
 
 class PlayableLevels : public Level
 {
@@ -31,25 +29,6 @@ public:
 	*******************************************************************/
 	int GetXBuffer() const;
 	int GetYBuffer() const;
-	// ******************************************************************
-
-
-	/*******************************************************************
-							BLOCKS FEATURE
-	*******************************************************************/
-	// Add block into a vector
-	void AddBlock(Block* block);
-	// Delete the block at the position
-	void DeleteBlock(Block* block);
-	// Returns true if theres a block at this position that is not this variable 'c'
-	char GetNotThisBlock(const Vector2& pos, const char& c);
-	// Returns the id of the block
-	int GetBlockID(const Vector2& pos);
-	// Returns a reference to the block based on the position (nullptr if nth)
-	Block* GetBlock(const Vector2& pos) const;
-	// Returns a reference to the block based on the block's ID (nullptr if nth)
-	Block* GetBlock(const int& id) const;
-	Player& GetRefPlayer();
 	// ******************************************************************
 
 	/*******************************************************************
@@ -82,31 +61,12 @@ private:
 
 	const Vector2 *pos; // player's pos
 
-	/*******************************************************************
-							BLOCKS FEATURE
-	*******************************************************************/
-	// Update blocks
-	void UpdateBlocks();
-	// Render blocks
-	void RenderBlocks();
-	// Adding blocks into the blocks_on_screen vector
-	void UpdateBlocksOnScreen();
-	// Clear any remaining memory of blocks from the level
-	void DeleteBlocks();
-
-	// reference to blocks on the map
-	std::vector<Block*> blocks; 
-	// blocks to be updated
-	std::vector<Block*> blocks_on_screen;
-	// ******************************************************************
-
 protected:
 	int XLimit();
 	int YLimit();
 
 	int x_buffer, y_buffer; // buffer to know where to start printing the map from
 	char **print; // using this 2d dynamic array to print out the map
-	Player player;
 	// ******************************************************************
 
 	/*******************************************************************

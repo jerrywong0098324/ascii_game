@@ -1,56 +1,7 @@
-﻿  Application.cpp
-  Audio.cpp
-  AudioManager.cpp
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\AudioManager.cpp(25,20): warning C4018: '<': signed/unsigned mismatch
-  Boulder.cpp
-  Fog.cpp
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Fog.cpp(57,20): warning C4018: '<': signed/unsigned mismatch
-  Game.cpp
-  GameStateManager.cpp
-  Ice.cpp
-  Inventory.cpp
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Inventory.cpp(18,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Inventory.cpp(37,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Inventory.cpp(68,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Inventory.cpp(85,12): warning C4018: '>=': signed/unsigned mismatch
-  InventoryManager.cpp
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\InventoryManager.cpp(22,20): warning C4018: '<': signed/unsigned mismatch
-  LevelManager.cpp
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\LevelManager.cpp(51,20): warning C4018: '<': signed/unsigned mismatch
-  Level_01.cpp
-  Level_02.cpp
-  Map.cpp
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Map.cpp(102,20): warning C4018: '<': signed/unsigned mismatch
-  Menu.cpp
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Menu.cpp(132,48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-  Mouse.cpp
-  Pause.cpp
-  Pickaxe.cpp
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Pickaxe.cpp(39,48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-  Pistol.cpp
-  PlayableLevels.cpp
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(122,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(133,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(147,20): warning C4018: '>': signed/unsigned mismatch
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(265,21): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(280,21): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(321,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(328,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(338,20): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\PlayableLevels.cpp(128): warning C4715: 'PlayableLevels::GetBlockID': not all control paths return a value
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Map.cpp(170): warning C4715: 'Map::ReplaceCharacter': not all control paths return a value
-  Compiling...
-  Player.cpp
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Player.cpp(254,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\Player.cpp(341,54): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-  Renderer.cpp
-  RendererManager.cpp
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\RendererManager.cpp(19,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\RendererManager.cpp(54,15): warning C4018: '<': signed/unsigned mismatch
-  SoundEngine.cpp
-  Timer.cpp
-  UserInput.cpp
-  main.cpp
-  Generating Code...
+﻿  LevelManager.cpp
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\TextBox.h(30,1): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\TextBox.h(47,1): warning C4065: switch statement contains 'default' but no 'case' labels
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\LevelManager.cpp(22,19): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\LevelManager.cpp(34,15): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\ascii_game_engine\LevelManager.cpp(55,20): warning C4018: '<': signed/unsigned mismatch
   ascii_game_engine.vcxproj -> C:\Users\Jadelays\Desktop\ascii_game\ascii_game_engine\Debug\ascii_game_engine.exe

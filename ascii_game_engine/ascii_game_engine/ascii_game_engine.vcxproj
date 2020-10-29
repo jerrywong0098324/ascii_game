@@ -93,7 +93,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;winmm.lib;ConLib2005.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;winmm.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -144,24 +144,16 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Audio.h" />
     <ClInclude Include="AudioManager.h" />
-    <ClInclude Include="Block.h" />
-    <ClInclude Include="Boulder.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Colours.h" />
     <ClInclude Include="ConLib.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="ControllerHandler.h" />
-    <ClInclude Include="Equipment.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="FileManager.h" />
-    <ClInclude Include="Fog.h" />
-    <ClInclude Include="FogLevels.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
-    <ClInclude Include="Ice.h" />
-    <ClInclude Include="Inventory.h" />
-    <ClInclude Include="InventoryManager.h" />
     <ClInclude Include="irrklang\ik_ESoundEngineOptions.h" />
     <ClInclude Include="irrklang\ik_ESoundOutputDrivers.h" />
     <ClInclude Include="irrklang\ik_EStreamModes.h" />
@@ -184,28 +176,18 @@
     <ClInclude Include="irrklang\ik_vec3d.h" />
     <ClInclude Include="irrklang\irrKlang.h" />
     <ClInclude Include="ISingleton.h" />
-    <ClInclude Include="Item.h" />
-    <ClInclude Include="ItemID.h" />
     <ClInclude Include="KeyCode.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelManager.h" />
-    <ClInclude Include="Level_01.h" />
-    <ClInclude Include="Level_02.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MemoryLeak.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Pause.h" />
-    <ClInclude Include="Pickaxe.h" />
-    <ClInclude Include="Pistol.h" />
     <ClInclude Include="PlayableLevels.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerStatus.h" />
     <ClInclude Include="Print.h" />
-    <ClInclude Include="RangeWeapon.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RendererManager.h" />
-    <ClInclude Include="Rock.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SingletonManager.h" />
     <ClInclude Include="SoundEngine.h" />
@@ -214,38 +196,25 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="UserInput.h" />
     <ClInclude Include="Vector2.h" />
-    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="AudioManager.cpp" />
-    <ClCompile Include="Boulder.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="FileManager.cpp" />
-    <ClCompile Include="Fog.cpp" />
-    <ClCompile Include="FogLevels.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
-    <ClCompile Include="Ice.cpp" />
-    <ClCompile Include="Inventory.cpp" />
-    <ClCompile Include="InventoryManager.cpp" />
     <ClCompile Include="LevelManager.cpp" />
-    <ClCompile Include="Level_01.cpp" />
-    <ClCompile Include="Level_02.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Pause.cpp" />
-    <ClCompile Include="Pickaxe.cpp" />
-    <ClCompile Include="Pistol.cpp" />
     <ClCompile Include="PlayableLevels.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Print.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RendererManager.cpp" />
-    <ClCompile Include="Rock.cpp" />
     <ClCompile Include="SingletonManager.cpp" />
     <ClCompile Include="SoundEngine.cpp" />
     <ClCompile Include="Timer.cpp" />

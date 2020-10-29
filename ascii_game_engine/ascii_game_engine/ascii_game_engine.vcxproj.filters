@@ -25,14 +25,8 @@
     <Filter Include="Audio\irrklang">
       <UniqueIdentifier>{c9db1260-39a6-4371-a36b-179b0cfa4143}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Player">
-      <UniqueIdentifier>{ae44388a-3c5a-44c3-be23-d64f0972b2ba}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Levels\Menu">
       <UniqueIdentifier>{3f41fa8c-fcfd-4bfb-b08b-456d233358da}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Levels\Level_01">
-      <UniqueIdentifier>{a901d8d7-7c36-46ab-be0b-dfd0ca6347f3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Levels\Map">
       <UniqueIdentifier>{e1036042-0d80-4a10-8b25-344f55b57cb3}</UniqueIdentifier>
@@ -52,62 +46,14 @@
     <Filter Include="Levels\Manager">
       <UniqueIdentifier>{3e620a4c-9894-46dd-aa75-f9d40e97a91b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Levels\Level_02">
-      <UniqueIdentifier>{04704b78-a57b-44b0-85cb-b7a79ffa1d9d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Levels\Base Level Classes\FogLevels">
-      <UniqueIdentifier>{b6e106ca-0edb-4239-b12c-b62aeaaa7a01}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Levels\Base Level Classes\FogLevels\Fog">
-      <UniqueIdentifier>{df976bb6-4e84-47b0-9c18-23f80f894475}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Item">
-      <UniqueIdentifier>{2d51f463-38f9-47c3-8e2f-3bcd0ec5b9be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Item\Base">
-      <UniqueIdentifier>{d854d36a-0038-4324-8f9c-8ea7465e94a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Item\Pickaxe">
-      <UniqueIdentifier>{eacaec97-c68a-49b8-bf2f-822ed136d40d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blocks">
-      <UniqueIdentifier>{e3cd2569-58ab-4319-9bc0-baf8ecae010c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blocks\Base">
-      <UniqueIdentifier>{71b4c563-1b08-4c25-a490-2af25b07d99d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blocks\Rock">
-      <UniqueIdentifier>{037f0330-17cd-4763-99f6-ea47198ef482}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Player\Inventory">
-      <UniqueIdentifier>{adb62cb9-a238-400f-ae4c-b1a8379f875a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="File Manager">
       <UniqueIdentifier>{94a65d55-ce52-43c0-b71c-479fe12ee646}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Player\Status">
-      <UniqueIdentifier>{71860f63-1d13-4dee-9dff-4796a777deda}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blocks\Ice">
-      <UniqueIdentifier>{9d1e76ea-3803-4b8e-b107-f2f8c42faece}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Blocks\Boulder">
-      <UniqueIdentifier>{3027d5be-dc37-4893-b415-9e457849f92d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Renderer">
       <UniqueIdentifier>{968a8ff1-0882-47af-bca1-8aba418e5000}</UniqueIdentifier>
     </Filter>
     <Filter Include="Renderer\Manager">
       <UniqueIdentifier>{da4e6bca-60fb-4ffa-846d-8c0b1e629902}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Item\Weapon">
-      <UniqueIdentifier>{4c721032-eae2-4c44-a539-2cdb282448ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Item\Weapon\Base">
-      <UniqueIdentifier>{ecd64649-b62a-4769-8003-a521fa359687}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Item\Weapon\Pistol">
-      <UniqueIdentifier>{cb617af2-d8e9-4727-a7e6-afe304ff575c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Renderer\Print">
       <UniqueIdentifier>{513fd748-ecc5-427d-a3ae-567a27ae56f0}</UniqueIdentifier>
@@ -207,14 +153,8 @@
     <ClInclude Include="AudioManager.h">
       <Filter>Audio</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Player</Filter>
-    </ClInclude>
     <ClInclude Include="Menu.h">
       <Filter>Levels\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="Level_01.h">
-      <Filter>Levels\Level_01</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>Levels\Map</Filter>
@@ -267,50 +207,8 @@
     <ClInclude Include="ControllerHandler.h">
       <Filter>Misc</Filter>
     </ClInclude>
-    <ClInclude Include="Level_02.h">
-      <Filter>Levels\Level_02</Filter>
-    </ClInclude>
-    <ClInclude Include="FogLevels.h">
-      <Filter>Levels\Base Level Classes\FogLevels</Filter>
-    </ClInclude>
-    <ClInclude Include="Fog.h">
-      <Filter>Levels\Base Level Classes\FogLevels\Fog</Filter>
-    </ClInclude>
-    <ClInclude Include="Equipment.h">
-      <Filter>Item\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Item\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemID.h">
-      <Filter>Item\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Pickaxe.h">
-      <Filter>Item\Pickaxe</Filter>
-    </ClInclude>
-    <ClInclude Include="Block.h">
-      <Filter>Blocks\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Rock.h">
-      <Filter>Blocks\Rock</Filter>
-    </ClInclude>
-    <ClInclude Include="Inventory.h">
-      <Filter>Player\Inventory</Filter>
-    </ClInclude>
     <ClInclude Include="FileManager.h">
       <Filter>File Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="InventoryManager.h">
-      <Filter>Player\Inventory</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerStatus.h">
-      <Filter>Player\Status</Filter>
-    </ClInclude>
-    <ClInclude Include="Ice.h">
-      <Filter>Blocks\Ice</Filter>
-    </ClInclude>
-    <ClInclude Include="Boulder.h">
-      <Filter>Blocks\Boulder</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>Renderer</Filter>
@@ -320,15 +218,6 @@
     </ClInclude>
     <ClInclude Include="RendererManager.h">
       <Filter>Renderer\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="RangeWeapon.h">
-      <Filter>Item\Weapon\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Item\Weapon\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Pistol.h">
-      <Filter>Item\Weapon\Pistol</Filter>
     </ClInclude>
     <ClInclude Include="Print.h">
       <Filter>Renderer\Print</Filter>
@@ -359,14 +248,8 @@
     <ClCompile Include="Audio.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
     <ClCompile Include="Menu.cpp">
       <Filter>Levels\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="Level_01.cpp">
-      <Filter>Levels\Level_01</Filter>
     </ClCompile>
     <ClCompile Include="AudioManager.cpp">
       <Filter>Audio</Filter>
@@ -407,44 +290,14 @@
     <ClCompile Include="LevelManager.cpp">
       <Filter>Levels\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Level_02.cpp">
-      <Filter>Levels\Level_02</Filter>
-    </ClCompile>
-    <ClCompile Include="FogLevels.cpp">
-      <Filter>Levels\Base Level Classes\FogLevels</Filter>
-    </ClCompile>
-    <ClCompile Include="Fog.cpp">
-      <Filter>Levels\Base Level Classes\FogLevels\Fog</Filter>
-    </ClCompile>
-    <ClCompile Include="Pickaxe.cpp">
-      <Filter>Item\Pickaxe</Filter>
-    </ClCompile>
-    <ClCompile Include="Rock.cpp">
-      <Filter>Blocks\Rock</Filter>
-    </ClCompile>
-    <ClCompile Include="Inventory.cpp">
-      <Filter>Player\Inventory</Filter>
-    </ClCompile>
     <ClCompile Include="FileManager.cpp">
       <Filter>File Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="InventoryManager.cpp">
-      <Filter>Player\Inventory</Filter>
-    </ClCompile>
-    <ClCompile Include="Ice.cpp">
-      <Filter>Blocks\Ice</Filter>
-    </ClCompile>
-    <ClCompile Include="Boulder.cpp">
-      <Filter>Blocks\Boulder</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="RendererManager.cpp">
       <Filter>Renderer\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Pistol.cpp">
-      <Filter>Item\Weapon\Pistol</Filter>
     </ClCompile>
     <ClCompile Include="Print.cpp">
       <Filter>Renderer\Print</Filter>
